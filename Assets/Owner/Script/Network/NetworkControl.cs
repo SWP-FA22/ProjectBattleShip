@@ -21,4 +21,6 @@ public class NetworkControl : MonoBehaviourPunCallbacks
     {
         SceneManager.LoadScene("HomeScene");
     }
+
+    
 }

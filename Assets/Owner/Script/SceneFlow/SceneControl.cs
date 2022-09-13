@@ -19,6 +19,9 @@ public class SceneControl : MonoBehaviour
     {
         Application.OpenURL("http://unity3d.com/");
     }
+    public void setDeactive(){
+        gameObject.SetActive(false);
+    }
     
     
 }
