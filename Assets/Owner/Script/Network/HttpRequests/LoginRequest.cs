@@ -79,22 +79,22 @@ namespace Assets.Owner.Script.Network.HttpRequests
         private struct LoginResponse
         {
             [JsonProperty("success")]
-            public bool Success { get; }
+            public bool Success { get; set; }
 
             [JsonProperty("token")]
-            public string Token { get; }
+            public string Token { get; set; }
 
             [JsonProperty("error")]
-            public string Error { get; }
+            public string Error { get; set; }
         }
 
         private struct VerifyTokenResponse
         {
             [JsonProperty("success")]
-            public bool Success { get; }
+            public bool Success { get; set; }
 
             [JsonProperty("error")]
-            public string Error { get; }
+            public string Error { get; set; }
         }
     }
 }
