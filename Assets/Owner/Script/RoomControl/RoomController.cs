@@ -10,9 +10,11 @@ public class RoomController : MonoBehaviourPunCallbacks
     public GameObject ErrorMessage;
     public TMP_InputField RoomName;
     public TMP_InputField JoinRoomName;
-    
+
+   
     public void CreateNewRoom()
     {
+        
         if (RoomName.text != "")
         {
             RoomOptions roomOptions = new RoomOptions();

@@ -5,11 +5,8 @@ using UnityEngine.SceneManagement;
 using Photon.Pun;
 public class SceneControl : MonoBehaviour
 {
-    public void LoadToLoadingScene()
-    {
-        //validate login in here
-        SceneManager.LoadScene("LoadingScene");
-    }
+
+    
 
     public void LinkToRegisterWebsite()
     {
