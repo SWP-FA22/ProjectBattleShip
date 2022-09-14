@@ -532,7 +532,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_SendPointerHoverToParent: 1
   m_HorizontalAxis: Horizontal
   m_VerticalAxis: Vertical
   m_SubmitButton: Submit
@@ -977,9 +976,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1815536196}
-        m_TargetAssemblyTypeName: SceneControl, Assembly-CSharp
-        m_MethodName: LinkToResetPassWeb
+      - m_Target: {fileID: 1815536199}
+        m_TargetAssemblyTypeName: Owner.Script.GamePlay.CheckValidateToken, Assembly-CSharp
+        m_MethodName: ValidateLogin
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1696,6 +1695,7 @@ GameObject:
   - component: {fileID: 1815536197}
   - component: {fileID: 1815536196}
   - component: {fileID: 1815536198}
+  - component: {fileID: 1815536199}
   m_Layer: 0
   m_Name: SceneControler
   m_TagString: Untagged
@@ -1742,6 +1742,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dd4e7b9d55d4c09b91cd9316563b73d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1815536199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1815536195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76c1dc2f59df691428a6090879df554e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  userName: {fileID: 2050882342}
+  password: {fileID: 1187335875}
 --- !u!1 &1832711373
 GameObject:
   m_ObjectHideFlags: 0
