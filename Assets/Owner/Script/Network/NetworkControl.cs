@@ -19,6 +19,8 @@ public class NetworkControl : MonoBehaviourPunCallbacks
     }
     public override void OnJoinedLobby()
     {
-        
+        SceneManager.LoadScene("HomeScene");
     }
+
+    
 }
