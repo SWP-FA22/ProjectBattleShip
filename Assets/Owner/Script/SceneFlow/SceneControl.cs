@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using Photon.Pun;
 public class SceneControl : MonoBehaviour
 {
     public void LoadToLoadingScene()
     {
+        //validate login in here
         SceneManager.LoadScene("LoadingScene");
     }
 
@@ -21,6 +22,11 @@ public class SceneControl : MonoBehaviour
     }
     public void setDeactive(){
         gameObject.SetActive(false);
+    }
+    public void BackToHome()
+    {
+        PhotonNetwork.LeaveRoom();
+        SceneManager.LoadScene("HomeScene");
     }
     
     
