@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="879c300a-fdf8-4bea-888f-0c671285a07a" name="Changes" comment="add player move control and setup camera follow player, add close button and quit game logic" />
+    <list default="true" id="879c300a-fdf8-4bea-888f-0c671285a07a" name="Changes" comment="fix error message ui">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.ProjectBattleShip/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ProjectBattleShip/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Owner/Scenes/HomeScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Scenes/HomeScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/SceneFlow/SceneControl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/SceneFlow/SceneControl.cs" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -16,6 +20,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="mock://C:/Users/Admin/ProjectBattleShip/Assets/Owner/Scenes/GameScene.unity" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Admin/ProjectBattleShip/Assets/Owner/Scenes/HomeScene.unity" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/Users/Admin/ProjectBattleShip/Assets/Owner/Scenes/HomeScene.unity" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/Users/Admin/ProjectBattleShip/Assets/Owner/Scenes/LoginScene.unity" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Owner/Script/GameInstall/GameInstaller.cs" root0="FORCE_HIGHLIGHTING" />
@@ -89,7 +94,7 @@
       <updated>1662810860984</updated>
       <workItem from="1662810866648" duration="1643000" />
       <workItem from="1663032244585" duration="1167000" />
-      <workItem from="1663078009222" duration="18991000" />
+      <workItem from="1663078009222" duration="20112000" />
     </task>
     <task id="LOCAL-00001" summary="add login scene ui and ui flow setup">
       <created>1663033377719</created>
@@ -112,7 +117,14 @@
       <option name="project" value="LOCAL" />
       <updated>1663209580367</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="fix error message ui">
+      <created>1663210304011</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1663210304011</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -137,6 +149,7 @@
     <MESSAGE value="add login scene ui and ui flow setup" />
     <MESSAGE value="add more asset, fix hone scene ui and back logic" />
     <MESSAGE value="add player move control and setup camera follow player, add close button and quit game logic" />
-    <option name="LAST_COMMIT_MESSAGE" value="add player move control and setup camera follow player, add close button and quit game logic" />
+    <MESSAGE value="fix error message ui" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix error message ui" />
   </component>
 </project>
