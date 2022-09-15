@@ -5,9 +5,6 @@ using UnityEngine.SceneManagement;
 using Photon.Pun;
 public class SceneControl : MonoBehaviour
 {
-
-    
-
     public void LinkToRegisterWebsite()
     {
         Application.OpenURL("http://unity3d.com/");
@@ -17,7 +14,7 @@ public class SceneControl : MonoBehaviour
     {
         Application.OpenURL("http://unity3d.com/");
     }
-    public void setDeactive(){
+    public void SetDeactive(){
         gameObject.SetActive(false);
     }
     public void BackToHome()

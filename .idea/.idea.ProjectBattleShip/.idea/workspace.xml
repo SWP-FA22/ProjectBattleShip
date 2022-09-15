@@ -1,20 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="879c300a-fdf8-4bea-888f-0c671285a07a" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.ProjectBattleShip/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ProjectBattleShip/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Owner/Scenes/GameScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Scenes/GameScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Owner/Scenes/LoginScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Scenes/LoginScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/GamePlay/CheckValidateToken.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/GamePlay/CheckValidateToken.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/GamePlay/CheckValidateToken.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/GamePlay/CheckValidateToken.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/GamePlay/PlayerControl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/GamePlay/PlayerControl.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/Network/HttpRequests/HttpRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/Network/HttpRequests/HttpRequest.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/SceneFlow/SceneControl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/SceneFlow/SceneControl.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Player.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Player.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Player.prefab.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Player.prefab.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
-    </list>
+    <list default="true" id="879c300a-fdf8-4bea-888f-0c671285a07a" name="Changes" comment="add player move control and setup camera follow player, add close button and quit game logic" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -23,7 +10,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="khai/develop/SceneUI-flow" />
       </map>
     </option>
   </component>
@@ -32,6 +19,7 @@
     <setting file="mock://C:/Users/Admin/ProjectBattleShip/Assets/Owner/Scenes/HomeScene.unity" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/Users/Admin/ProjectBattleShip/Assets/Owner/Scenes/LoginScene.unity" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Owner/Script/GameInstall/GameInstaller.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Admin/ProjectBattleShip/Assets/Owner/Script/GamePlay/CheckValidateToken.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/Users/Admin/ProjectBattleShip/Assets/Owner/Script/SceneFlow/SceneControl.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/Users/Admin/ProjectBattleShip/Assets/Resources/Player.prefab" root0="SKIP_HIGHLIGHTING" />
   </component>
@@ -101,7 +89,7 @@
       <updated>1662810860984</updated>
       <workItem from="1662810866648" duration="1643000" />
       <workItem from="1663032244585" duration="1167000" />
-      <workItem from="1663078009222" duration="18496000" />
+      <workItem from="1663078009222" duration="18991000" />
     </task>
     <task id="LOCAL-00001" summary="add login scene ui and ui flow setup">
       <created>1663033377719</created>
@@ -117,7 +105,14 @@
       <option name="project" value="LOCAL" />
       <updated>1663128800088</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="add player move control and setup camera follow player, add close button and quit game logic">
+      <created>1663209580367</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1663209580367</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -141,6 +136,7 @@
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="add login scene ui and ui flow setup" />
     <MESSAGE value="add more asset, fix hone scene ui and back logic" />
-    <option name="LAST_COMMIT_MESSAGE" value="add more asset, fix hone scene ui and back logic" />
+    <MESSAGE value="add player move control and setup camera follow player, add close button and quit game logic" />
+    <option name="LAST_COMMIT_MESSAGE" value="add player move control and setup camera follow player, add close button and quit game logic" />
   </component>
 </project>
