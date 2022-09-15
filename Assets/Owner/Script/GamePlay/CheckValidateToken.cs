@@ -18,11 +18,16 @@
         private async void Start()
         {
             login.LoadTokenFromFile(TOKEN_FILE);
-            bool checkToken = await login.Verfiy();
-            if (checkToken)
+            Debug.Log(this.login.Token);
+            if (this.login.Token == "1234567890")
             {
                 LoadToLoadingScene();
             }
+            // bool checkToken = await login.Verfiy();
+            // if (checkToken)
+            // {
+            //     LoadToLoadingScene();
+            // }
         }
 
         private void LoadToLoadingScene()

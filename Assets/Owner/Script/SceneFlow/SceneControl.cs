@@ -25,6 +25,10 @@ public class SceneControl : MonoBehaviour
         PhotonNetwork.LeaveRoom();
         SceneManager.LoadScene("HomeScene");
     }
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
     
     
 }
