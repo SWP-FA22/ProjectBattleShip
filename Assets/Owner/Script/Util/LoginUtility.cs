@@ -30,7 +30,6 @@ public class LoginUtility
     public async Task<bool> Verfiy()
     {
         LoginRequest request = new LoginRequest(Token);
-
         return await request.VerifyToken();
     }
 
@@ -47,7 +46,7 @@ public class LoginUtility
         try
         {
             string token = File.ReadAllText(filename);
-
+            Debug.Log(token);
             if (token?.Length > 0)
             {
                 Token = token;

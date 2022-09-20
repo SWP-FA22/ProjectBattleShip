@@ -4,15 +4,18 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Networking;
+using Zenject;
 
 namespace Assets.Owner.Script.Network.HttpRequests
 {
+    
+    
     public class LoginRequest
     {
         public static readonly string LOGIN_URL = $"{HttpRequest.BASE_URL}/api/login";
-        public static readonly string VERIFY_TOKEN_URL = $"{HttpRequest.BASE_URL}/api/verify-token";
-
-        public string Token { get; private set; }
+        public static readonly string VERIFY_TOKEN_URL = $"{HttpRequest.BASE_URL}/api/verify";
+       
+        public  string    Token { get; private set; }
 
         public LoginRequest()
         {
@@ -38,7 +41,10 @@ namespace Assets.Owner.Script.Network.HttpRequests
                 var response = await new HttpRequest(www).Send<LoginResponse>();
 
                 if (!response.Success)
-                    throw new System.Exception(response.Error);
+                {
+                    return false;
+                }
+                    
 
                 this.Token = response.Token;
 
@@ -71,7 +77,7 @@ namespace Assets.Owner.Script.Network.HttpRequests
             }
             catch (System.Exception ex)
             {
-                Debug.LogException(ex);
+               
                 return false;
             }
         }

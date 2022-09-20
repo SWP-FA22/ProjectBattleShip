@@ -9,12 +9,12 @@ public class SceneControl : MonoBehaviour
     private const string TOKEN_FILE = ".login-data";
     public void LinkToRegisterWebsite()
     {
-        Application.OpenURL("http://unity3d.com/");
+        Application.OpenURL("http://103.185.184.47:8080/HttpServer/register");
     }
 
     public void LinkToResetPassWeb()
     {
-        Application.OpenURL("http://unity3d.com/");
+        Application.OpenURL("http://103.185.184.47:8080/HttpServer/forgot");
     }
     public void SetDeactive(){
         gameObject.SetActive(false);

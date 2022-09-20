@@ -14,20 +14,27 @@
 
         public TMP_InputField userName;
         public TMP_InputField password;
-
+        public GameObject     error;
         private async void Start()
         {
-            login.LoadTokenFromFile(TOKEN_FILE);
-            Debug.Log(this.login.Token);
-            if (this.login.Token == "1234567890")
+            try
             {
-                LoadToLoadingScene();
+                login.LoadTokenFromFile(TOKEN_FILE);
+                if (this.login.Token != null)
+                {
+                    bool checkToken = await login.Verfiy();
+                    if (checkToken)
+                    {
+                        LoadToLoadingScene();
+                    }
+                }
             }
-            // bool checkToken = await login.Verfiy();
-            // if (checkToken)
-            // {
-            //     LoadToLoadingScene();
-            // }
+            catch (Exception e)
+            {
+                Debug.Log("agdgfjh");
+            }
+            
+            
         }
 
         private void LoadToLoadingScene()
@@ -37,12 +44,24 @@
         
         public async void ValidateLogin()
         {
-            bool result = await login.Login(userName.text, password.text);
-            if (result)
+            if (this.userName.text == "" || this.password.text == "")
             {
-                login.SaveTokenToFile(TOKEN_FILE);
-                LoadToLoadingScene();
+                this.error.SetActive(true);
             }
+            else
+            {
+                bool result = await login.Login(userName.text, password.text);
+                if (result)
+                {
+                    login.SaveTokenToFile(TOKEN_FILE);
+                    LoadToLoadingScene();
+                }
+                else
+                {
+                    this.error.SetActive(true);
+                }
+            }
+            
         }
     }
 }
