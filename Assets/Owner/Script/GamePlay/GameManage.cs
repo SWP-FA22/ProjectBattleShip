@@ -8,8 +8,8 @@ public class GameManage : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Vector2 randomPosition = new Vector2(Random.Range(-7.5f,7.5f),Random.Range(-4,4));
-        PhotonNetwork.Instantiate(Player.name,randomPosition,Quaternion.identity);
+        Vector3 randomPosition = new Vector3(Random.Range(-175f,75f),Random.Range(-35,35),0);
+        PhotonNetwork.Instantiate(Player.name,new Vector3(Random.Range(-175f,75f),Random.Range(-35,35),0),Quaternion.identity);
     }
 
     // Update is called once per frame
