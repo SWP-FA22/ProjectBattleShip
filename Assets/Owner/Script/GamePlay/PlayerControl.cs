@@ -10,6 +10,8 @@ public class PlayerControl : MonoBehaviour
     public float      speed;
     public PhotonView viewOfCannon;
     public GameObject cannon;
+
+    public GameObject healthBar;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +24,7 @@ public class PlayerControl : MonoBehaviour
     {
         if(view.IsMine)
         {
+            gameObject.tag                                              = "CurrentPlayer";
             this.camera.GetComponent<CinemachineVirtualCamera>().Follow = gameObject.transform;
             this.camera.GetComponent<CinemachineVirtualCamera>().LookAt = gameObject.transform;
             if(Input.GetKey(KeyCode.W)){
@@ -35,6 +38,7 @@ public class PlayerControl : MonoBehaviour
                 float rotation = -1 * this.speed*0.5f;
                 transform.Rotate(Vector3.forward*rotation);
             }
+            this.healthBar.transform.position=gameObject.transform.position;
             
 
         }
