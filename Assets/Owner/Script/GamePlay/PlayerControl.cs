@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
@@ -10,13 +11,15 @@ public class PlayerControl : MonoBehaviour
     public float      speed;
     public PhotonView viewOfCannon;
     public GameObject cannon;
-
     public GameObject healthBar;
+
+    
     // Start is called before the first frame update
     void Start()
     {
-        view = gameObject.GetComponent<PhotonView>();
-        this.camera = GameObject.Find("CM vcam1");
+        view            = gameObject.GetComponent<PhotonView>();
+        this.camera     = GameObject.Find("CM vcam1");
+        
         //this.viewOfCannon=this.cannon.GetComponent<PhotonView>();
     }
     
@@ -38,11 +41,10 @@ public class PlayerControl : MonoBehaviour
                 float rotation = -1 * this.speed*0.5f;
                 transform.Rotate(Vector3.forward*rotation);
             }
-            this.healthBar.transform.position=gameObject.transform.position;
+            this.healthBar.transform.position = gameObject.transform.position;
             
 
         }
     }
-
-    
+   
 }

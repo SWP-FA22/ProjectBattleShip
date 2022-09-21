@@ -23,8 +23,7 @@
                 if (Input.GetKey(KeyCode.Mouse0))
                 {
                     Debug.Log("fire");
-                    this.view.RPC("CreateBullet",RpcTarget.AllBuffered);
-                    
+                    this.view.RPC("CreateBullet", RpcTarget.AllBuffered);
                 }
             }
         }
