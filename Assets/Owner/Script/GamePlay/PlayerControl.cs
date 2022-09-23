@@ -28,6 +28,7 @@ public class PlayerControl : MonoBehaviour
         if(view.IsMine)
         {
             gameObject.tag                                              = "CurrentPlayer";
+            gameObject.transform.GetChild(1).tag            = "CurrentPlayer";
             this.camera.GetComponent<CinemachineVirtualCamera>().Follow = gameObject.transform;
             this.camera.GetComponent<CinemachineVirtualCamera>().LookAt = gameObject.transform;
             if(Input.GetKey(KeyCode.W)){

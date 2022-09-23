@@ -2,42 +2,46 @@
 {
     using System;
     using Cysharp.Threading.Tasks;
+    using Photon.Pun;
     using UnityEngine;
 
     public class Bullet : MonoBehaviour
     {
-        private void Start()
-        {
-            this.autoDestroy();
-        }
+        private void Start() { this.AutoDestroy(); }
 
         private void OnTriggerEnter2D(Collider2D col)
         {
             Debug.Log("des");
-            if (col.transform.tag == "Player" || col.transform.tag == "island")
+            if (col.transform.CompareTag("island") || col.CompareTag("Player"))
             {
-               this.gameObject.SetActive(false);
+                if (col.GetComponent<PlayerBoxCollider>() != null)
+                {
+                    Debug.Log("lose health");
+                    
+                }
+
+                this.gameObject.SetActive(false);
             }
         }
 
-        private void OnTriggerEnter(Collider other)
+        
+
+        private void OnTriggerExit2D(Collider2D other)
         {
-            Debug.Log("des");
-            if (other.transform.tag == "Player" || other.transform.tag == "island")
+            if (other.CompareTag("CurrentPlayer"))
             {
-                Destroy(this.gameObject);
+                gameObject.tag = "Bullet";
             }
         }
-       
 
-        public async void autoDestroy()
+
+        private async void AutoDestroy()
         {
             await UniTask.Delay(TimeSpan.FromMilliseconds(2500));
             if (gameObject != null)
             {
                 Destroy(this.gameObject);
             }
-           
         }
     }
 }

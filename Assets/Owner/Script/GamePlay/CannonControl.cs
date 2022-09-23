@@ -35,7 +35,7 @@
                 var newBullet = Instantiate(this.bullet, gameObject.transform.position, gameObject.transform.rotation);
                 
                 newBullet.GetComponent<Rigidbody2D>().velocity = (this.gameObject.transform.up  * 10f);
-                this.state                                       = false;
+                this.state                                     = false;
                 await UniTask.Delay(TimeSpan.FromMilliseconds(1000));
                 this.state = true;
             }
