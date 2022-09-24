@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Owner.Script.GamePlay.CannonControl">
+    <Position X="7" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>Assets\Owner\Script\GamePlay\CannonControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameInstaller">
+    <Position X="10" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Owner\Script\GameInstall\GameInstaller.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Owner.Script.GamePlay.CheckValidateToken">
+    <Position X="9" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAABACABAAAAAAAAAAAAAAAAAAAAAAAAAgEAEAA=</HashCode>
+      <FileName>Assets\Owner\Script\GamePlay\CheckValidateToken.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameManage">
+    <Position X="6.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>Assets\Owner\Script\GamePlay\GameManage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Assets.Owner.Script.Network.HttpRequests.HttpRequest">
+    <Position X="12.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAACEAAAAAAAAAAEAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Owner\Script\Network\HttpRequests\HttpRequest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Assets.Owner.Script.Network.HttpRequests.LoginRequest">
+    <Position X="5" Y="0.75" Width="1.5" />
+    <NestedTypes>
+      <Struct Name="Assets.Owner.Script.Network.HttpRequests.LoginRequest.LoginResponse" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\Owner\Script\Network\HttpRequests\LoginRequest.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+      <Struct Name="Assets.Owner.Script.Network.HttpRequests.LoginRequest.VerifyTokenResponse" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\Owner\Script\Network\HttpRequests\LoginRequest.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAgAAEAAAAAAAAAAAAAAAQAAgBAAA=</HashCode>
+      <FileName>Assets\Owner\Script\Network\HttpRequests\LoginRequest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RoomController">
+    <Position X="4" Y="4.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AUAAAEAAABAIAAACAAAAAAAAAAAAAAAAEAAAABAAAAA=</HashCode>
+      <FileName>Assets\Owner\Script\RoomControl\RoomController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SceneControl">
+    <Position X="12.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACABAAAAAAAAAAAgAIAAABAAAAAAAAAAQAAAAEA=</HashCode>
+      <FileName>Assets\Owner\Script\SceneFlow\SceneControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LoginUtility">
+    <Position X="1.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAAAAAAAgAAAAAAAAAAAAAAAgAAAAQAAABAAA=</HashCode>
+      <FileName>Assets\Owner\Script\Util\LoginUtility.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
