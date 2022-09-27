@@ -51,7 +51,15 @@
             if (gameObject.GetComponent<PlayerBoxCollider>() != null)
             {
                 Debug.Log("lose health rpc");
-                gameObject.GetComponent<PlayerBoxCollider>().healthAmount -= lose;
+                if (gameObject.GetComponent<PlayerBoxCollider>().healthAmount > 0)
+                {
+                    gameObject.GetComponent<PlayerBoxCollider>().healthAmount -= lose;
+                }
+                else
+                {
+                    
+                }
+                
                 
                 
             }

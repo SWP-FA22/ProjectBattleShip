@@ -2,22 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="879c300a-fdf8-4bea-888f-0c671285a07a" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.ProjectBattleShip/.idea/shelf/Uncommitted_changes_before_Update_at_14_9_2022_8_57_PM_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.ProjectBattleShip/.idea/shelf/Uncommitted_changes_before_Update_at_14_9_2022_8_57_PM__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.ProjectBattleShip/.idea/shelf/Uncommitted_changes_before_Update_at_15_9_2022_6_07_AM_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.ProjectBattleShip/.idea/shelf/Uncommitted_changes_before_Update_at_15_9_2022_6_07_AM__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.ProjectBattleShip/.idea/shelf/Uncommitted_changes_before_Update_at_21_9_2022_9_33_AM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ProjectBattleShip/.idea/shelf/Uncommitted_changes_before_Update_at_21_9_2022_9_33_AM__Changes_.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Owner/Script/ShopHandle/ShopItem.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Owner/Script/ShopHandle/ShopItem.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ProjectBattleShip/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ProjectBattleShip/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.login-data" beforeDir="false" afterPath="$PROJECT_DIR$/.login-data" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Owner/Prefabs/BattleShip/bullet.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Prefabs/BattleShip/bullet.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/GamePlay/Bullet.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/GamePlay/Bullet.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/GamePlay/CannonControl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/GamePlay/CannonControl.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Owner/Scenes/BattleShipShop.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Scenes/BattleShipShop.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/GamePlay/PlayerBoxCollider.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/GamePlay/PlayerBoxCollider.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/GamePlay/PlayerControl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/GamePlay/PlayerControl.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Photon/PhotonUnityNetworking/Resources/PhotonServerSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Photon/PhotonUnityNetworking/Resources/PhotonServerSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Player.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Player.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/ShopHandle/ShopManage.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/ShopHandle/ShopManage.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,7 +23,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="khai/develop/SceneUI-flow" />
+        <entry key="$PROJECT_DIR$" value="khai/develop/player-control" />
       </map>
     </option>
   </component>
@@ -119,7 +115,8 @@
       <workItem from="1663685251970" duration="2624000" />
       <workItem from="1663726446958" duration="5886000" />
       <workItem from="1663773676856" duration="7334000" />
-      <workItem from="1663890813420" duration="5581000" />
+      <workItem from="1663890813420" duration="12263000" />
+      <workItem from="1664244072704" duration="6457000" />
     </task>
     <task id="LOCAL-00001" summary="add login scene ui and ui flow setup">
       <created>1663033377719</created>
@@ -163,7 +160,14 @@
       <option name="project" value="LOCAL" />
       <updated>1663735089177</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="fix health lose after shoot">
+      <created>1663902263683</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1663902263683</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -191,6 +195,7 @@
     <MESSAGE value="fix error message ui" />
     <MESSAGE value="add bullet and health bar" />
     <MESSAGE value="add bullet and health" />
-    <option name="LAST_COMMIT_MESSAGE" value="add bullet and health" />
+    <MESSAGE value="fix health lose after shoot" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix health lose after shoot" />
   </component>
 </project>

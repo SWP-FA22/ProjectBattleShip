@@ -16,16 +16,17 @@ public class PlayerControl : MonoBehaviour
     public TextMeshPro playerName;
     
     
+    // Start is called before the first frame update
     void Start()
     {
         view            = gameObject.GetComponent<PhotonView>();
         this.camera     = GameObject.Find("CM vcam1");
     
     }
-
+    
     void Update()
     {
-        if (view.IsMine)
+        if(view.IsMine)
         {
             this.playerName.text = "khai1412";
             gameObject.tag                                              = "CurrentPlayer";
