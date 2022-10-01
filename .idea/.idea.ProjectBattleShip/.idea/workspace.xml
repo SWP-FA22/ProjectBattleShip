@@ -1,19 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="879c300a-fdf8-4bea-888f-0c671285a07a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Owner/Script/ShopHandle/ShopItem.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Owner/Script/ShopHandle/ShopItem.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Owner/Script/GameData/PlayerData.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Owner/Script/GameData/PlayerData.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Owner/Script/Pattern.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Owner/Script/Pattern/Observer.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Owner/Script/Pattern/Observer.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Owner/Script/Pattern/Singleton.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Owner/Script/Pattern/Singleton.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Owner/Script/Pattern/SingletonMonoBehaviour.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Owner/Script/Pattern/SingletonMonoBehaviour.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.ProjectBattleShip/.idea/shelf/Uncommitted_changes_before_Update_at_21_9_2022_9_33_AM_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.ProjectBattleShip/.idea/shelf/Uncommitted_changes_before_Update_at_21_9_2022_9_33_AM__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ProjectBattleShip/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ProjectBattleShip/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.login-data" beforeDir="false" afterPath="$PROJECT_DIR$/.login-data" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AddressableAssetsData/AssetGroups/Default Local Group.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/AddressableAssetsData/AssetGroups/Default Local Group.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Owner/Prefabs/BattleShip/BattleShipImage/ship2.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Prefabs/BattleShip/BattleShipImage/ship2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Owner/Prefabs/BattleShip/BattleShipImage/ship2.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Prefabs/BattleShip/BattleShipImage/ship2.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Owner/Prefabs/BattleShip/BattleshipShop/item1.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Prefabs/BattleShip/BattleshipShop/item1.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Owner/Scenes/BattleShipShop.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Scenes/BattleShipShop.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Owner/Scenes/HomeScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Scenes/HomeScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/GameData/HandleData/HandleLocalData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/GameData/HandleData/HandleLocalData.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/GamePlay/GameManage.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/GamePlay/GameManage.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/GamePlay/PlayerBoxCollider.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/GamePlay/PlayerBoxCollider.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/GamePlay/PlayerControl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/GamePlay/PlayerControl.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/SceneFlow/SceneControl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/SceneFlow/SceneControl.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/ShopHandle/ShopItem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/ShopHandle/ShopItem.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/ShopHandle/ShopManage.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/ShopHandle/ShopManage.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Photon/PhotonUnityNetworking/Resources/PhotonServerSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Photon/PhotonUnityNetworking/Resources/PhotonServerSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Player.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Player.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,6 +47,7 @@
     </option>
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/4a31731933e0419ca5a995305014ad37157a00/21/56a916f0/Object.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/50b3ee6bc5684f689f67a0824d36c3e5be00/47/5073b480/UnityWebRequest.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Owner/Script/GameInstall/GameInstaller.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Owner/Script/GamePlay/CannonControl.cs" root0="FORCE_HIGHLIGHTING" />
@@ -54,6 +74,10 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;rider.run.widget.enabled.cache&quot;: &quot;false&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.ide.settings.uml&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
@@ -116,7 +140,10 @@
       <workItem from="1663726446958" duration="5886000" />
       <workItem from="1663773676856" duration="7334000" />
       <workItem from="1663890813420" duration="12263000" />
-      <workItem from="1664244072704" duration="6457000" />
+      <workItem from="1664244072704" duration="6723000" />
+      <workItem from="1664325212304" duration="23824000" />
+      <workItem from="1664506720723" duration="11065000" />
+      <workItem from="1664585780086" duration="22218000" />
     </task>
     <task id="LOCAL-00001" summary="add login scene ui and ui flow setup">
       <created>1663033377719</created>
@@ -167,7 +194,14 @@
       <option name="project" value="LOCAL" />
       <updated>1663902263683</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="fix handle shop data">
+      <created>1664254155351</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1664254155351</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -196,6 +230,7 @@
     <MESSAGE value="add bullet and health bar" />
     <MESSAGE value="add bullet and health" />
     <MESSAGE value="fix health lose after shoot" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix health lose after shoot" />
+    <MESSAGE value="fix handle shop data" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix handle shop data" />
   </component>
 </project>

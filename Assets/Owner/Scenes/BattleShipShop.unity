@@ -200,7 +200,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 365238504}
-  - component: {fileID: 365238505}
+  - component: {fileID: 365238506}
   m_Layer: 0
   m_Name: ShopManage
   m_TagString: Untagged
@@ -223,7 +223,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &365238505
+--- !u!114 &365238506
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -232,11 +232,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 365238503}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab7530ac321d98447bdcaa8fd5c102de, type: 3}
+  m_Script: {fileID: 11500000, guid: 1c779851d3f0689498bdb178026092e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: {fileID: 0}
-  _parentContainBtn: {fileID: 0}
 --- !u!1 &578676049
 GameObject:
   m_ObjectHideFlags: 0
@@ -350,6 +348,7 @@ GameObject:
   m_Component:
   - component: {fileID: 678216252}
   - component: {fileID: 678216253}
+  - component: {fileID: 678216254}
   m_Layer: 5
   m_Name: ItemContent
   m_TagString: Untagged
@@ -401,6 +400,28 @@ MonoBehaviour:
   m_Spacing: {x: 167.97, y: 183.47}
   m_Constraint: 1
   m_ConstraintCount: 5
+--- !u!114 &678216254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 678216251}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 1
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &1143654964
 GameObject:
   m_ObjectHideFlags: 0
@@ -484,6 +505,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   item: {fileID: -7719517615446249844, guid: 681a91cb0e66dd740a46fa6ee53ad673, type: 3}
   _parentContainBtn: {fileID: 678216252}
+  listItem: []
 --- !u!1 &1275708106
 GameObject:
   m_ObjectHideFlags: 0
@@ -650,7 +672,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1455899369}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 365238506}
+        m_TargetAssemblyTypeName: SceneControl, Assembly-CSharp
+        m_MethodName: Back
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1455899369
 MonoBehaviour:
   m_ObjectHideFlags: 0
