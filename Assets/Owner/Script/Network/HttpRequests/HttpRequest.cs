@@ -12,7 +12,9 @@ namespace Assets.Owner.Script.Network.HttpRequests
 {
     public class HttpRequest
     {
-        public const string BASE_URL = "http://103.185.184.47:8080/HttpServer";
+        //public const string BASE_URL = "http://103.185.184.47:8080/HttpServer";
+        public const string BASE_URL = "http://127.0.0.1:9999/HttpServer";
+
 
         private UnityWebRequest www;
 
@@ -24,6 +26,7 @@ namespace Assets.Owner.Script.Network.HttpRequests
         public async Task<T> Send<T>()
         {
             var op = www.SendWebRequest();
+
             while (!op.isDone)
                 await Task.Yield();
             Debug.Log(www.downloadHandler.text);
