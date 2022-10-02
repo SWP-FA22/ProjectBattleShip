@@ -20,8 +20,6 @@ public class GameManage : MonoBehaviour
         GameObject a              =PhotonNetwork.Instantiate(this.Player.name,new Vector3(Random.Range(-175f,-75f),Random.Range(-35,35),0),Quaternion.identity);
         this.playerPoperties[PhotonNetwork.LocalPlayer.ActorNumber] = "ship3";
         PhotonNetwork.LocalPlayer.CustomProperties                  = this.playerPoperties;
-        
-
 
     }
 
