@@ -12,7 +12,9 @@ namespace Assets.Owner.Script.Network.HttpRequests
 {
     public class HttpRequest
     {
-        public const string BASE_URL = "https://FakeServer.quang2002.repl.co";
+        //public const string BASE_URL = "http://103.185.184.47:8080/HttpServer";
+        public const string BASE_URL = "http://127.0.0.1:9999/HttpServer";
+
 
         private UnityWebRequest www;
 
@@ -27,7 +29,7 @@ namespace Assets.Owner.Script.Network.HttpRequests
 
             while (!op.isDone)
                 await Task.Yield();
-
+            Debug.Log(www.downloadHandler.text);
             return JsonConvert.DeserializeObject<T>(www.downloadHandler.text);
         }
     }
