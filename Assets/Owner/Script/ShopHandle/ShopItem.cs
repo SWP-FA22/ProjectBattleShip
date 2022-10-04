@@ -54,7 +54,7 @@
             this.name = data.Name;
             this.priceText = gameObject.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
             this.priceText.text = "Price: " + data.Price;
-            Addressables.LoadAssetAsync<Sprite>(data.Addressable).Completed += (player) => { gameObject.transform.GetChild(0).GetComponent<Image>().sprite = player.Result; };
+            Addressables.LoadAssetAsync<Sprite>(data.Addressable.Trim()).Completed += (player) => { gameObject.transform.GetChild(0).GetComponent<Image>().sprite = player.Result; };
         }
 
         public void ChangeModel()
