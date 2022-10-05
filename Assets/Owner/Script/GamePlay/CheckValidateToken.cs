@@ -26,8 +26,7 @@
                     if (checkToken)
                     {
                         LoadToLoadingScene();
-                        
-                        
+                      
                     }
                 }
             }
