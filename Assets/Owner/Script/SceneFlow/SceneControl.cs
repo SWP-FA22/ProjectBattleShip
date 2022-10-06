@@ -44,8 +44,12 @@ public class SceneControl : MonoBehaviour
     }
     public void LoadToShop()
     {
-        
         SceneManager.LoadScene("ShopScene");
+    }
+
+    public void LoadToBattleShipScene()
+    {
+        SceneManager.LoadScene("BattleShipShop");
     }
 
     public void SignOut()

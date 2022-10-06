@@ -9,9 +9,15 @@
     {
         public PhotonView view;
         public GameObject bullet;
+
+        public HandleLocalData handleLocalData;
+
+        public float damage;
         private void Start()
         {
             view = gameObject.GetComponent<PhotonView>();
+            this.handleLocalData = new HandleLocalData();
+            this.damage = handleLocalData.LoadData<BattleShipData>("ShipStaff").BaseAttack;
         }
         private bool state = true;
         private void Update()
@@ -23,18 +29,19 @@
                 if (Input.GetKey(KeyCode.Mouse0))
                 {
                     Debug.Log("fire");
-                    this.view.RPC("CreateBullet", RpcTarget.AllBuffered);
+                    this.view.RPC("CreateBullet", RpcTarget.AllBuffered,this.damage);
                 }
             }
         }
         [PunRPC]
-        public async void CreateBullet()
+        public async void CreateBullet(float damage)
         {
             if (this.state)
             {
                 var newBullet = Instantiate(this.bullet, gameObject.transform.position, gameObject.transform.rotation);
                 
-                newBullet.GetComponent<Rigidbody2D>().velocity = (this.gameObject.transform.up  * 10f);
+                newBullet.GetComponent<Rigidbody2D>().velocity = (this.gameObject.transform.up  * 15f);
+                newBullet.GetComponent<Bullet>().damage = this.damage;
                 this.state                                     = false;
                 await UniTask.Delay(TimeSpan.FromMilliseconds(1000));
                 this.state = true;

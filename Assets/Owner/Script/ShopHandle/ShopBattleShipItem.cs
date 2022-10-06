@@ -9,7 +9,7 @@
     using UnityEngine.AddressableAssets;
     using UnityEngine.UI;
 
-    public class ShopItem : MonoBehaviour
+    public class ShopBattleShipItem : MonoBehaviour
     {
         public TextMeshProUGUI priceText;
         public ShopItemDataBase data;
@@ -17,12 +17,15 @@
         public GameObject lockIcon;
         public HandleLocalData HandleLocalData;
         public PhotonView view;
+
+        public BattleShipData battleShipData;
         private void Start()
         {
-            view = gameObject.transform.parent.GetComponent<PhotonView>();
+            HandleLocalData      = new HandleLocalData();
+            view                 = gameObject.transform.parent.GetComponent<PhotonView>();
             this.HandleLocalData = new();
-            this.priceText = gameObject.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
-            this.outline = gameObject.GetComponent<Outline>();
+            this.priceText       = gameObject.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
+            this.outline         = gameObject.GetComponent<Outline>();
         }
         private void Update()
         {
@@ -56,26 +59,36 @@
             this.priceText.text = "Price: " + data.Price;
             Addressables.LoadAssetAsync<Sprite>(data.Addressable.Trim()).Completed += (player) => { gameObject.transform.GetChild(0).GetComponent<Image>().sprite = player.Result; };
         }
-
         public void ChangeModel()
         {
             if (this.view.IsMine)
             {
                 if (data is BattleShipData shipData && shipData.IsOwner)
                 {
-                    GameObject.Find("ItemScroll").GetComponent<ShopManage>().listItem.ForEach(x =>
+                    GameObject.Find("ItemScroll").GetComponent<ShopBattleShipManage>().listItem.ForEach(x =>
                     {
                         if (x.data is BattleShipData) (x.data as BattleShipData).IsEquipped = false;
                     });
                     shipData.IsEquipped = true;
-
-                    PlayerData playerData = new PlayerData() { ShipName = this.data.Name };
+                
+                    PlayerData playerData = this.HandleLocalData.LoadData<PlayerData>("PlayerData");
+                    playerData.ShipName = this.data.Name;
                     Debug.Log("sve model");
                     this.HandleLocalData.SaveData("PlayerData", playerData);
+                    this.HandleLocalData.SaveData("ShipStaff",battleShipData);
                     Debug.Log(this.view.ViewID);
                     PhotonNetwork.LocalPlayer.CustomProperties[this.view.ViewID] = this.data.Name;
                     Debug.Log(PhotonNetwork.LocalPlayer.CustomProperties[PhotonNetwork.LocalPlayer.ActorNumber]);
                 }
+            }
+        }
+
+        public void BuyItem()
+        {
+            PlayerData playerData = this.HandleLocalData.LoadData<PlayerData>("PlayerData");
+            if (playerData.Gold >= this.data.Price)
+            {
+                
             }
         }
     }

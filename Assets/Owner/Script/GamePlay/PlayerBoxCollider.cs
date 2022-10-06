@@ -45,7 +45,8 @@
         {
             if (col.CompareTag("Bullet"))
             {
-                this.view.RPC("LoseHealth", RpcTarget.AllBuffered,0.1f);
+                float dam = col.GetComponent<Bullet>().damage;
+                this.view.RPC("LoseHealth", RpcTarget.AllBuffered,dam);
                 Debug.Log(gameObject.tag+", "+gameObject.GetComponent<PlayerBoxCollider>().healthAmount);
             }
         }

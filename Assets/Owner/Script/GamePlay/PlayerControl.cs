@@ -19,6 +19,8 @@ public class PlayerControl : MonoBehaviour
     public GameObject                 healthBar;
     public TextMeshPro                playerName;
     public HandleLocalData            HandleLocalData;
+
+    public BattleShipData battleShipData;
     public string                     shipname;
     ExitGames.Client.Photon.Hashtable PropriedadesPlayer = new ExitGames.Client.Photon.Hashtable();
     
@@ -32,7 +34,6 @@ public class PlayerControl : MonoBehaviour
         {
             Debug.Log("Send message to change");
             this.ChangeModel();
-            //this.view.RPC("ChangeModel", RpcTarget.AllBuffered);
         }
         this.camera                                             =  GameObject.Find("CM vcam1");
         
@@ -42,6 +43,9 @@ public class PlayerControl : MonoBehaviour
             Debug.Log(customPropertiesKey);
         }
         Addressables.LoadAssetAsync<Sprite>(shipName).Completed += (player) => { this.gameObject.transform.GetComponent<SpriteRenderer>().sprite = player.Result; };
+
+        this.battleShipData = HandleLocalData.LoadData<BattleShipData>("ShipStaff");
+        this.speed = battleShipData.BaseSpeed;
     }
 
     
@@ -95,18 +99,18 @@ public class PlayerControl : MonoBehaviour
             if (Input.GetKey(KeyCode.W))
             {
                 
-                gameObject.transform.position += transform.right * Mathf.Clamp01(1) * this.speed * Time.deltaTime;
+                gameObject.transform.position += transform.right * Mathf.Clamp01(1) * this.battleShipData.BaseSpeed * Time.deltaTime;
             }
 
             if (Input.GetKey(KeyCode.A))
             {
-                float rotation = 1 * this.speed * 0.5f;
+                float rotation = 1 * this.battleShipData.BaseRota * 0.5f;
                 transform.Rotate(Vector3.forward * rotation);
             }
 
             if (Input.GetKey(KeyCode.D))
             {
-                float rotation = -1 * this.speed * 0.5f;
+                float rotation = -1 * this.battleShipData.BaseRota * 0.5f;
                 transform.Rotate(Vector3.forward * rotation);
             }
 
