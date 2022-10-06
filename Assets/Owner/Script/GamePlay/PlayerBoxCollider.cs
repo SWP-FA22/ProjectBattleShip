@@ -18,11 +18,14 @@
         public GameObject popup;
         private void Start()
         {
-            this.localScale = this.healthBar.transform.localScale;
-            this.view       = gameObject.GetComponent<PhotonView>();
+            this.localScale   = this.healthBar.transform.localScale;
+            this.view         = gameObject.GetComponent<PhotonView>();
             this.healthAmount = 0.6f;
-            this.popup = GameObject.Find("PopupLose");
-            this.popup.SetActive(false);
+            this.popup        = GameObject.Find("PopupLose");
+            if (this.popup != null)
+            {
+                this.popup.SetActive(false);
+            }
         }
         private void Update()
         {
@@ -30,9 +33,11 @@
             this.healthBar.transform.localScale = this.localScale;
             if(gameObject.GetComponent<PlayerBoxCollider>().healthAmount<=0){
                 Debug.Log("lose");
-                this.popup.SetActive(true);
+                if (this.view.IsMine)
+                {
+                    this.popup.SetActive(true);
+                }
                 this.view.RPC("DestroyShip", RpcTarget.AllBuffered);
-               
             }
         }
 
@@ -51,8 +56,10 @@
             if (gameObject.GetComponent<PlayerBoxCollider>() != null)
             {
                 Debug.Log("lose health rpc");
-                gameObject.GetComponent<PlayerBoxCollider>().healthAmount -= lose;
-                
+                if (gameObject.GetComponent<PlayerBoxCollider>().healthAmount > 0)
+                {
+                    gameObject.GetComponent<PlayerBoxCollider>().healthAmount -= lose;
+                }
                 
             }
             

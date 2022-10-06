@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -21,18 +22,40 @@ public class SceneControl : MonoBehaviour
     }
     public void BackToHome()
     {
-        PhotonNetwork.LeaveRoom();
+        try
+        {
+            PhotonNetwork.LeaveRoom();
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+        SceneManager.LoadScene("HomeScene");
+    }
+
+    public void Back()
+    {
         SceneManager.LoadScene("HomeScene");
     }
     public void QuitGame()
     {
         Application.Quit();
     }
+    public void LoadToShop()
+    {
+        
+        SceneManager.LoadScene("ShopScene");
+    }
 
     public void SignOut()
     {
         File.WriteAllText(TOKEN_FILE, "");
         SceneManager.LoadScene("LoginScene");
+    }
+
+    public void LoadToBattleShipShop(){
+        SceneManager.LoadScene("BattleShipShop");
     }
     
     

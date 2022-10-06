@@ -11,6 +11,8 @@ public class HandleLocalData
         }
         try{
             PlayerPrefs.SetString(key,JsonConvert.SerializeObject(data));
+            Debug.Log(PlayerPrefs.GetString(key));
+            Debug.Log("save successfully");
         } catch{
             Debug.Log("cannot save data");
         }
@@ -20,10 +22,11 @@ public class HandleLocalData
     public T LoadData<T>(string key) {
        T resultData;
        try{
-            resultData = (T)JsonConvert.DeserializeObject(PlayerPrefs.GetString(key));
+            resultData = JsonConvert.DeserializeObject<T>(PlayerPrefs.GetString(key));
+            Debug.Log(resultData);
             return resultData;
        }catch{
-            Debug.Log("cannot saveload data");
+            Debug.Log("cannot load data");
        }
        return default(T);
     }

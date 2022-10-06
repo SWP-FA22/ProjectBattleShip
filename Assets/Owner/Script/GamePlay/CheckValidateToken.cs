@@ -26,15 +26,15 @@
                     if (checkToken)
                     {
                         LoadToLoadingScene();
+                        
+                        
                     }
                 }
             }
             catch (Exception e)
             {
-                Debug.Log("agdgfjh");
+                Debug.LogWarning(e.Message);
             }
-            
-            
         }
 
         private void LoadToLoadingScene()
