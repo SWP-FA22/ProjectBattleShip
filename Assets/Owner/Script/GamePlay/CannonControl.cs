@@ -39,7 +39,6 @@
             if (this.state)
             {
                 var newBullet = Instantiate(this.bullet, gameObject.transform.position, gameObject.transform.rotation);
-                
                 newBullet.GetComponent<Rigidbody2D>().velocity = (this.gameObject.transform.up  * 15f);
                 newBullet.GetComponent<Bullet>().damage = this.damage;
                 this.state                                     = false;
