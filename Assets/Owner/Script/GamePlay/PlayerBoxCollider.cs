@@ -5,33 +5,42 @@
     using Unity.VisualScripting;
     using UnityEngine;
     using Zenject;
+    using TMPro;
     public class PlayerBoxCollider : MonoBehaviour
     {
-        public  float      healthAmount = 0.6f;
-        public  GameObject healthBar;
-        private Vector3    localScale;
-        public  GameObject player;
-        public  PhotonView view;
-
+        public  float           healthAmount = 0.6f;
+        public  GameObject      healthBar;
+        private Vector3         localScale;
+        public  GameObject      player;
+        public  PhotonView      view;
+        public  HandleLocalData HandleLocalData;
+        public  BattleShipData  battleShipData;
+        public  float           baseHP = 1.6f;
+        public  TextMeshPro healthStaff;
+        
         [Inject]
         private SignalBus signalBus;
         public GameObject popup;
         private void Start()
         {
-            this.localScale   = this.healthBar.transform.localScale;
-            this.view         = gameObject.GetComponent<PhotonView>();
-            this.healthAmount = 0.6f;
-            this.popup        = GameObject.Find("PopupLose");
+            this.HandleLocalData = new HandleLocalData();
+            this.battleShipData  = HandleLocalData.LoadData<BattleShipData>("ShipStaff");
+            this.localScale      = this.healthBar.transform.localScale;
+            this.view            = gameObject.GetComponent<PhotonView>();
+            this.healthAmount    = this.battleShipData.BaseHP;
+            this.popup           = GameObject.Find("PopupLose");
             if (this.popup != null)
             {
                 this.popup.SetActive(false);
             }
+            
         }
         private void Update()
         {
-            this.localScale.x                   = this.healthAmount;
+            this.localScale.x                   = this.baseHP;
             this.healthBar.transform.localScale = this.localScale;
-            if(gameObject.GetComponent<PlayerBoxCollider>().healthAmount<=0){
+            this.healthStaff.text               = (this.healthAmount*100).ToString();
+            if(gameObject.GetComponent<PlayerBoxCollider>().baseHP<=0){
                 Debug.Log("lose");
                 if (this.view.IsMine)
                 {
@@ -59,7 +68,9 @@
                 Debug.Log("lose health rpc");
                 if (gameObject.GetComponent<PlayerBoxCollider>().healthAmount > 0)
                 {
+                    gameObject.GetComponent<PlayerBoxCollider>().baseHP       -= (lose*this.healthAmount/this.baseHP);
                     gameObject.GetComponent<PlayerBoxCollider>().healthAmount -= lose;
+
                 }
                 
             }

@@ -33,8 +33,8 @@ public class ShopBattleShipManage : MonoBehaviour
         this.rubyValue.text    = playerData.Ruby.ToString();
         this.diamondValue.text = playerData.Diamond.ToString();
         listShopItems.Add(new BattleShipData { ID = 1, Name = "ship1", Description = "aaaaaa", BaseAttack = 0.1f, BaseHP = 1.6f, BaseSpeed = 5f, BaseRota = 5f, Price = 10f, Addressable = "ship", IsOwner = false, IsEquipped = false });
-        listShopItems.Add(new BattleShipData { ID = 1, Name = "ship3", Description = "aaaaaa", BaseAttack = 0.5f, BaseHP = 1.6f, BaseSpeed = 5f, BaseRota = 5f, Price = 10f, Addressable = "ship1", IsOwner = true, IsEquipped = false });
-        listShopItems.Add(new BattleShipData { ID = 1, Name = "ship2", Description = "aaaaaa", BaseAttack = 0.1f, BaseHP = 1.6f, BaseSpeed = 10f, BaseRota = 5f, Price = 10f, Addressable = "ship2", IsOwner = true, IsEquipped = true });
+        listShopItems.Add(new BattleShipData { ID = 1, Name = "ship3", Description = "aaaaaa", BaseAttack = 0.5f, BaseHP = 2.0f, BaseSpeed = 5f, BaseRota = 5f, Price = 10f, Addressable = "ship1", IsOwner = true, IsEquipped = false });
+        listShopItems.Add(new BattleShipData { ID = 1, Name = "ship2", Description = "aaaaaa", BaseAttack = 0.1f, BaseHP = 2.5f, BaseSpeed = 10f, BaseRota = 5f, Price = 10f, Addressable = "ship2", IsOwner = true, IsEquipped = true });
         //listShopItems.AddRange(new ShopUtility().GetAllItems().Result);
         this.CreateButton();
     }
