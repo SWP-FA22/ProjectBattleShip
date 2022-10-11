@@ -7,9 +7,9 @@
 
     public class CannonControl : MonoBehaviour
     {
-        public PhotonView view;
-        public GameObject bullet;
-
+        public PhotonView      view;
+        public GameObject      bullet;
+        public string          playerID;
         public HandleLocalData handleLocalData;
 
         public float damage;
@@ -28,7 +28,7 @@
                 gameObject.transform.rotation = Quaternion.LookRotation(Vector3.forward,mousePos-gameObject.transform.position);
                 if (Input.GetKey(KeyCode.Mouse0))
                 {
-                    Debug.Log("fire");
+                    
                     this.view.RPC("CreateBullet", RpcTarget.AllBuffered,this.damage);
                 }
             }
@@ -40,10 +40,12 @@
             {
                 var newBullet = Instantiate(this.bullet, gameObject.transform.position, gameObject.transform.rotation);
                 newBullet.GetComponent<Rigidbody2D>().velocity = (this.gameObject.transform.up  * 15f);
-                newBullet.GetComponent<Bullet>().damage = this.damage;
+                newBullet.GetComponent<Bullet>().damage        = this.damage;
+                newBullet.GetComponent<Bullet>().playerID      = this.playerID;
                 this.state                                     = false;
                 await UniTask.Delay(TimeSpan.FromMilliseconds(1000));
                 this.state = true;
+                
             }
             
         }

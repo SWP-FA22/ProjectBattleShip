@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
 using Owner.Script.GameData;
+using Owner.Script.GamePlay;
 using UnityEngine;
 using Photon.Pun;
 using TMPro;
@@ -44,8 +45,9 @@ public class PlayerControl : MonoBehaviour
         }
         Addressables.LoadAssetAsync<Sprite>(shipName).Completed += (player) => { this.gameObject.transform.GetComponent<SpriteRenderer>().sprite = player.Result; };
 
-        this.battleShipData = HandleLocalData.LoadData<BattleShipData>("ShipStaff");
-        this.speed = battleShipData.BaseSpeed;
+        this.battleShipData                                = HandleLocalData.LoadData<BattleShipData>("ShipStaff");
+        this.speed                                         = battleShipData.BaseSpeed;
+        this.cannon.GetComponent<CannonControl>().playerID = this.playerID;
     }
 
     
@@ -98,7 +100,7 @@ public class PlayerControl : MonoBehaviour
             this.camera.GetComponent<CinemachineVirtualCamera>().LookAt = gameObject.transform;
             if (Input.GetKey(KeyCode.W))
             {
-                
+                Debug.Log("move w");
                 gameObject.transform.position += transform.right * Mathf.Clamp01(1) * this.battleShipData.BaseSpeed * Time.deltaTime;
             }
 
