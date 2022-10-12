@@ -5,19 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="879c300a-fdf8-4bea-888f-0c671285a07a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Owner/Script/GamePlay/GoldBoxControl.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Owner/Script/GamePlay/GoldBoxControl.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ProjectBattleShip/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ProjectBattleShip/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Owner/Scenes/GameScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Scenes/GameScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Owner/Scenes/LoadingScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Scenes/LoadingScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/GamePlay/Bullet.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/GamePlay/Bullet.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/GamePlay/CannonControl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/GamePlay/CannonControl.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/GamePlay/GameManage.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/GamePlay/GameManage.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/GamePlay/PlayerBoxCollider.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/GamePlay/PlayerBoxCollider.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/GamePlay/PlayerControl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/GamePlay/PlayerControl.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/RoomControl/RoomController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/RoomControl/RoomController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Player.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Player.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/ShopHandle/ShopBattleShipItem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/ShopHandle/ShopBattleShipItem.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Photon/PhotonUnityNetworking/Resources/PhotonServerSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Photon/PhotonUnityNetworking/Resources/PhotonServerSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -140,7 +134,8 @@
       <workItem from="1665158655229" duration="3437000" />
       <workItem from="1665408174428" duration="1641000" />
       <workItem from="1665447441343" duration="3034000" />
-      <workItem from="1665452124597" duration="2450000" />
+      <workItem from="1665452124597" duration="2738000" />
+      <workItem from="1665543131275" duration="1378000" />
     </task>
     <task id="LOCAL-00001" summary="add login scene ui and ui flow setup">
       <created>1663033377719</created>
@@ -219,7 +214,14 @@
       <option name="project" value="LOCAL" />
       <updated>1665183523990</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="add gold box and generate gold box in map">
+      <created>1665454977616</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1665454977616</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -252,6 +254,7 @@
     <MESSAGE value="fix shop scene" />
     <MESSAGE value="add ui shop" />
     <MESSAGE value="add player health staff" />
-    <option name="LAST_COMMIT_MESSAGE" value="add player health staff" />
+    <MESSAGE value="add gold box and generate gold box in map" />
+    <option name="LAST_COMMIT_MESSAGE" value="add gold box and generate gold box in map" />
   </component>
 </project>

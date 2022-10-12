@@ -88,7 +88,7 @@
             PlayerData playerData = this.HandleLocalData.LoadData<PlayerData>("PlayerData");
             if (playerData.Gold >= this.data.Price)
             {
-                
+                playerData.Gold -= (int)this.data.Price;
             }
         }
     }

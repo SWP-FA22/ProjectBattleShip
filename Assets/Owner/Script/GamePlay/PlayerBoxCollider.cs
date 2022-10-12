@@ -25,6 +25,10 @@
         {
             this.HandleLocalData = new HandleLocalData();
             this.battleShipData  = HandleLocalData.LoadData<BattleShipData>("ShipStaff");
+            if (this.battleShipData == null)
+            {
+                this.battleShipData = new BattleShipData { ID = 1, Name = "ship3", Description = "aaaaaa", BaseAttack = 0.5f, BaseHP = 2.0f, BaseSpeed = 5f, BaseRota = 5f, Price = 10f, Addressable = "ship1", IsOwner = true, IsEquipped = false };
+            }
             this.localScale      = this.healthBar.transform.localScale;
             this.view            = gameObject.GetComponent<PhotonView>();
             this.healthAmount    = this.battleShipData.BaseHP;

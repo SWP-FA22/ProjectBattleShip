@@ -46,6 +46,10 @@ public class PlayerControl : MonoBehaviour
         Addressables.LoadAssetAsync<Sprite>(shipName).Completed += (player) => { this.gameObject.transform.GetComponent<SpriteRenderer>().sprite = player.Result; };
 
         this.battleShipData                                = HandleLocalData.LoadData<BattleShipData>("ShipStaff");
+        if (this.battleShipData == null)
+        {
+            this.battleShipData = new BattleShipData { ID = 1, Name = "ship3", Description = "aaaaaa", BaseAttack = 0.5f, BaseHP = 2.0f, BaseSpeed = 5f, BaseRota = 5f, Price = 10f, Addressable = "ship1", IsOwner = true, IsEquipped = false };
+        }
         this.speed                                         = battleShipData.BaseSpeed;
         this.cannon.GetComponent<CannonControl>().playerID = this.playerID;
     }
@@ -59,6 +63,11 @@ public class PlayerControl : MonoBehaviour
         {
             this.HandleLocalData = new HandleLocalData();
             PlayerData data     = this.HandleLocalData.LoadData<PlayerData>("PlayerData");
+            if (data == null)
+            {
+                data = new PlayerData { ShipName = "ship3", Diamond = 0, Gold = 0, Ruby = 0 };
+            }
+                
             string     shipName = data.ShipName;
             Debug.Log("manage" + shipName);
             this.shipname           = shipName;
