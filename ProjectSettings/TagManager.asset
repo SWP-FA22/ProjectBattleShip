@@ -8,6 +8,7 @@ TagManager:
   - CurrentPlayer
   - Bullet
   - PlayerBullet
+  - GoldBox
   layers:
   - Default
   - TransparentFX

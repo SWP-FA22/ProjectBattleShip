@@ -7,12 +7,16 @@
 
     public class Bullet : MonoBehaviour
     {
-        private void Start() { this.AutoDestroy(); }
+
+        public float damage;
+
+        public  string playerID;
+        private void   Start() { this.AutoDestroy(); }
 
         private void OnTriggerEnter2D(Collider2D col)
         {
             Debug.Log("des");
-            if (col.transform.CompareTag("island") || col.CompareTag("Player"))
+            if (col.transform.CompareTag("island") || col.CompareTag("Player")||col.CompareTag("GoldBox"))
             {
                 if (col.GetComponent<PlayerBoxCollider>() != null)
                 {

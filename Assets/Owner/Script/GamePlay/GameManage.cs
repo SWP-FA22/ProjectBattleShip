@@ -9,6 +9,7 @@ public class GameManage : MonoBehaviour
 {
     
     public  GameObject                        Player;
+    public  GameObject                        GoldBox;
     private ExitGames.Client.Photon.Hashtable playerPoperties = new ExitGames.Client.Photon.Hashtable();
 
     public HandleLocalData HandleLocalData;
@@ -20,9 +21,19 @@ public class GameManage : MonoBehaviour
         GameObject a              =PhotonNetwork.Instantiate(this.Player.name,new Vector3(Random.Range(-175f,-75f),Random.Range(-35,35),0),Quaternion.identity);
         this.playerPoperties[PhotonNetwork.LocalPlayer.ActorNumber] = "ship3";
         PhotonNetwork.LocalPlayer.CustomProperties                  = this.playerPoperties;
-        
+        if (PhotonNetwork.PlayerList.Length < 2)
+        {
+            this.GenerateGoldBox();
+        }
 
+    }
 
+    public void GenerateGoldBox()
+    {
+        for (int i = 0; i < 20; i++)
+        {
+            GameObject a              =PhotonNetwork.Instantiate(this.GoldBox.name,new Vector3(Random.Range(-175f,-75f),Random.Range(-35,35),0),Quaternion.identity);
+        }
     }
 
     // Update is called once per frame

@@ -24,6 +24,7 @@ public class RoomController : MonoBehaviourPunCallbacks
         else
         {
             ErrorMessage.SetActive(true);
+           
         }
     }
 

@@ -44,7 +44,11 @@ public class SceneControl : MonoBehaviour
     }
     public void LoadToShop()
     {
-        
+        SceneManager.LoadScene("ShopScene");
+    }
+
+    public void LoadToBattleShipScene()
+    {
         SceneManager.LoadScene("BattleShipShop");
     }
 
@@ -52,6 +56,10 @@ public class SceneControl : MonoBehaviour
     {
         File.WriteAllText(TOKEN_FILE, "");
         SceneManager.LoadScene("LoginScene");
+    }
+
+    public void LoadToBattleShipShop(){
+        SceneManager.LoadScene("BattleShipShop");
     }
     
     

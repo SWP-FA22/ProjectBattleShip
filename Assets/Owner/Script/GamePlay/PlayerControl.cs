@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
 using Owner.Script.GameData;
+using Owner.Script.GamePlay;
 using UnityEngine;
 using Photon.Pun;
 using TMPro;
@@ -19,6 +20,8 @@ public class PlayerControl : MonoBehaviour
     public GameObject                 healthBar;
     public TextMeshPro                playerName;
     public HandleLocalData            HandleLocalData;
+
+    public BattleShipData battleShipData;
     public string                     shipname;
     ExitGames.Client.Photon.Hashtable PropriedadesPlayer = new ExitGames.Client.Photon.Hashtable();
     
@@ -32,7 +35,6 @@ public class PlayerControl : MonoBehaviour
         {
             Debug.Log("Send message to change");
             this.ChangeModel();
-            //this.view.RPC("ChangeModel", RpcTarget.AllBuffered);
         }
         this.camera                                             =  GameObject.Find("CM vcam1");
         
@@ -42,6 +44,14 @@ public class PlayerControl : MonoBehaviour
             Debug.Log(customPropertiesKey);
         }
         Addressables.LoadAssetAsync<Sprite>(shipName).Completed += (player) => { this.gameObject.transform.GetComponent<SpriteRenderer>().sprite = player.Result; };
+
+        this.battleShipData                                = HandleLocalData.LoadData<BattleShipData>("ShipStaff");
+        if (this.battleShipData == null)
+        {
+            this.battleShipData = new BattleShipData { ID = 1, Name = "ship3", Description = "aaaaaa", BaseAttack = 0.5f, BaseHP = 2.0f, BaseSpeed = 5f, BaseRota = 5f, Price = 10f, Addressable = "ship1", IsOwner = true, IsEquipped = false };
+        }
+        this.speed                                         = battleShipData.BaseSpeed;
+        this.cannon.GetComponent<CannonControl>().playerID = this.playerID;
     }
 
     
@@ -53,6 +63,11 @@ public class PlayerControl : MonoBehaviour
         {
             this.HandleLocalData = new HandleLocalData();
             PlayerData data     = this.HandleLocalData.LoadData<PlayerData>("PlayerData");
+            if (data == null)
+            {
+                data = new PlayerData { ShipName = "ship3", Diamond = 0, Gold = 0, Ruby = 0 };
+            }
+                
             string     shipName = data.ShipName;
             Debug.Log("manage" + shipName);
             this.shipname           = shipName;
@@ -94,19 +109,19 @@ public class PlayerControl : MonoBehaviour
             this.camera.GetComponent<CinemachineVirtualCamera>().LookAt = gameObject.transform;
             if (Input.GetKey(KeyCode.W))
             {
-                
-                gameObject.transform.position += transform.right * Mathf.Clamp01(1) * this.speed * Time.deltaTime;
+                Debug.Log("move w");
+                gameObject.transform.position += transform.right * Mathf.Clamp01(1) * this.battleShipData.BaseSpeed * Time.deltaTime;
             }
 
             if (Input.GetKey(KeyCode.A))
             {
-                float rotation = 1 * this.speed * 0.5f;
+                float rotation = 1 * this.battleShipData.BaseRota * 0.5f;
                 transform.Rotate(Vector3.forward * rotation);
             }
 
             if (Input.GetKey(KeyCode.D))
             {
-                float rotation = -1 * this.speed * 0.5f;
+                float rotation = -1 * this.battleShipData.BaseRota * 0.5f;
                 transform.Rotate(Vector3.forward * rotation);
             }
 
