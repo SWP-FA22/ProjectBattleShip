@@ -5,15 +5,17 @@ using Assets.Owner.Script.GameData;
 using Assets.Owner.Script.Util;
 using Owner.Script.GameData;
 using Owner.Script.ShopHandle;
+using Owner.Script.Signals;
 using Unity.VisualScripting;
 using UnityEngine;
 using TMPro;
 using UnityEngine.Serialization;
+using Zenject;
 
 public class ShopBattleShipManage : MonoBehaviour
 {
     public                                        ShopBattleShipItem       item;
-    public                                        List<BattleShipData>   listShopItems = new List<BattleShipData>();
+    public                                        List<BattleShipData>     listShopItems = new List<BattleShipData>();
     public                                        Transform                _parentContainBtn;
     public                                        List<ShopBattleShipItem> listItem;
     public                                        LoadResourceData         LoadResourceData;
@@ -21,6 +23,10 @@ public class ShopBattleShipManage : MonoBehaviour
     [FormerlySerializedAs("RubyValue")]    public TextMeshProUGUI          rubyValue;
     [FormerlySerializedAs("DiamondValue")] public TextMeshProUGUI          diamondValue;
     public                                        HandleLocalData          handleLocalData;
+    [Inject]
+    private                                       SignalBus                signalBus;
+    [Inject]
+    private DiContainer diContainer;
 
     void Start()
     {
@@ -28,15 +34,20 @@ public class ShopBattleShipManage : MonoBehaviour
         this.LoadResourceData = new LoadResourceData();
         this.handleLocalData  = new HandleLocalData();
         this.LoadResourceData.GetDataFromServer();
-        PlayerData playerData = this.handleLocalData.LoadData<PlayerData>("PlayerData");
-        this.goldValue.text    = playerData.Gold.ToString();
-        this.rubyValue.text    = playerData.Ruby.ToString();
-        this.diamondValue.text = playerData.Diamond.ToString();
+        this.ReloadData();
         listShopItems.Add(new BattleShipData { ID = 1, Name = "ship1", Description = "aaaaaa", BaseAttack = 0.1f, BaseHP = 1.6f, BaseSpeed = 5f, BaseRota = 5f, Price = 10f, Addressable = "ship", IsOwner = false, IsEquipped = false });
         listShopItems.Add(new BattleShipData { ID = 1, Name = "ship3", Description = "aaaaaa", BaseAttack = 0.5f, BaseHP = 2.0f, BaseSpeed = 5f, BaseRota = 5f, Price = 10f, Addressable = "ship1", IsOwner = true, IsEquipped = false });
         listShopItems.Add(new BattleShipData { ID = 1, Name = "ship2", Description = "aaaaaa", BaseAttack = 0.1f, BaseHP = 2.5f, BaseSpeed = 10f, BaseRota = 5f, Price = 10f, Addressable = "ship2", IsOwner = true, IsEquipped = true });
         //listShopItems.AddRange(new ShopUtility().GetAllItems().Result);
         this.CreateButton();
+        this.signalBus.Subscribe<ReloadResourceSignal>(this.ReloadData);
+    }
+
+    public void ReloadData()
+    { PlayerData playerData = this.handleLocalData.LoadData<PlayerData>("PlayerData");
+        this.goldValue.text    = playerData.Gold.ToString();
+        this.rubyValue.text    = playerData.Ruby.ToString();
+        this.diamondValue.text = playerData.Diamond.ToString();
     }
 
     public void CreateButton()
@@ -51,6 +62,7 @@ public class ShopBattleShipManage : MonoBehaviour
                 ShipItemObject.SetUpData(this.listShopItems[i]);
                 ShipItemObject.GetComponent<ShopBattleShipItem>().battleShipData = listShopItems[i];
                 this.listItem.Add(ShipItemObject);
+                this.diContainer.InjectGameObject(ShipItemObject.gameObject);
             }
             catch { }
 

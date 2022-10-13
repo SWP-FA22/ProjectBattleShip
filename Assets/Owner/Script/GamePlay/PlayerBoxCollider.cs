@@ -1,6 +1,7 @@
 ﻿namespace Owner.Script.GamePlay
 {
     using System;
+    using Owner.Script.Signals;
     using Photon.Pun;
     using Unity.VisualScripting;
     using UnityEngine;
@@ -16,13 +17,16 @@
         public  HandleLocalData HandleLocalData;
         public  BattleShipData  battleShipData;
         public  float           baseHP = 1.6f;
-        public  TextMeshPro healthStaff;
+        public  TextMeshPro     healthStaff;
+        public  string          playerID;
+        public  int             score;
         
         [Inject]
         private SignalBus signalBus;
         public GameObject popup;
         private void Start()
         {
+            this.score           = 0;
             this.HandleLocalData = new HandleLocalData();
             this.battleShipData  = HandleLocalData.LoadData<BattleShipData>("ShipStaff");
             if (this.battleShipData == null)
@@ -84,6 +88,16 @@
         [PunRPC]
         public void DestroyShip(){
             player.SetActive(false);
+        }
+
+        [PunRPC]
+        public void AddScore(string playerID)
+        {
+            if (this.playerID == playerID)
+            {
+                this.score += 10;
+                this.signalBus.Fire(new AddScoreSignal{Score = this.score});
+            }
         }
     }
 }

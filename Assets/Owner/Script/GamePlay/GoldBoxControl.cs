@@ -1,8 +1,10 @@
 ﻿namespace Owner.Script.GamePlay
 {
     using System;
+    using Owner.Script.Signals;
     using Photon.Pun;
     using UnityEngine;
+    using Zenject;
     using Random = UnityEngine.Random;
 
     public class GoldBoxControl : MonoBehaviour
@@ -12,6 +14,12 @@
         private Vector3    localScale;
         public  PhotonView view;
         public  float      baseHP = 1.6f;
+        public  string     playerID;
+        
+        [Inject]
+        private SignalBus signalBus;
+
+        public GameObject mainPlayer;
         private void OnTriggerEnter2D(Collider2D col)
         {
             if (col.gameObject.CompareTag("island"))
@@ -23,19 +31,28 @@
             {
                 float dam = col.GetComponent<Bullet>().damage;
                 this.view.RPC("LoseHealth", RpcTarget.AllBuffered,dam);
-               
+                this.playerID = col.gameObject.GetComponent<Bullet>().playerID;
+
             }
         }
         private void Start()
         {
             this.localScale = this.healthBar.transform.localScale;
+            Debug.Log("check signla"+this.signalBus);
+            this.mainPlayer = GameObject.Find("GameController");
+            this.view       = this.mainPlayer.GetComponent<PhotonView>();
         }
         private void Update()
         {
             this.localScale.x                   = this.baseHP;
             this.healthBar.transform.localScale = this.localScale;
             if(gameObject.GetComponent<GoldBoxControl>().baseHP<=0){
-                this.view.RPC("DestroyGoldBox", RpcTarget.AllBuffered);
+                if (this.view.IsMine)
+                {
+                    gameObject.SetActive(false);
+                    Observer.Instance.Notify("UpdateScore");
+
+                }
             }
         }
 
@@ -56,10 +73,12 @@
             
         }
         [PunRPC]
+        
 
         public void DestroyGoldBox()
         {
             gameObject.SetActive(false);
         }
+        
     }
 }

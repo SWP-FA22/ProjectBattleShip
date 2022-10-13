@@ -20,8 +20,8 @@ public class PlayerControl : MonoBehaviour
     public GameObject                 healthBar;
     public TextMeshPro                playerName;
     public HandleLocalData            HandleLocalData;
-
-    public BattleShipData battleShipData;
+    public int                        score;
+    public BattleShipData             battleShipData;
     public string                     shipname;
     ExitGames.Client.Photon.Hashtable PropriedadesPlayer = new ExitGames.Client.Photon.Hashtable();
     

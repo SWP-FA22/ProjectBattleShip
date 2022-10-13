@@ -3,11 +3,13 @@
     using System;
     using Assets.Owner.Script.GameData;
     using Owner.Script.GameData;
+    using Owner.Script.Signals;
     using Photon.Pun;
     using TMPro;
     using UnityEngine;
     using UnityEngine.AddressableAssets;
     using UnityEngine.UI;
+    using Zenject;
 
     public class ShopBattleShipItem : MonoBehaviour
     {
@@ -17,10 +19,13 @@
         public GameObject lockIcon;
         public HandleLocalData HandleLocalData;
         public PhotonView view;
-
-        public BattleShipData battleShipData;
+        [Inject]
+        private SignalBus      signalBus;
+        public BattleShipData  battleShipData;
+        public TextMeshProUGUI isBuy;
         private void Start()
         {
+            Debug.Log("signal:"+this.signalBus);
             HandleLocalData      = new HandleLocalData();
             view                 = gameObject.transform.parent.GetComponent<PhotonView>();
             this.HandleLocalData = new();
@@ -44,6 +49,7 @@
                 if (shipData.IsOwner)
                 {
                     this.lockIcon.SetActive(false);
+                    this.isBuy.text = "Use";
                 }
             }
             else if (data is ItemData itemData)
@@ -85,11 +91,22 @@
 
         public void BuyItem()
         {
-            PlayerData playerData = this.HandleLocalData.LoadData<PlayerData>("PlayerData");
-            if (playerData.Gold >= this.data.Price)
+            if (this.battleShipData.IsOwner == false)
             {
-                playerData.Gold -= (int)this.data.Price;
+                PlayerData playerData = this.HandleLocalData.LoadData<PlayerData>("PlayerData");
+                if (playerData.Gold >= this.data.Price)
+                {
+                    playerData.Gold -= (int)this.data.Price;
+                    this.HandleLocalData.SaveData("PlayerData",playerData);
+                    this.signalBus.Fire<ReloadResourceSignal>();
+                }
             }
+            else
+            {
+                this.ChangeModel();
+            }
+           
+            
         }
     }
 }
