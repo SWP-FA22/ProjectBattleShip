@@ -20,15 +20,17 @@ public class PlayerControl : MonoBehaviour
     public GameObject                 healthBar;
     public TextMeshPro                playerName;
     public HandleLocalData            HandleLocalData;
-
-    public BattleShipData battleShipData;
+    public int                        score;
+    public BattleShipData             battleShipData;
     public string                     shipname;
+
+    public GameObject gameManage;
     ExitGames.Client.Photon.Hashtable PropriedadesPlayer = new ExitGames.Client.Photon.Hashtable();
     
     // Start is called before the first frame update
     void Start()
     {
-
+        this.gameManage = GameObject.Find("GameController");
         this.HandleLocalData = new HandleLocalData();
         view                 = gameObject.GetComponent<PhotonView>();
         if (this.view.IsMine)
@@ -52,13 +54,35 @@ public class PlayerControl : MonoBehaviour
         }
         this.speed                                         = battleShipData.BaseSpeed;
         this.cannon.GetComponent<CannonControl>().playerID = this.playerID;
+        //Observer.Instance.AddObserver("UpdateScore",UpdateScore);
+    }
+
+    public void UpdateScore(object obj){
+        this.score+=10;
+        this.gameManage.GetComponent<GameManage>().score = this.score;
+        this.gameManage.GetComponent<GameManage>().scoreText.text =  "SCORE: "+this.score.ToString();
+        if (this.view.IsMine)
+        {
+            this.view.RPC("UpdateScoreServer",RpcTarget.AllBuffered,this.score);
+        }
+       
+    }
+
+    [PunRPC]
+    public void UpdateScoreServer(int score)
+    {
+        if (this.view.IsMine)
+        {
+            gameObject.GetComponent<PlayerControl>().score = score;
+        }
+        
     }
 
     
     
     public void ChangeModel()
     {
-        this.playerID = this.view.ViewID.ToString();
+        this.view.RPC("SetID", RpcTarget.AllBuffered);
         if (this.view.IsMine)
         {
             this.HandleLocalData = new HandleLocalData();
@@ -77,13 +101,18 @@ public class PlayerControl : MonoBehaviour
         {
             this.PropriedadesPlayer = PhotonNetwork.LocalPlayer.CustomProperties;
         }
-       
+        
 
 
         //this.playerID                                                                     =  PhotonNetwork.LocalPlayer.CustomProperties[PhotonNetwork.LocalPlayer.ActorNumber].ToString();
 
     }
 
+    [PunRPC]
+    public void SetID()
+    {
+        this.playerID = this.view.ViewID.ToString();
+    }
     [PunRPC]
     public void SetData(string shipName)
     {
@@ -109,7 +138,7 @@ public class PlayerControl : MonoBehaviour
             this.camera.GetComponent<CinemachineVirtualCamera>().LookAt = gameObject.transform;
             if (Input.GetKey(KeyCode.W))
             {
-                Debug.Log("move w");
+                
                 gameObject.transform.position += transform.right * Mathf.Clamp01(1) * this.battleShipData.BaseSpeed * Time.deltaTime;
             }
 

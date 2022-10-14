@@ -46,6 +46,11 @@ MonoBehaviour:
   - ChangeName
   - SetData
   - DestroyGoldBox
+  - AddMoney
+  - AddScore
+  - UpdateScoreServer
+  - GenerateGoldBox
+  - SetID
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1

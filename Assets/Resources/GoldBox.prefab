@@ -230,6 +230,8 @@ MonoBehaviour:
   healthBar: {fileID: 1629545700783357136}
   view: {fileID: 1325336535900587377}
   baseHP: 1.6
+  playerID: 
+  mainPlayer: {fileID: 0}
 --- !u!1001 &4235028850712360881
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -365,6 +365,8 @@ MonoBehaviour:
   view: {fileID: 0}
   baseHP: 1.6
   healthStaff: {fileID: 5935386562638805636}
+  playerID: 
+  score: 0
   popup: {fileID: 0}
 --- !u!114 &8388767238106549673
 MonoBehaviour:

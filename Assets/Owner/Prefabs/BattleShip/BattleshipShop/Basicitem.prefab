@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 1994703118073480360}
   - component: {fileID: 1369932837134555695}
   - component: {fileID: 2537100813737782484}
-  - component: {fileID: 8059886972601150263}
-  m_Layer: 5
-  m_Name: item2
+  - component: {fileID: -7480451249721452071}
+  m_Layer: 6
+  m_Name: Basicitem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,7 +30,7 @@ RectTransform:
   m_GameObject: {fileID: 2090833323956393914}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.08, y: 3.3404999, z: 1}
+  m_LocalScale: {x: 1.3, y: 1.4002686, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2763048554229030230}
@@ -127,9 +127,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: -7480451249721452071}
         m_TargetAssemblyTypeName: Owner.Script.ShopHandle.ShopItem, Assembly-CSharp
-        m_MethodName: ChangeModel
+        m_MethodName: BuyItem
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -154,7 +154,7 @@ MonoBehaviour:
   m_EffectColor: {r: 0.31835172, g: 0.5122841, b: 0.9245283, a: 0.5}
   m_EffectDistance: {x: 1, y: -1}
   m_UseGraphicAlpha: 1
---- !u!114 &8059886972601150263
+--- !u!114 &-7480451249721452071
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -163,7 +163,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2090833323956393914}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a88008b5c2e1419a9b6528b5a90641a4, type: 3}
+  m_Script: {fileID: 11500000, guid: c67e45436f514d7eb0f164a43267fc15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   priceText: {fileID: 6213251923150566436}
@@ -183,7 +183,7 @@ GameObject:
   - component: {fileID: 5254015659597506118}
   - component: {fileID: 5720240559877053152}
   - component: {fileID: 8154081121995751905}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -316,7 +316,7 @@ GameObject:
   - component: {fileID: 2763048554229030230}
   - component: {fileID: 3812832127450704061}
   - component: {fileID: 309014300668210156}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: ShipImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -392,7 +392,7 @@ GameObject:
   - component: {fileID: 5747624103695655843}
   - component: {fileID: 7483748485290832776}
   - component: {fileID: 1476287971420221569}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Lock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -468,7 +468,7 @@ GameObject:
   - component: {fileID: 71883350411358705}
   - component: {fileID: 3653579570661197932}
   - component: {fileID: 7523870965115525890}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -605,7 +605,7 @@ GameObject:
   - component: {fileID: 9196350882468578100}
   - component: {fileID: 3644173575472380375}
   - component: {fileID: 6213251923150566436}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
