@@ -49,6 +49,7 @@ public class SceneControl : MonoBehaviour
 
     public void LoadToBattleShipScene()
     {
+        PlayerPrefs.SetString("Shop","BattleShipShop");
         SceneManager.LoadScene("BattleShipShop");
     }
 
@@ -59,6 +60,13 @@ public class SceneControl : MonoBehaviour
     }
 
     public void LoadToBattleShipShop(){
+        
+        SceneManager.LoadScene("BattleShipShop");
+    }
+
+    public void LoadToItemScene()
+    {
+        PlayerPrefs.SetString("Shop","ItemShop");
         SceneManager.LoadScene("BattleShipShop");
     }
     

@@ -6,7 +6,7 @@ namespace Owner.Script.GameData
     {
         // EXTRA ATTRIBUTES
 
-        public struct ExtraData
+        public class ExtraData
         {
             [JsonProperty("ship")]
             public BattleShipData Ship { get; set; }
@@ -22,7 +22,7 @@ namespace Owner.Script.GameData
         }
 
         [JsonProperty("extra")]
-        public ExtraData? Extra { get; set; }
+        public ExtraData Extra { get; set; }
         
         // BASE ATTRIBUTES
 

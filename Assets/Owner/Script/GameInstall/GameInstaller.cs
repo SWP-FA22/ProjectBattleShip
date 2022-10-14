@@ -1,3 +1,4 @@
+using Owner.Script.Signals;
 using UnityEngine;
 using Zenject;
 
@@ -7,5 +8,7 @@ public class GameInstaller : MonoInstaller
     {
         SignalBusInstaller.Install(this.Container);
         this.Container.DeclareSignal<LoseGameSignal>();
+        this.Container.DeclareSignal<ReloadResourceSignal>();
+        this.Container.DeclareSignal<AddScoreSignal>();
     }
 }

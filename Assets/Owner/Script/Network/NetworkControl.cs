@@ -31,5 +31,7 @@ public class NetworkControl : MonoBehaviourPunCallbacks
         // delete shop data files then refetch from server
         File.Delete(ShopUtility.FILE_PATH);
         await ShopUtility.GetAllItems();
+
+        
     }
 }
