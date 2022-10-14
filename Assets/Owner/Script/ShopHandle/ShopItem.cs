@@ -45,15 +45,9 @@
                     this.outline.effectDistance = new Vector2(1, 1);
                 }
 
-                if (this.ItemData.IsOwner)
-                {
-                    this.lockIcon.SetActive(false);
-                    this.isBuy.text = "Use";
-                }
+                
         }
-            
         
-    
         public void SetUpData(ItemData data)
         {
             this.data = data;
@@ -62,41 +56,32 @@
             this.priceText.text = "Price: " + data.Price;
             Addressables.LoadAssetAsync<Sprite>(data.Addressable.Trim()).Completed += (player) => { gameObject.transform.GetChild(0).GetComponent<Image>().sprite = player.Result; };
         }
-        public void ChangeModel()
-        {
-            if (this.view.IsMine)
-            {
-                if (data is BattleShipData shipData && shipData.IsOwner)
-                {
-                    GameObject.Find("ItemScroll").GetComponent<ShopBattleShipManage>().listItem.ForEach(x =>
-                    {
-                        if (x.data is BattleShipData) (x.data as BattleShipData).IsEquipped = false;
-                    });
-                    shipData.IsEquipped = true;
-                    this.HandleLocalData.SaveData("ItemStaff",this.ItemData);
-                    
-                }
-            }
-        }
-
-        // public void BuyItem()
+        // public void ChangeModel()
         // {
-        //     if (this.battleShipData.IsOwner == false)
+        //     if (this.view.IsMine)
         //     {
-        //         PlayerData playerData = this.HandleLocalData.LoadData<PlayerData>("PlayerData");
-        //         if (playerData.Gold >= this.data.Price)
+        //         if (data is BattleShipData shipData && shipData.IsOwner)
         //         {
-        //             playerData.Gold -= (int)this.data.Price;
-        //             this.HandleLocalData.SaveData("PlayerData",playerData);
-        //             this.signalBus.Fire<ReloadResourceSignal>();
+        //             GameObject.Find("ItemScroll").GetComponent<ShopBattleShipManage>().listItem.ForEach(x =>
+        //             {
+        //                 if (x.data is BattleShipData) (x.data as BattleShipData).IsEquipped = false;
+        //             });
+        //             shipData.IsEquipped = true;
+        //             this.HandleLocalData.SaveData("ItemStaff",this.ItemData);
+        //             
         //         }
         //     }
-        //     else
-        //     {
-        //         this.ChangeModel();
-        //     }
-        //    
-        //     
         // }
+
+        public void BuyItem()
+        {
+            //TODO: call api to check data when buy item
+            PlayerData playerData = this.HandleLocalData.LoadData<PlayerData>("PlayerData");
+            if (playerData.Gold >= this.ItemData.Price)
+            {
+                
+            }
+
+        }
     }
 }

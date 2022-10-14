@@ -41,6 +41,9 @@ namespace Assets.Owner.Script.GameData
         
         [JsonProperty("name")]
         public string Name { get; set; }
+        
+        [JsonProperty("amount")]
+        public int Amount { get; set; }
 
     }
 }
