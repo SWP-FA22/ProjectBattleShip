@@ -1024,7 +1024,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1250095884}
         m_TargetAssemblyTypeName: SceneControl, Assembly-CSharp
-        m_MethodName: LoadToBattleShipShop
+        m_MethodName: LoadToBattleShipScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

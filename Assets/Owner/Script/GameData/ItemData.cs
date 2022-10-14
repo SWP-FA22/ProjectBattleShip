@@ -27,20 +27,10 @@ namespace Assets.Owner.Script.GameData
         [JsonProperty("bonusRota")]
         public float BonusRota { get; set; }
         
-        [JsonProperty("Price")]
-        public float Price { get; set; }
-        
-        [JsonProperty("Addressable")]
-        public string Addressable { get; set; }
-        
         [JsonProperty("isOwner")]
         public bool IsOwner {get; set; }
 
         [JsonProperty("isEquipped")]
         public bool IsEquipped {get; set;}
-        
-        [JsonProperty("name")]
-        public string Name { get; set; }
-
     }
 }

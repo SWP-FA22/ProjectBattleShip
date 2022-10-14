@@ -107,7 +107,7 @@ namespace Assets.Owner.Script.Network.HttpRequests
             [JsonProperty("success")]
             public bool Success { get; set; }
 
-            [JsonProperty("ship")]
+            [JsonProperty("ships")]
             public List<BattleShipData> Ships { get; set; }
 
             [JsonProperty("error")]

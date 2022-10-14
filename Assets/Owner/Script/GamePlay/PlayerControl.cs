@@ -13,7 +13,7 @@ public class PlayerControl : MonoBehaviour
 {
     public string                     playerID;
     public PhotonView                 view;
-    public GameObject                 camera;
+    public GameObject                 playerCamera;
     public float                      speed;
     public PhotonView                 viewOfCannon;
     public GameObject                 cannon;
@@ -38,7 +38,7 @@ public class PlayerControl : MonoBehaviour
             Debug.Log("Send message to change");
             this.ChangeModel();
         }
-        this.camera = GameObject.Find("CM vcam1");
+        this.playerCamera = GameObject.Find("CM vcam1");
 
         string shipName = PhotonNetwork.LocalPlayer.CustomProperties[this.playerID].ToString();
         foreach (var customPropertiesKey in PhotonNetwork.LocalPlayer.CustomProperties.Values)
@@ -50,7 +50,8 @@ public class PlayerControl : MonoBehaviour
         this.battleShipData = HandleLocalData.LoadData<BattleShipData>("ShipStaff");
         if (this.battleShipData == null)
         {
-            this.battleShipData = new BattleShipData { ID = 1, Name = "ship3", Description = "aaaaaa", BaseAttack = 0.5f, BaseHP = 2.0f, BaseSpeed = 5f, BaseRota = 5f, Price = 10, Addressable = "ship1", IsOwner = true, IsEquipped = false };
+            //this.battleShipData = new BattleShipData { ID = 1, Name = "ship3", Description = "aaaaaa", BaseAttack = 0.5f, BaseHP = 2.0f, BaseSpeed = 5f, BaseRota = 5f, Price = 10, Addressable = "ship1", IsOwner = true, IsEquipped = false };
+            Debug.LogError("Lost Ship!");
         }
         this.speed = battleShipData.BaseSpeed;
         this.cannon.GetComponent<CannonControl>().playerID = this.playerID;
@@ -136,8 +137,8 @@ public class PlayerControl : MonoBehaviour
             this.view.RPC("ChangeName", RpcTarget.AllBuffered, "khai1412");
             gameObject.tag = "CurrentPlayer";
             gameObject.transform.GetChild(1).tag = "CurrentPlayer";
-            this.camera.GetComponent<CinemachineVirtualCamera>().Follow = gameObject.transform;
-            this.camera.GetComponent<CinemachineVirtualCamera>().LookAt = gameObject.transform;
+            this.playerCamera.GetComponent<CinemachineVirtualCamera>().Follow = gameObject.transform;
+            this.playerCamera.GetComponent<CinemachineVirtualCamera>().LookAt = gameObject.transform;
             if (Input.GetKey(KeyCode.W))
             {
                 

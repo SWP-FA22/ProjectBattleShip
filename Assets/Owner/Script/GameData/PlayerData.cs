@@ -8,7 +8,7 @@ namespace Owner.Script.GameData
 
         public class ExtraData
         {
-            [JsonProperty("ship")]
+            [JsonProperty("ship"), JsonRequired]
             public BattleShipData Ship { get; set; }
 
             [JsonProperty("gold")]
@@ -21,7 +21,7 @@ namespace Owner.Script.GameData
             public int Diamond { get; set; }
         }
 
-        [JsonProperty("extra")]
+        [JsonProperty("extra"), JsonRequired]
         public ExtraData Extra { get; set; }
         
         // BASE ATTRIBUTES

@@ -17,9 +17,11 @@ public class SceneControl : MonoBehaviour
     {
         Application.OpenURL("http://103.185.184.47:8080/HttpServer/forgot");
     }
+
     public void SetDeactive(){
         gameObject.SetActive(false);
     }
+    
     public void BackToHome()
     {
         try
@@ -69,6 +71,4 @@ public class SceneControl : MonoBehaviour
         PlayerPrefs.SetString("Shop","ItemShop");
         SceneManager.LoadScene("BattleShipShop");
     }
-    
-    
 }

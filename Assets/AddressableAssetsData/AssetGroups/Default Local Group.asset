@@ -21,12 +21,12 @@ MonoBehaviour:
     m_Address: ship1
     m_ReadOnly: 0
     m_SerializedLabels: []
-  - m_GUID: 02e4e01b4e13d524da9686309e1b1a64
-    m_Address: ship
-    m_ReadOnly: 0
-    m_SerializedLabels: []
   - m_GUID: 141ff94cf6a685147b8f7a53548420d9
     m_Address: ship2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 02e4e01b4e13d524da9686309e1b1a64
+    m_Address: ship
     m_ReadOnly: 0
     m_SerializedLabels: []
   m_ReadOnly: 0

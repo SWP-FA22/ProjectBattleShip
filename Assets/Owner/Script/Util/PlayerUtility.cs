@@ -10,9 +10,19 @@ namespace Assets.Owner.Script.Util
 {
     public class PlayerUtility
     {
-        public static async Task<PlayerData> GetMyPlayerData()
+        public static async Task<PlayerData>  GetMyPlayerData()
         {
-            return await new PlayerRequest().GetPlayerExtraInfo(LoginUtility.GLOBAL_TOKEN);
+            HandleLocalData handleLocalData = new HandleLocalData();
+
+            PlayerData data = handleLocalData.LoadData<PlayerData>("PlayerData");
+
+            if (data == null)
+            {
+                data = await new PlayerRequest().GetPlayerExtraInfo(LoginUtility.GLOBAL_TOKEN);
+                handleLocalData.SaveData("PlayerData", data);
+            }
+
+            return data;
         }
     }
 }
