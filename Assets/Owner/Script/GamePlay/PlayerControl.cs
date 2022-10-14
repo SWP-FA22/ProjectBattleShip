@@ -54,27 +54,35 @@ public class PlayerControl : MonoBehaviour
         }
         this.speed                                         = battleShipData.BaseSpeed;
         this.cannon.GetComponent<CannonControl>().playerID = this.playerID;
-        Observer.Instance.AddObserver("UpdateScore",UpdateScore);
+        //Observer.Instance.AddObserver("UpdateScore",UpdateScore);
     }
 
     public void UpdateScore(object obj){
         this.score+=10;
         this.gameManage.GetComponent<GameManage>().score = this.score;
         this.gameManage.GetComponent<GameManage>().scoreText.text =  "SCORE: "+this.score.ToString();
-        this.view.RPC("UpdateScoreServer",RpcTarget.AllBuffered,this.score);
+        if (this.view.IsMine)
+        {
+            this.view.RPC("UpdateScoreServer",RpcTarget.AllBuffered,this.score);
+        }
+       
     }
 
     [PunRPC]
     public void UpdateScoreServer(int score)
     {
-        this.score = score;
+        if (this.view.IsMine)
+        {
+            gameObject.GetComponent<PlayerControl>().score = score;
+        }
+        
     }
 
     
     
     public void ChangeModel()
     {
-        this.playerID = this.view.ViewID.ToString();
+        this.view.RPC("SetID", RpcTarget.AllBuffered);
         if (this.view.IsMine)
         {
             this.HandleLocalData = new HandleLocalData();
@@ -93,13 +101,18 @@ public class PlayerControl : MonoBehaviour
         {
             this.PropriedadesPlayer = PhotonNetwork.LocalPlayer.CustomProperties;
         }
-       
+        
 
 
         //this.playerID                                                                     =  PhotonNetwork.LocalPlayer.CustomProperties[PhotonNetwork.LocalPlayer.ActorNumber].ToString();
 
     }
 
+    [PunRPC]
+    public void SetID()
+    {
+        this.playerID = this.view.ViewID.ToString();
+    }
     [PunRPC]
     public void SetData(string shipName)
     {
@@ -125,7 +138,7 @@ public class PlayerControl : MonoBehaviour
             this.camera.GetComponent<CinemachineVirtualCamera>().LookAt = gameObject.transform;
             if (Input.GetKey(KeyCode.W))
             {
-                Debug.Log("move w");
+                
                 gameObject.transform.position += transform.right * Mathf.Clamp01(1) * this.battleShipData.BaseSpeed * Time.deltaTime;
             }
 

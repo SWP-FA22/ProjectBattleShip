@@ -15,7 +15,7 @@
         public  PhotonView view;
         public  float      baseHP = 1.6f;
         public  string     playerID;
-        
+        private GameObject player;
         [Inject]
         private SignalBus signalBus;
 
@@ -46,13 +46,11 @@
         {
             this.localScale.x                   = this.baseHP;
             this.healthBar.transform.localScale = this.localScale;
+            
             if(gameObject.GetComponent<GoldBoxControl>().baseHP<=0){
-                if (this.view.IsMine)
-                {
-                    gameObject.SetActive(false);
-                    Debug.Log("inetr update score");
-                    Observer.Instance.Notify("UpdateScore");
-                }
+                Debug.Log("inetr update score");
+                Observer.Instance.Notify("UpdateScore");
+                this.view.RPC("DestroyGoldBox", RpcTarget.AllBuffered,this.playerID);
             }
         }
 
@@ -72,11 +70,23 @@
             
         }
         [PunRPC]
-        
-
-        public void DestroyGoldBox()
+        public void DestroyGoldBox(string playerID)
         {
-            gameObject.SetActive(false);
+            this.player = GameObject.FindWithTag("CurrentPlayer");
+            int        score  = this.player.GetComponent<PlayerControl>().score;
+            if (this.player.GetComponent<PlayerControl>().playerID == playerID)
+            {
+                score                                                                       += 10;
+                this.player.GetComponent<PlayerControl>().score                                  += 10;
+                GameObject.Find("GameController").GetComponent<GameManage>().score          =  score;
+                GameObject.Find("GameController").GetComponent<GameManage>().scoreText.text =  "SCORE: "+score.ToString();
+            }
+
+            this.healthAmount = 1.6f;
+            this.baseHP       = 1.6f;
+            Vector3 randomPosition = new Vector3(Random.Range(-175f, -75f), Random.Range(-35, 35), 0);
+            gameObject.transform.position = randomPosition;
+            //gameObject.SetActive(false);
         }
         
     }

@@ -72,7 +72,6 @@ public class GameManage : MonoBehaviour
     public void UpdateScoreServer(int score)
     {
         this.player.transform.GetChild(0).GetComponent<PlayerControl>().score = score;
-        
     }
 
     [PunRPC]

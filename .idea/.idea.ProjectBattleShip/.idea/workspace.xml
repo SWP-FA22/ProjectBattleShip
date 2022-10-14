@@ -4,28 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="879c300a-fdf8-4bea-888f-0c671285a07a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Owner/Script/Signals/AddScoreSignal.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Owner/Script/Signals/AddScoreSignal.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Owner/Script/Signals/ReloadResourceSignal.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Owner/Script/Signals/ReloadResourceSignal.cs.meta" afterDir="false" />
+    <list default="true" id="879c300a-fdf8-4bea-888f-0c671285a07a" name="Changes" comment="fix health for goldbox">
+      <change afterPath="$PROJECT_DIR$/Assets/Owner/Script/ShopHandle/ShopItem.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Owner/Script/ShopHandle/ShopItem.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ProjectBattleShip/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ProjectBattleShip/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Owner/Prefabs/BattleShip/BattleshipShop/item2.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Prefabs/BattleShip/BattleshipShop/item2.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Owner/Scenes/BattleShipShop.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Scenes/BattleShipShop.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Owner/Scenes/GameScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Scenes/GameScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Owner/Scenes/HomeScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Scenes/HomeScene.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Owner/Scenes/ShopScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Scenes/ShopScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/GameInstall/GameInstaller.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/GameInstall/GameInstaller.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/GamePlay/CannonControl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/GamePlay/CannonControl.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/GameData/ItemData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/GameData/ItemData.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/GamePlay/GameManage.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/GamePlay/GameManage.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/GamePlay/GoldBoxControl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/GamePlay/GoldBoxControl.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/GamePlay/PlayerBoxCollider.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/GamePlay/PlayerBoxCollider.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/GamePlay/PlayerControl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/GamePlay/PlayerControl.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/ShopHandle/ShopBattleShipItem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/ShopHandle/ShopBattleShipItem.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/SceneFlow/SceneControl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/SceneFlow/SceneControl.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/ShopHandle/ShopBattleShipManage.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/ShopHandle/ShopBattleShipManage.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Photon/PhotonUnityNetworking/Resources/PhotonServerSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Photon/PhotonUnityNetworking/Resources/PhotonServerSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/GoldBox.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/GoldBox.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Player.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Player.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -151,7 +142,8 @@
       <workItem from="1665447441343" duration="3034000" />
       <workItem from="1665452124597" duration="2738000" />
       <workItem from="1665543131275" duration="4204000" />
-      <workItem from="1665614999470" duration="17250000" />
+      <workItem from="1665614999470" duration="17880000" />
+      <workItem from="1665701093257" duration="15000000" />
     </task>
     <task id="LOCAL-00001" summary="add login scene ui and ui flow setup">
       <created>1663033377719</created>
@@ -244,7 +236,14 @@
       <option name="project" value="LOCAL" />
       <updated>1665544562902</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="fix health for goldbox">
+      <created>1665635635654</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1665635635655</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -279,6 +278,7 @@
     <MESSAGE value="add player health staff" />
     <MESSAGE value="add gold box and generate gold box in map" />
     <MESSAGE value="fix local data if null" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix local data if null" />
+    <MESSAGE value="fix health for goldbox" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix health for goldbox" />
   </component>
 </project>
