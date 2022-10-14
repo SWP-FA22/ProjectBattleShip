@@ -19,6 +19,7 @@
         public PhotonView view;
 
         public BattleShipData battleShipData;
+        
         private void Start()
         {
             HandleLocalData      = new HandleLocalData();
@@ -27,6 +28,7 @@
             this.priceText       = gameObject.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
             this.outline         = gameObject.GetComponent<Outline>();
         }
+        
         private void Update()
         {
             if (this.data == null) return;
@@ -51,6 +53,7 @@
 
             }
         }
+        
         public void SetUpData(ShopItemDataBase data)
         {
             this.data = data;
@@ -59,6 +62,7 @@
             this.priceText.text = "Price: " + data.Price;
             Addressables.LoadAssetAsync<Sprite>(data.Addressable.Trim()).Completed += (player) => { gameObject.transform.GetChild(0).GetComponent<Image>().sprite = player.Result; };
         }
+        
         public void ChangeModel()
         {
             if (this.view.IsMine)
@@ -72,10 +76,16 @@
                     shipData.IsEquipped = true;
                 
                     PlayerData playerData = this.HandleLocalData.LoadData<PlayerData>("PlayerData");
-                    playerData.ShipName = this.data.Name;
+
+                    // TODO: Set player equiped ship 
+                    // send request to server through api that set player equiped ship
+                    // then do client side
+                    // playerData.Ship.Name = this.data.Name;
+                    
+
                     Debug.Log("sve model");
                     this.HandleLocalData.SaveData("PlayerData", playerData);
-                    this.HandleLocalData.SaveData("ShipStaff",battleShipData);
+                    this.HandleLocalData.SaveData("ShipStaff", battleShipData);
                     Debug.Log(this.view.ViewID);
                     PhotonNetwork.LocalPlayer.CustomProperties[this.view.ViewID] = this.data.Name;
                     Debug.Log(PhotonNetwork.LocalPlayer.CustomProperties[PhotonNetwork.LocalPlayer.ActorNumber]);
@@ -86,9 +96,13 @@
         public void BuyItem()
         {
             PlayerData playerData = this.HandleLocalData.LoadData<PlayerData>("PlayerData");
-            if (playerData.Gold >= this.data.Price)
+            if (playerData.Extra?.Gold >= this.data.Price)
             {
-                playerData.Gold -= (int)this.data.Price;
+                // TODO: Buy Item using api
+                // after server response success, do client side
+                // playerData.Extra?.Gold -= (int)this.data.Price;
+                
+                
             }
         }
     }

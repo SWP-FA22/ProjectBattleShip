@@ -13,13 +13,17 @@ using UnityEngine;
 
 namespace Assets.Owner.Script.Util
 {
-    public class ShopUtility
+    public static class ShopUtility
     {
-        private const string FILE_PATH = ".shop-data";
+        public const string FILE_PATH = ".shop-data";
 
-        public string Token { get; private set; }
-
-        public async Task<List<ItemData>> GetAllItems()
+        /// <summary>
+        /// Get all items of the shop or player owned items
+        /// if isMine is true, then get player owned items
+        /// else get all items of the shop. Default false
+        /// </summary>
+        /// <returns>List of ItemData</returns>
+        public static async Task<List<ItemData>> GetAllItems(bool isMine = false)
         {
             try
             {
@@ -27,34 +31,28 @@ namespace Assets.Owner.Script.Util
                 {
                     throw null;
                 }
-                else
-                {
-                    return JsonConvert.DeserializeObject<List<ItemData>>(File.ReadAllText(FILE_PATH));
-                }
+                return JsonConvert.DeserializeObject<List<ItemData>>(File.ReadAllText(FILE_PATH));
             }
             catch
             {
-                List<ItemData> items = await new ShopRequest().GetAllItems();
+                List<ItemData> items = await new ShopRequest(LoginUtility.GLOBAL_TOKEN).GetAllItems(isMine);
+
+                if (items == null)
+                {
+                    Debug.LogException(new Exception("Cannot get items from server"));
+                    return null;
+                }
+
                 File.WriteAllText(FILE_PATH, JsonConvert.SerializeObject(items));
                 return items;
             }
         }
 
-        public void LoadTokenFromFile(string filename)
-        {
-            try
-            {
-                string token = File.ReadAllText(filename);
-                Debug.Log(token);
-                if (token?.Length > 0)
-                {
-                    Token = token;
-                }
-            }
-            catch (System.Exception)
-            {
-                Token = "";
-            }
-        }
+        /// <summary>
+        /// Buy item from shop with item id
+        /// </summary>
+        /// <param name="itemId">item id</param>
+        /// <returns>true if buy successful, otherwise false</returns>
+        public static async Task<bool> BuyItem(int itemId) => await new ShopRequest(LoginUtility.GLOBAL_TOKEN).BuyItem(itemId);
     }
 }

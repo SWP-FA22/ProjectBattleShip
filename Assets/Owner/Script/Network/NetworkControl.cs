@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
 using Assets.Owner.Script.Util;
 using Photon.Pun;
@@ -27,6 +28,8 @@ public class NetworkControl : MonoBehaviourPunCallbacks
 
     public async Task LoadResource()
     {
-        await new ShopUtility().GetAllItems();
+        // delete shop data files then refetch from server
+        File.Delete(ShopUtility.FILE_PATH);
+        await ShopUtility.GetAllItems();
     }
 }

@@ -27,7 +27,7 @@ namespace Assets.Owner.Script.Network.HttpRequests
 
             while (!op.isDone)
                 await Task.Yield();
-            Debug.Log(www.downloadHandler.text);
+            Debug.Log($"Http Request: [{www.method}] {www.url}\n{www.downloadHandler.text}");
             return JsonConvert.DeserializeObject<T>(www.downloadHandler.text);
         }
     }
