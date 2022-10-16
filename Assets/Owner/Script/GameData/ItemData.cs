@@ -7,8 +7,23 @@ using System.Threading.Tasks;
 
 namespace Assets.Owner.Script.GameData
 {
-    public class ItemData : ShopItemDataBase
+    [Serializable]
+    public class ItemData 
     {
+        [JsonProperty("id")]
+        public int ID { get; set; }
+
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        [JsonProperty("description")]
+        public string Description { get; set; }
+
+        [JsonProperty("price")]
+        public float Price { get; set; }
+
+        [JsonProperty("addressable")]
+        public string Addressable { get; set; }
         [JsonProperty("type")]
         public int Type { get; set; }
 
@@ -26,21 +41,12 @@ namespace Assets.Owner.Script.GameData
 
         [JsonProperty("bonusRota")]
         public float BonusRota { get; set; }
-        
-        [JsonProperty("Price")]
-        public float Price { get; set; }
-        
-        [JsonProperty("Addressable")]
-        public string Addressable { get; set; }
-        
+
         [JsonProperty("isOwner")]
         public bool IsOwner {get; set; }
 
         [JsonProperty("isEquipped")]
         public bool IsEquipped {get; set;}
-        
-        [JsonProperty("name")]
-        public string Name { get; set; }
         
         [JsonProperty("amount")]
         public int Amount { get; set; }
