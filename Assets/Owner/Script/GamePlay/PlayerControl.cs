@@ -119,10 +119,11 @@ public class PlayerControl : MonoBehaviour
             PlayerData data     = this.HandleLocalData.LoadData<PlayerData>("PlayerData");
             if (data == null)
             {
-                data = new PlayerData { ShipName = "ship3", Diamond = 0, Gold = 0, Ruby = 0 };
+                data = new PlayerData();
             }
-                
-            string     shipName = data.ShipName;
+
+            this.battleShipData = data.Extra.Ship;
+            string     shipName = this.battleShipData.Name;
             Debug.Log("manage" + shipName);
             this.shipname           = shipName;
             this.view.RPC("SetData", RpcTarget.AllBuffered,shipName);

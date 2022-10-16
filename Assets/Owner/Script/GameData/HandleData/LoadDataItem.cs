@@ -1,9 +1,14 @@
 ﻿namespace Owner.Script.GameData.HandleData
 {
     using System.IO;
+    using Assets.Owner.Script.GameData;
     using Newtonsoft.Json;
     using Owner.Script.ShopHandle;
 
+    public class ListItemData
+    {
+        public ItemData[] item;
+    }
     public class LoadDataItem
     {
         string path = "Assets/Owner/Script/TempData/TempDataItem.txt";

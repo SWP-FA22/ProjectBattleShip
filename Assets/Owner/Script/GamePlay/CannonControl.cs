@@ -52,7 +52,7 @@
             BattleShipData battleShipData = handleLocalData.LoadData<BattleShipData>("ShipStaff");
             if (battleShipData == null)
             {
-                battleShipData = new BattleShipData { ID = 1, Name = "ship3", Description = "aaaaaa", BaseAttack = 0.5f, BaseHP = 2.0f, BaseSpeed = 5f, BaseRota = 5f, Price = 10f, Addressable = "ship1", IsOwner = true, IsEquipped = false };
+                battleShipData = new BattleShipData { ID = 1, Name = "ship3", Description = "aaaaaa", BaseAttack = 0.5f, BaseHP = 2.0f, BaseSpeed = 5f, BaseRota = 5f, Price = 10, Addressable = "ship1", IsOwner = true, IsEquipped = false };
             }
             this.damage = battleShipData.BaseAttack;
             //change by item
