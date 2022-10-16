@@ -38,17 +38,17 @@
             this.ListCannonItem.Add(new ItemData
             {
                 Type        = 1,ImageURL        = "",BonusATK      = 5,BonusHP  = 10,BonusSpeed    = 0,BonusRota = 0,Price = 10,
-                Addressable = "cannon1",IsOwner = false,IsEquipped = false,Name = "cannon1",Amount = 0
+                Addressable = "cannon1",IsOwner = false,IsEquipped = false,Name = "cannon1"
             });
             this.ListCannonItem.Add(new ItemData
             {
                 Type        = 1,ImageURL        = "",BonusATK     = 7,BonusHP = 5,BonusSpeed     = 0,BonusRota = 0,Price = 5,
-                Addressable = "cannon2",IsOwner = true,IsEquipped = true,Name = "cannon2",Amount = 1
+                Addressable = "cannon2",IsOwner = true,IsEquipped = true,Name = "cannon2"
             });
             this.ListCannonItem.Add(new ItemData
             {
                 Type        = 1,ImageURL        = "",BonusATK     = 5,BonusHP  = 15,BonusSpeed    = 5,BonusRota = 5,Price = 15,
-                Addressable = "cannon1",IsOwner = true,IsEquipped = false,Name = "cannon1",Amount = 1
+                Addressable = "cannon1",IsOwner = true,IsEquipped = false,Name = "cannon1"
             });
             
             //CreateButton(this.ListCannonItem);
