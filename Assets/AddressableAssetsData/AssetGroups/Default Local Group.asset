@@ -21,10 +21,6 @@ MonoBehaviour:
     m_Address: ship1
     m_ReadOnly: 0
     m_SerializedLabels: []
-  - m_GUID: 02e4e01b4e13d524da9686309e1b1a64
-    m_Address: ship
-    m_ReadOnly: 0
-    m_SerializedLabels: []
   - m_GUID: 141ff94cf6a685147b8f7a53548420d9
     m_Address: ship2
     m_ReadOnly: 0
@@ -35,6 +31,18 @@ MonoBehaviour:
     m_SerializedLabels: []
   - m_GUID: 9b1ff0a989a41f742ac866b6e73a6d27
     m_Address: cannon2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 55c3dc2565793ed4393ae68fd0985524
+    m_Address: engine1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: acc9c2afcee6de943aa76543f31dc048
+    m_Address: sail1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 02e4e01b4e13d524da9686309e1b1a64
+    m_Address: ship
     m_ReadOnly: 0
     m_SerializedLabels: []
   m_ReadOnly: 0

@@ -2,6 +2,7 @@
 {
     using System.IO;
     using Assets.Owner.Script.GameData;
+    using Assets.Owner.Script.Util;
     using Newtonsoft.Json;
     using Owner.Script.GameData;
     using Owner.Script.Signals;
@@ -12,32 +13,29 @@
     using UnityEngine.UI;
     using Zenject;
 
-    
+
     public class ShopItem : MonoBehaviour
     {
         public TextMeshProUGUI priceText;
-        public Outline         outline;
-        public GameObject      lockIcon;
+        public Outline outline;
+        public GameObject lockIcon;
         public HandleLocalData HandleLocalData;
-        public PhotonView      view;
+        public PhotonView view;
         [Inject]
-        private SignalBus      signalBus;
-        public ItemData        ItemData;
+        private SignalBus signalBus;
+        public ItemData ItemData;
         public TextMeshProUGUI isBuy;
-        string                 jsonData = "";
+        string jsonData = "";
 
-        public ListItemData ListItemData;
-        string              path = "Assets/Owner/Script/TempData/TempDataItem.txt";
         private void Start()
         {
-            Debug.Log("signal:"+this.signalBus);
-            HandleLocalData      = new HandleLocalData();
-            view                 = gameObject.transform.parent.GetComponent<PhotonView>();
+            Debug.Log("signal:" + this.signalBus);
+            HandleLocalData = new HandleLocalData();
+            view = gameObject.transform.parent.GetComponent<PhotonView>();
             this.HandleLocalData = new();
-            this.priceText       = gameObject.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
-            this.outline         = gameObject.GetComponent<Outline>();
+            this.priceText = gameObject.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
+            this.outline = gameObject.GetComponent<Outline>();
             SetUpData(this.ItemData);
-            this.LoadAllData();
         }
         private void Update()
         {
@@ -55,9 +53,9 @@
                 this.lockIcon.SetActive(false);
                 this.isBuy.text = "Use";
             }
-            
+
         }
-        
+
         public void SetUpData(ItemData data)
         {
             this.ItemData = data;
@@ -66,7 +64,7 @@
             this.priceText.text = "Price: " + data.Price;
             Addressables.LoadAssetAsync<Sprite>(data.Addressable.Trim()).Completed += (player) => { gameObject.transform.GetChild(0).GetComponent<Image>().sprite = player.Result; };
         }
-        
+
 
         public void BuyItem()
         {
@@ -74,60 +72,19 @@
             PlayerData playerData = this.HandleLocalData.LoadData<PlayerData>("PlayerData");
             if (this.ItemData.IsOwner == false)
             {
-                if (playerData.Gold >= this.ItemData.Price)
+                if (playerData.Extra?.Diamond >= this.ItemData.Price && ShopUtility.BuyItem(ItemData.ID).Result)
                 {
-                    this.ItemData.IsOwner =  true;
-                    playerData.Gold       -= (int)this.ItemData.Price;
+                    this.ItemData.IsOwner = true;
+                    playerData.Extra.Diamond -= (int)this.ItemData.Price;
                     this.ChangeItem();
-                    this.HandleLocalData.SaveData("PlayerData",playerData);
+                    this.HandleLocalData.SaveData("PlayerData", playerData);
                     this.signalBus.Fire<ReloadResourceSignal>();
-                    int index = this.FindItemByID(this.ItemData);
-                    this.ListItemData.item[index] = this.ItemData;
-                    this.SaveData();
                 }
             }
             else
             {
                 this.ChangeItem();
             }
-            
-
-        }
-
-        public void LoadAllData()
-        {
-            if (File.Exists(path))
-            {
-                using (StreamReader reader = new StreamReader(path))
-                {
-                    jsonData = reader.ReadToEnd();
-                }
-            }
-
-            if (jsonData != "")
-            {
-                this.ListItemData = JsonConvert.DeserializeObject<ListItemData>(jsonData);
-            }
-        }
-
-        public void SaveData()
-        {
-            string data = JsonConvert.SerializeObject(this.ListItemData);
-            Debug.Log("data:"+data);
-            File.WriteAllText(path,data);
-        }
-
-        public int FindItemByID(ItemData itemData)
-        {
-            for (int i = 0; i < this.ListItemData.item.Length; i++)
-            {
-                if (this.ItemData.ID == this.ListItemData.item[i].ID)
-                {
-                    return i;
-                }
-            }
-
-            return -1;
         }
 
         public void ChangeItem()
@@ -150,9 +107,9 @@
                 x.ItemData.IsEquipped = false;
             });
             this.ItemData.IsEquipped = true;
-            this.HandleLocalData.SaveData("PlayerData",playerData);
+            this.HandleLocalData.SaveData("PlayerData", playerData);
         }
-        
-        
+
+
     }
 }

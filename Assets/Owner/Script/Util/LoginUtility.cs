@@ -5,11 +5,13 @@ using System.IO;
 using System.Threading.Tasks;
 using UnityEngine;
 
-public class LoginUtility
+public static class LoginUtility
 {
-    public string Token { get; private set; }
-
-    public async Task<bool> Login(string username, string password)
+    private const string TOKEN_FILE = ".login-data";
+    
+    public static string GLOBAL_TOKEN { get; private set; } = "";
+    
+    public static async Task<bool> Login(string username, string password)
     {
         LoginRequest request = new LoginRequest();
 
@@ -17,44 +19,44 @@ public class LoginUtility
 
         if (result)
         {
-            Token = request.Token;
+            GLOBAL_TOKEN = request.Token;
         }
         else
         {
-            Token = "";
+            GLOBAL_TOKEN = "";
         }
 
         return result;
     }
 
-    public async Task<bool> Verfiy()
+    public static async Task<bool> Verfiy()
     {
-        LoginRequest request = new LoginRequest(Token);
+        LoginRequest request = new LoginRequest(GLOBAL_TOKEN);
         return await request.VerifyToken();
     }
 
-    public void SaveTokenToFile(string filename)
+    public static void SaveTokenToFile()
     {
-        if (Token?.Length > 0)
+        if (GLOBAL_TOKEN?.Length > 0)
         {
-            File.WriteAllText(filename, Token);
+            File.WriteAllText(TOKEN_FILE, GLOBAL_TOKEN);
         }
     }
 
-    public void LoadTokenFromFile(string filename)
+    public static void LoadTokenFromFile()
     {
         try
         {
-            string token = File.ReadAllText(filename);
+            string token = File.ReadAllText(TOKEN_FILE);
             Debug.Log(token);
             if (token?.Length > 0)
             {
-                Token = token;
+                GLOBAL_TOKEN = token;
             }
         }
         catch (System.Exception)
         {
-            Token = "";
+            GLOBAL_TOKEN = "";
         }
     }
 }

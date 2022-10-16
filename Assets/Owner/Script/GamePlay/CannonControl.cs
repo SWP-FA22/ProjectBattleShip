@@ -1,6 +1,7 @@
 ﻿namespace Owner.Script.GamePlay
 {
     using System;
+    using Assets.Owner.Script.Util;
     using Cysharp.Threading.Tasks;
     using Owner.Script.GameData;
     using Owner.Script.GameData.HandleData;
@@ -24,6 +25,12 @@
             this.LoadDataItem    = new LoadDataItem();
             this.ChangeStaff();
             
+            
+            BattleShipData battleShipData =
+                handleLocalData.LoadData<BattleShipData>("ShipStaff") ??
+                PlayerUtility.GetMyPlayerData().Result.Extra?.Ship;
+
+            this.damage = battleShipData.BaseAttack;
         }
         private bool state = true;
         private void Update()

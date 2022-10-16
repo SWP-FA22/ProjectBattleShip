@@ -19,7 +19,7 @@ namespace Assets.Owner.Script.GameData
         public string Description { get; set; }
 
         [JsonProperty("price")]
-        public float Price { get; set; }
+        public int Price { get; set; }
 
         [JsonProperty("addressable")]
         public string Addressable { get; set; }

@@ -62,13 +62,15 @@ public class PlayerControl : MonoBehaviour
         
     }
 
+        
     public void ChangeStaff()
     {
         //change by ship
         this.battleShipData = HandleLocalData.LoadData<BattleShipData>("ShipStaff");
         if (this.battleShipData == null)
         {
-            this.battleShipData = new BattleShipData { ID = 1, Name = "ship3", Description = "aaaaaa", BaseAttack = 0.5f, BaseHP = 2.0f, BaseSpeed = 5f, BaseRota = 5f, Price = 10f, Addressable = "ship1", IsOwner = true, IsEquipped = false };
+            //this.battleShipData = new BattleShipData { ID = 1, Name = "ship3", Description = "aaaaaa", BaseAttack = 0.5f, BaseHP = 2.0f, BaseSpeed = 5f, BaseRota = 5f, Price = 10, Addressable = "ship1", IsOwner = true, IsEquipped = false };
+            Debug.LogError("Lost Ship!");
         }
         this.speed       += battleShipData.BaseSpeed;
         this.speedRotate += this.battleShipData.BaseRota;
@@ -84,8 +86,6 @@ public class PlayerControl : MonoBehaviour
             }
         }
     }
-
-    
 
     public void UpdateScore(object obj){
         this.score+=10;

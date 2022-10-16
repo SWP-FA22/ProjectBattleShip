@@ -9,62 +9,60 @@ using UnityEngine.AddressableAssets;
 using Zenject;
 public class GameManage : MonoBehaviour
 {
-    
-    public  GameObject                        Player;
-    public  GameObject                        GoldBox;
+
+    public GameObject Player;
+    public GameObject GoldBox;
     private ExitGames.Client.Photon.Hashtable playerPoperties = new ExitGames.Client.Photon.Hashtable();
 
     public HandleLocalData HandleLocalData;
     [Inject]
     private DiContainer diContainer;
     [Inject]
-    private SignalBus       signalBus;
-    public TextMeshProUGUI  scoreText;
-    public PhotonView       view;
+    private SignalBus signalBus;
+    public TextMeshProUGUI scoreText;
+    public PhotonView view;
     public List<GameObject> battleShip;
     public List<GameObject> listGoldBox;
-    public int              score;
+    public int score;
 
     public GameObject player;
     void Start()
     {
-        this.battleShip      = new();
+        this.battleShip = new();
         this.HandleLocalData = new();
         PlayerData playerData     = this.HandleLocalData.LoadData<PlayerData>("PlayerData");
-        if (playerData == null)
-        {
-            playerData = new PlayerData { ShipName = "ship3", Diamond = 20, Gold = 20, Ruby = 20 };
-            this.HandleLocalData.SaveData("PlayerData",playerData);
-        }
-        Vector3    randomPosition = new Vector3(Random.Range(-175f, -75f), Random.Range(-35, 35), 0);
-        GameObject a              =PhotonNetwork.Instantiate(this.Player.name,new Vector3(Random.Range(-175f,-75f),Random.Range(-35,35),0),Quaternion.identity);
-        this.diContainer.InjectGameObject(a);
-        this.battleShip.Add(a);
-        this.player                                                 = a;
-        this.playerPoperties[PhotonNetwork.LocalPlayer.ActorNumber] = "ship3";
-        PhotonNetwork.LocalPlayer.CustomProperties                  = this.playerPoperties;
+        //Vector3    randomPosition = new Vector3(Random.Range(-175f, -75f), Random.Range(-35, 35), 0);
+        GameObject player = PhotonNetwork.Instantiate(this.Player.name, new Vector3(Random.Range(-175f, -75f), Random.Range(-35, 35), 0), Quaternion.identity);
+        this.diContainer.InjectGameObject(player);
+        this.battleShip.Add(player);
+        this.player = player;
+        
+        this.playerPoperties[PhotonNetwork.LocalPlayer.ActorNumber] = playerData.Extra?.Ship.Addressable;
+
+        PhotonNetwork.LocalPlayer.CustomProperties = this.playerPoperties;
         if (PhotonNetwork.PlayerList.Length < 2)
         {
-            this.view.RPC("GenerateGoldBox",RpcTarget.AllBuffered);
+            this.view.RPC("GenerateGoldBox", RpcTarget.AllBuffered);
         }
        
     }
-    
-    
+
+
 
     public void UpdateScore(object obj)
     {
         Debug.Log("cap nhap diem");
         this.score += 10;
         int currentScore = this.score;
-        this.scoreText.text =  "SCORE: "+this.score.ToString();
+        this.scoreText.text = "SCORE: " + this.score.ToString();
         foreach (var item in this.battleShip)
         {
             item.transform.GetChild(0).GetComponent<PlayerControl>().score = this.score;
         }
-        this.view.RPC("UpdateScoreServer",RpcTarget.AllBuffered,this.score);
-        
+        this.view.RPC("UpdateScoreServer", RpcTarget.AllBuffered, this.score);
+
     }
+
     [PunRPC]
     public void UpdateScoreServer(int score)
     {
@@ -76,7 +74,7 @@ public class GameManage : MonoBehaviour
     {
         for (int i = 0; i < 20; i++)
         {
-            GameObject a              = PhotonNetwork.Instantiate(this.GoldBox.name,new Vector3(Random.Range(-175f,-75f),Random.Range(-35,35),0),Quaternion.identity);
+            GameObject a = PhotonNetwork.Instantiate(this.GoldBox.name, new Vector3(Random.Range(-175f, -75f), Random.Range(-35, 35), 0), Quaternion.identity);
             this.diContainer.InjectGameObject(a);
             this.listGoldBox.Add(a);
         }
@@ -85,6 +83,6 @@ public class GameManage : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }

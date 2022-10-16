@@ -1211,6 +1211,7 @@ MonoBehaviour:
   goldValue: {fileID: 465655523}
   rubyValue: {fileID: 1954899860}
   diamondValue: {fileID: 79777068}
+  item: {fileID: 0}
 --- !u!1 &1266637174
 GameObject:
   m_ObjectHideFlags: 0
