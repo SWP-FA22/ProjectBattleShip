@@ -1,6 +1,9 @@
 ﻿namespace Owner.Script.GamePlay
 {
     using System;
+    using Owner.Script.GameData;
+    using Owner.Script.GameData.HandleData;
+    using Owner.Script.ShopHandle;
     using Owner.Script.Signals;
     using Photon.Pun;
     using Unity.VisualScripting;
@@ -20,6 +23,8 @@
         public  TextMeshPro     healthStaff;
         public  string          playerID;
         public  int             score;
+        private ListItemData    listItemData;
+        public  LoadDataItem    LoadDataItem;
         
         [Inject]
         private SignalBus signalBus;
@@ -28,14 +33,10 @@
         {
             this.score           = 0;
             this.HandleLocalData = new HandleLocalData();
-            this.battleShipData  = HandleLocalData.LoadData<BattleShipData>("ShipStaff");
-            if (this.battleShipData == null)
-            {
-                this.battleShipData = new BattleShipData { ID = 1, Name = "ship3", Description = "aaaaaa", BaseAttack = 0.5f, BaseHP = 2.0f, BaseSpeed = 5f, BaseRota = 5f, Price = 10, Addressable = "ship1", IsOwner = true, IsEquipped = false };
-            }
+            this.LoadDataItem    = new LoadDataItem();
             this.localScale      = this.healthBar.transform.localScale;
             this.view            = gameObject.GetComponent<PhotonView>();
-            this.healthAmount    = this.battleShipData.BaseHP;
+            this.ChangeStaff();
             this.popup           = GameObject.Find("PopupLose");
             if (this.popup != null)
             {
@@ -56,6 +57,30 @@
                 }
                 this.view.RPC("DestroyShip", RpcTarget.AllBuffered);
             }
+        }
+
+        public void ChangeStaff()
+        {
+            //change by ship
+            this.battleShipData = HandleLocalData.LoadData<BattleShipData>("ShipStaff");
+            if (this.battleShipData == null)
+            {
+                this.battleShipData = new BattleShipData { ID = 1, Name = "ship3", Description = "aaaaaa", BaseAttack = 0.5f, BaseHP = 2.0f, BaseSpeed = 5f, BaseRota = 5f, Price = 10, Addressable = "ship1", IsOwner = true, IsEquipped = false };
+            }
+            this.healthAmount = this.battleShipData.BaseHP;
+            
+            //change by item
+            this.listItemData = this.LoadDataItem.LoadData();
+            PlayerData playerData = this.HandleLocalData.LoadData<PlayerData>("PlayerData");
+            foreach (var item in this.listItemData.item)
+            {
+                if (item.ID == playerData.CannonID || item.ID == playerData.EngineID || item.ID == playerData.SailID)
+                {
+                    this.healthAmount += item.BonusHP;
+                }
+            }
+            
+            
         }
 
         private void OnTriggerEnter2D(Collider2D col)
