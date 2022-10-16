@@ -88,5 +88,12 @@ namespace Assets.Owner.Script.Util
         /// <param name="itemId">item id</param>
         /// <returns>true if buy successful, otherwise false</returns>
         public static async Task<bool> BuyItem(int itemId) => await new ShopRequest(LoginUtility.GLOBAL_TOKEN).BuyItem(itemId);
+
+        /// <summary>
+        /// Buy item from shop with item id
+        /// </summary>
+        /// <param name="shipId">ship id</param>
+        /// <returns>true if buy successful, otherwise false</returns>
+        public static async Task<bool> BuyShip(int shipId) => await new ShopRequest(LoginUtility.GLOBAL_TOKEN).BuyShip(shipId);
     }
 }

@@ -2,6 +2,7 @@
 {
     using System.IO;
     using Assets.Owner.Script.GameData;
+    using Assets.Owner.Script.Util;
     using Newtonsoft.Json;
     using Owner.Script.GameData;
     using Owner.Script.Signals;
@@ -71,10 +72,10 @@
             PlayerData playerData = this.HandleLocalData.LoadData<PlayerData>("PlayerData");
             if (this.ItemData.IsOwner == false)
             {
-                if (playerData.Extra?.Gold >= this.ItemData.Price)
+                if (playerData.Extra?.Diamond >= this.ItemData.Price && ShopUtility.BuyItem(ItemData.ID).Result)
                 {
                     this.ItemData.IsOwner = true;
-                    playerData.Extra.Gold -= (int)this.ItemData.Price;
+                    playerData.Extra.Diamond -= (int)this.ItemData.Price;
                     this.ChangeItem();
                     this.HandleLocalData.SaveData("PlayerData", playerData);
                     this.signalBus.Fire<ReloadResourceSignal>();

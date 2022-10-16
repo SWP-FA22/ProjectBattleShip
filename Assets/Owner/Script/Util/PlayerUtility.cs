@@ -24,5 +24,7 @@ namespace Assets.Owner.Script.Util
 
             return data;
         }
+
+        public static async Task<bool> EquipShip(int id) => await new PlayerRequest().EquipShip(LoginUtility.GLOBAL_TOKEN, id);
     }
 }

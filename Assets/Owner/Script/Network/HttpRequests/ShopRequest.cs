@@ -19,6 +19,8 @@ namespace Assets.Owner.Script.Network.HttpRequests
 
         public static readonly string BUY_ITEM = $"{HttpRequest.BASE_URL}/api/buy-item";
 
+        public static readonly string BUY_SHIP = $"{HttpRequest.BASE_URL}/api/buy-ship";
+
         public string Token { get; private set; }
 
         public ShopRequest()
@@ -63,10 +65,10 @@ namespace Assets.Owner.Script.Network.HttpRequests
                 using var www = UnityWebRequest.Post(BUY_ITEM, new Dictionary<string, string>
                 {
                     {"token", Token },
-                    {"item_id", itemId.ToString() }
+                    {"itemid", itemId.ToString() }
                 });
 
-                var response = await new HttpRequest(www).Send<BuyItemResponse>();
+                var response = await new HttpRequest(www).Send<BuyResponse>();
 
                 return response.Success;
             }
@@ -102,6 +104,27 @@ namespace Assets.Owner.Script.Network.HttpRequests
             }
         }
 
+        public async Task<bool> BuyShip(int shipID)
+        {
+            try
+            {
+                using var www = UnityWebRequest.Post(BUY_ITEM, new Dictionary<string, string>
+                {
+                    {"token", Token },
+                    {"shipid", shipID.ToString() }
+                });
+
+                var response = await new HttpRequest(www).Send<BuyResponse>();
+
+                return response.Success;
+            }
+            catch (System.Exception ex)
+            {
+                Debug.LogException(ex);
+                return false;
+            }
+        }
+
         struct GetAllShipsResponse
         {
             [JsonProperty("success")]
@@ -126,7 +149,7 @@ namespace Assets.Owner.Script.Network.HttpRequests
             public string Error { get; set; }
         }
 
-        struct BuyItemResponse
+        struct BuyResponse
         {
             [JsonProperty("success")]
             public bool Success { get; set; }

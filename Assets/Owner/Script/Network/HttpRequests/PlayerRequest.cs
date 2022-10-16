@@ -17,6 +17,8 @@ namespace Assets.Owner.Script.Network.HttpRequests
     public class PlayerRequest
     {
         public static readonly string PLAYER_INFO = $"{HttpRequest.BASE_URL}/api/player-info";
+        
+        public static readonly string EQUIP_SHIP = $"{HttpRequest.BASE_URL}/api/equip-ship";
 
         public async Task<PlayerData> GetPlayerInfo(int id)
         {
@@ -85,6 +87,36 @@ namespace Assets.Owner.Script.Network.HttpRequests
                 Debug.LogException(ex);
                 return null;
             }
+        }
+
+        public async Task<bool> EquipShip(string token, int shipID)
+        {
+            using var www = UnityWebRequest.Post(EQUIP_SHIP, new Dictionary<string, string>
+            {
+                { "token", token },
+                { "shipid", shipID.ToString() }
+            });
+
+            try
+            {
+                var response = await new HttpRequest(www).Send<EquipShipResponse>();
+
+                return response.Success;
+            }
+            catch (System.Exception ex)
+            {
+                Debug.LogException(ex);
+                return false;
+            }
+        }
+
+        struct EquipShipResponse
+        {
+            [JsonProperty("success")]
+            public bool Success { get; set; }
+
+            [JsonProperty("error")]
+            public string Error { get; set; }
         }
 
         struct PlayerInfoResponse
