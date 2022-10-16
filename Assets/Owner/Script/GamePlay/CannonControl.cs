@@ -2,27 +2,28 @@
 {
     using System;
     using Cysharp.Threading.Tasks;
+    using Owner.Script.GameData;
+    using Owner.Script.GameData.HandleData;
+    using Owner.Script.ShopHandle;
     using Photon.Pun;
     using UnityEngine;
 
     public class CannonControl : MonoBehaviour
     {
-        public PhotonView      view;
-        public GameObject      bullet;
-        public string          playerID;
-        public HandleLocalData handleLocalData;
-
-        public float damage;
+        public  PhotonView      view;
+        public  GameObject      bullet;
+        public  string          playerID;
+        public  HandleLocalData handleLocalData;
+        private ListItemData    listItemData;
+        public  LoadDataItem    LoadDataItem;
+        public  float           damage;
         private void Start()
         {
-            view = gameObject.GetComponent<PhotonView>();
+            view                 = gameObject.GetComponent<PhotonView>();
             this.handleLocalData = new HandleLocalData();
-            BattleShipData battleShipData = handleLocalData.LoadData<BattleShipData>("ShipStaff");
-            if (battleShipData == null)
-            {
-                battleShipData = new BattleShipData { ID = 1, Name = "ship3", Description = "aaaaaa", BaseAttack = 0.5f, BaseHP = 2.0f, BaseSpeed = 5f, BaseRota = 5f, Price = 10f, Addressable = "ship1", IsOwner = true, IsEquipped = false };
-            }
-            this.damage = battleShipData.BaseAttack;
+            this.LoadDataItem    = new LoadDataItem();
+            this.ChangeStaff();
+            
         }
         private bool state = true;
         private void Update()
@@ -33,8 +34,28 @@
                 gameObject.transform.rotation = Quaternion.LookRotation(Vector3.forward,mousePos-gameObject.transform.position);
                 if (Input.GetKey(KeyCode.Mouse0))
                 {
-                    
                     this.view.RPC("CreateBullet", RpcTarget.AllBuffered,this.damage);
+                }
+            }
+        }
+
+        public void ChangeStaff()
+        {
+            //change by ship
+            BattleShipData battleShipData = handleLocalData.LoadData<BattleShipData>("ShipStaff");
+            if (battleShipData == null)
+            {
+                battleShipData = new BattleShipData { ID = 1, Name = "ship3", Description = "aaaaaa", BaseAttack = 0.5f, BaseHP = 2.0f, BaseSpeed = 5f, BaseRota = 5f, Price = 10f, Addressable = "ship1", IsOwner = true, IsEquipped = false };
+            }
+            this.damage = battleShipData.BaseAttack;
+            //change by item
+            this.listItemData = this.LoadDataItem.LoadData();
+            PlayerData playerData = this.handleLocalData.LoadData<PlayerData>("PlayerData");
+            foreach (var item in this.listItemData.item)
+            {
+                if (item.ID == playerData.CannonID || item.ID == playerData.EngineID || item.ID == playerData.SailID)
+                {
+                    this.damage += item.BonusATK;
                 }
             }
         }

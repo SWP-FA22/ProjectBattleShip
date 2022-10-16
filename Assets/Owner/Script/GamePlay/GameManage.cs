@@ -26,7 +26,6 @@ public class GameManage : MonoBehaviour
     public int              score;
 
     public GameObject player;
-    // Start is called before the first frame update
     void Start()
     {
         this.battleShip      = new();
@@ -48,9 +47,7 @@ public class GameManage : MonoBehaviour
         {
             this.view.RPC("GenerateGoldBox",RpcTarget.AllBuffered);
         }
-        //this.signalBus.Subscribe<AddScoreSignal>(x=>UpdateScore());
-        //Observer.Instance.AddObserver("UpdateScore",this.UpdateScore);
-
+       
     }
     
     
