@@ -23,7 +23,7 @@ namespace Owner.Script.GameData
 
         [JsonProperty("extra"), JsonRequired]
         public ExtraData Extra { get; set; }
-        
+
         // BASE ATTRIBUTES
 
         [JsonProperty("id")]
@@ -40,5 +40,14 @@ namespace Owner.Script.GameData
 
         [JsonProperty("email")]
         public string Email { get; set; }
+
+        [JsonProperty("weaponID")]
+        public int CannonID { get; set; }
+
+        [JsonProperty("sailID")]
+        public int SailID { get; set; }
+
+        [JsonProperty("engineID")]
+        public int EngineID { get; set; }
     }
 }

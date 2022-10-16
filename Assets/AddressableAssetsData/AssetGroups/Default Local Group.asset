@@ -33,6 +33,18 @@ MonoBehaviour:
     m_Address: cannon2
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 55c3dc2565793ed4393ae68fd0985524
+    m_Address: engine1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: acc9c2afcee6de943aa76543f31dc048
+    m_Address: sail1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 02e4e01b4e13d524da9686309e1b1a64
+    m_Address: ship
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: b010dac6ed705444dada0346b8359773, type: 2}
   m_SchemaSet:
