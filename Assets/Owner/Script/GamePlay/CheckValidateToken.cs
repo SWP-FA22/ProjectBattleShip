@@ -8,25 +8,21 @@
 
     public class CheckValidateToken : MonoBehaviour
     {
-        LoginUtility login = new LoginUtility();
-
-        private const string TOKEN_FILE = ".login-data";
-
         public TMP_InputField userName;
         public TMP_InputField password;
         public GameObject     error;
+        
         private async void Start()
         {
             try
             {
-                login.LoadTokenFromFile(TOKEN_FILE);
-                if (this.login.Token != null)
+                LoginUtility.LoadTokenFromFile();
+                if (LoginUtility.GLOBAL_TOKEN?.Length > 0)
                 {
-                    bool checkToken = await login.Verfiy();
+                    bool checkToken = await LoginUtility.Verfiy();
                     if (checkToken)
                     {
                         LoadToLoadingScene();
-                      
                     }
                 }
             }
@@ -50,10 +46,10 @@
             }
             else
             {
-                bool result = await login.Login(userName.text, password.text);
+                bool result = await LoginUtility.Login(userName.text, password.text);
                 if (result)
                 {
-                    login.SaveTokenToFile(TOKEN_FILE);
+                    LoginUtility.SaveTokenToFile();
                     LoadToLoadingScene();
                 }
                 else

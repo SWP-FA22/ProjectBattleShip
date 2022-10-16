@@ -13,48 +13,87 @@ using UnityEngine;
 
 namespace Assets.Owner.Script.Util
 {
-    public class ShopUtility
+    public static class ShopUtility
     {
-        private const string FILE_PATH = ".shop-data";
+        public const string FILE_PATH_ITEMS_DATA = ".shop-data";
+        public const string FILE_PATH_SHIPS_DATA = ".ship-data";
 
-        public string Token { get; private set; }
-
-        public async Task<List<ItemData>> GetAllItems()
+        /// <summary>
+        /// Get all items of the shop or player owned items
+        /// if isMine is true, then get player owned items
+        /// else get all items of the shop. Default false
+        /// </summary>
+        /// <returns>List of ItemData</returns>
+        public static async Task<List<ItemData>> GetAllItems(bool isMine = false)
         {
             try
             {
-                if (!File.Exists(FILE_PATH))
+                if (!File.Exists(FILE_PATH_ITEMS_DATA))
                 {
                     throw null;
                 }
-                else
-                {
-                    return JsonConvert.DeserializeObject<List<ItemData>>(File.ReadAllText(FILE_PATH));
-                }
+                return JsonConvert.DeserializeObject<List<ItemData>>(File.ReadAllText(FILE_PATH_ITEMS_DATA));
             }
             catch
             {
-                List<ItemData> items = await new ShopRequest().GetAllItems();
-                File.WriteAllText(FILE_PATH, JsonConvert.SerializeObject(items));
+                List<ItemData> items = await new ShopRequest(LoginUtility.GLOBAL_TOKEN).GetAllItems(isMine);
+
+                if (items == null)
+                {
+                    Debug.LogException(new Exception("Cannot get items from server"));
+                    return null;
+                }
+
+                File.WriteAllText(FILE_PATH_ITEMS_DATA, JsonConvert.SerializeObject(items));
                 return items;
             }
         }
 
-        public void LoadTokenFromFile(string filename)
+
+        /// <summary>
+        /// Get all ships of the shop or player owned ships
+        /// if isMine is true, then get player owned ships
+        /// else get all ships of the shop. Default false
+        /// </summary>
+        /// <returns>List of ItemData</returns>
+        public static async Task<List<BattleShipData>> GetAllShips(bool isMine = false)
         {
             try
             {
-                string token = File.ReadAllText(filename);
-                Debug.Log(token);
-                if (token?.Length > 0)
+                if (!File.Exists(FILE_PATH_SHIPS_DATA))
                 {
-                    Token = token;
+                    throw null;
                 }
+                return JsonConvert.DeserializeObject<List<BattleShipData>>(File.ReadAllText(FILE_PATH_SHIPS_DATA));
             }
-            catch (System.Exception)
+            catch
             {
-                Token = "";
+                List<BattleShipData> ships = await new ShopRequest(LoginUtility.GLOBAL_TOKEN).GetAllShips(isMine);
+
+                if (ships == null)
+                {
+                    Debug.LogException(new Exception("Cannot get ships from server"));
+                    return null;
+                }
+
+                File.WriteAllText(FILE_PATH_SHIPS_DATA, JsonConvert.SerializeObject(ships));
+                return ships;
             }
         }
+
+
+        /// <summary>
+        /// Buy item from shop with item id
+        /// </summary>
+        /// <param name="itemId">item id</param>
+        /// <returns>true if buy successful, otherwise false</returns>
+        public static async Task<bool> BuyItem(int itemId) => await new ShopRequest(LoginUtility.GLOBAL_TOKEN).BuyItem(itemId);
+
+        /// <summary>
+        /// Buy item from shop with item id
+        /// </summary>
+        /// <param name="shipId">ship id</param>
+        /// <returns>true if buy successful, otherwise false</returns>
+        public static async Task<bool> BuyShip(int shipId) => await new ShopRequest(LoginUtility.GLOBAL_TOKEN).BuyShip(shipId);
     }
 }

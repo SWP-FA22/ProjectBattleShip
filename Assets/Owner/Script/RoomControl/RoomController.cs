@@ -15,7 +15,7 @@ public class RoomController : MonoBehaviourPunCallbacks
     public void CreateNewRoom()
     {
         
-        if (RoomName.text != "")
+        if (RoomName.text?.Trim() != "")
         {
             RoomOptions roomOptions = new RoomOptions();
             roomOptions.MaxPlayers = 4;
@@ -30,7 +30,7 @@ public class RoomController : MonoBehaviourPunCallbacks
 
     public void JoinCurrentRoom()
     {
-        if (JoinRoomName.text != "")
+        if (JoinRoomName.text?.Trim() != "")
         {
             PhotonNetwork.JoinRoom(JoinRoomName.text);
             

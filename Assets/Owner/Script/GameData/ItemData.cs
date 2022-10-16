@@ -10,7 +10,6 @@ namespace Assets.Owner.Script.GameData
     [Serializable]
     public class ItemData : ShopItemDataBase
     {
-        
         [JsonProperty("type")]
         public int Type { get; set; }
 
@@ -28,14 +27,11 @@ namespace Assets.Owner.Script.GameData
 
         [JsonProperty("bonusRota")]
         public float BonusRota { get; set; }
-
+        
         [JsonProperty("isOwner")]
         public bool IsOwner {get; set; }
 
         [JsonProperty("isEquipped")]
         public bool IsEquipped {get; set;}
-        
-       
-
     }
 }

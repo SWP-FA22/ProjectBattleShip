@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using Assets.Owner.Script.GameData;
+    using Assets.Owner.Script.Util;
     using Owner.Script.GameData;
     using Owner.Script.ShopHandle;
     using UnityEngine;
@@ -22,37 +23,20 @@
         public Transform      _parentContainBtn;
         public List<ShopItem> listItem = new();
         
-        public LoadResourceData LoadResourceData;
         //item prefab
         [FormerlySerializedAs("ShopItem")] public ShopItem shopItem;
         
-        private void Start()
+        private async void Start()
         {
             Debug.Log("start shop");
-            this.LoadResourceData = new LoadResourceData();
             this.HandleLocalData  = new HandleLocalData();
-            this.LoadResourceData.GetDataFromServer();
-            //TODO: load data cannon from server
-            //fake data, delete after get data success
-        
-            this.ListCannonItem.Add(new ItemData
+
+            foreach (var item in await ShopUtility.GetAllItems())
             {
-                Type        = 1,ImageURL        = "",BonusATK      = 5,BonusHP  = 10,BonusSpeed    = 0,BonusRota = 0,Price = 10,
-                Addressable = "cannon1",IsOwner = false,IsEquipped = false,Name = "cannon1"
-            });
-            this.ListCannonItem.Add(new ItemData
-            {
-                Type        = 1,ImageURL        = "",BonusATK     = 7,BonusHP = 5,BonusSpeed     = 0,BonusRota = 0,Price = 5,
-                Addressable = "cannon2",IsOwner = true,IsEquipped = true,Name = "cannon2"
-            });
-            this.ListCannonItem.Add(new ItemData
-            {
-                Type        = 1,ImageURL        = "",BonusATK     = 5,BonusHP  = 15,BonusSpeed    = 5,BonusRota = 5,Price = 15,
-                Addressable = "cannon1",IsOwner = true,IsEquipped = false,Name = "cannon1"
-            });
+                new List<ItemData>[] { ListCannonItem, ListEngineItem, ListSailItem }[item.Type - 1].Add(item);
+            }
             
-            //CreateButton(this.ListCannonItem);
-            
+            CreateButton(this.ListCannonItem);
         }
         
         public void CreateButton(List<ItemData>listItems)

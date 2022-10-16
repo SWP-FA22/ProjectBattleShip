@@ -13,7 +13,7 @@ public class PlayerControl : MonoBehaviour
 {
     public string                     playerID;
     public PhotonView                 view;
-    public GameObject                 camera;
+    public GameObject                 playerCamera;
     public float                      speed;
     public PhotonView                 viewOfCannon;
     public GameObject                 cannon;
@@ -26,21 +26,21 @@ public class PlayerControl : MonoBehaviour
 
     public GameObject gameManage;
     ExitGames.Client.Photon.Hashtable PropriedadesPlayer = new ExitGames.Client.Photon.Hashtable();
-    
+
     // Start is called before the first frame update
     void Start()
     {
         this.speed           = 0;
         this.gameManage      = GameObject.Find("GameController");
         this.HandleLocalData = new HandleLocalData();
-        view                 = gameObject.GetComponent<PhotonView>();
+        view = gameObject.GetComponent<PhotonView>();
         if (this.view.IsMine)
         {
             Debug.Log("Send message to change");
             this.ChangeModel();
         }
-        this.camera                                             =  GameObject.Find("CM vcam1");
-        
+        this.playerCamera = GameObject.Find("CM vcam1");
+
         string shipName = PhotonNetwork.LocalPlayer.CustomProperties[this.playerID].ToString();
         foreach (var customPropertiesKey in PhotonNetwork.LocalPlayer.CustomProperties.Values)
         {
@@ -48,10 +48,11 @@ public class PlayerControl : MonoBehaviour
         }
         Addressables.LoadAssetAsync<Sprite>(shipName).Completed += (player) => { this.gameObject.transform.GetComponent<SpriteRenderer>().sprite = player.Result; };
 
-        this.battleShipData                                = HandleLocalData.LoadData<BattleShipData>("ShipStaff");
+        this.battleShipData = HandleLocalData.LoadData<BattleShipData>("ShipStaff");
         if (this.battleShipData == null)
         {
-            this.battleShipData = new BattleShipData { ID = 1, Name = "ship3", Description = "aaaaaa", BaseAttack = 0.5f, BaseHP = 2.0f, BaseSpeed = 5f, BaseRota = 5f, Price = 10f, Addressable = "ship1", IsOwner = true, IsEquipped = false };
+            //this.battleShipData = new BattleShipData { ID = 1, Name = "ship3", Description = "aaaaaa", BaseAttack = 0.5f, BaseHP = 2.0f, BaseSpeed = 5f, BaseRota = 5f, Price = 10, Addressable = "ship1", IsOwner = true, IsEquipped = false };
+            Debug.LogError("Lost Ship!");
         }
         this.speed                                         += battleShipData.BaseSpeed;
         this.cannon.GetComponent<CannonControl>().playerID = this.playerID;
@@ -86,17 +87,19 @@ public class PlayerControl : MonoBehaviour
         this.view.RPC("SetID", RpcTarget.AllBuffered);
         if (this.view.IsMine)
         {
-            this.HandleLocalData = new HandleLocalData();
-            PlayerData data     = this.HandleLocalData.LoadData<PlayerData>("PlayerData");
-            if (data == null)
-            {
-                data = new PlayerData { ShipName = "ship3", Diamond = 0, Gold = 0, Ruby = 0 };
-            }
-                
-            string     shipName = data.ShipName;
-            Debug.Log("manage" + shipName);
-            this.shipname           = shipName;
-            this.view.RPC("SetData", RpcTarget.AllBuffered,shipName);
+            // TODO: Ask khai for these lines of code
+
+            //this.HandleLocalData = new HandleLocalData();
+            //PlayerData data = this.HandleLocalData.LoadData<PlayerData>("PlayerData");
+            //if (data == null)
+            //{
+
+            //}
+
+            //string shipName = data.ShipName;
+            //Debug.Log("manage" + shipName);
+            //this.shipname = shipName;
+            //this.view.RPC("SetData", RpcTarget.AllBuffered, shipName);
         }
         else
         {
@@ -117,7 +120,7 @@ public class PlayerControl : MonoBehaviour
         if (!this.PropriedadesPlayer.ContainsKey(this.playerID))
         {
             Debug.Log("set key");
-            PropriedadesPlayer.Add(this.playerID,shipName);
+            PropriedadesPlayer.Add(this.playerID, shipName);
         }
         PhotonNetwork.LocalPlayer.SetCustomProperties(this.PropriedadesPlayer);
     }
@@ -127,12 +130,12 @@ public class PlayerControl : MonoBehaviour
     {
         if (view.IsMine)
         {
-            
-            this.view.RPC("ChangeName",RpcTarget.AllBuffered,"khai1412");
-            gameObject.tag                                              = "CurrentPlayer";
-            gameObject.transform.GetChild(1).tag                        = "CurrentPlayer";
-            this.camera.GetComponent<CinemachineVirtualCamera>().Follow = gameObject.transform;
-            this.camera.GetComponent<CinemachineVirtualCamera>().LookAt = gameObject.transform;
+
+            this.view.RPC("ChangeName", RpcTarget.AllBuffered, "khai1412");
+            gameObject.tag = "CurrentPlayer";
+            gameObject.transform.GetChild(1).tag = "CurrentPlayer";
+            this.playerCamera.GetComponent<CinemachineVirtualCamera>().Follow = gameObject.transform;
+            this.playerCamera.GetComponent<CinemachineVirtualCamera>().LookAt = gameObject.transform;
             if (Input.GetKey(KeyCode.W))
             {
                 
@@ -153,7 +156,7 @@ public class PlayerControl : MonoBehaviour
 
             this.healthBar.transform.position = gameObject.transform.position;
         }
-       
+
     }
 
     [PunRPC]
