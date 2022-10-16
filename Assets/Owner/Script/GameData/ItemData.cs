@@ -35,8 +35,7 @@ namespace Assets.Owner.Script.GameData
         [JsonProperty("isEquipped")]
         public bool IsEquipped {get; set;}
         
-        [JsonProperty("amount")]
-        public int Amount { get; set; }
+       
 
     }
 }
