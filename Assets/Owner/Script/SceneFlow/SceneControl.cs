@@ -69,6 +69,6 @@ public class SceneControl : MonoBehaviour
     public void LoadToItemScene()
     {
         PlayerPrefs.SetString("Shop","ItemShop");
-        SceneManager.LoadScene("BattleShipShop");
+        SceneManager.LoadScene("ItemShopScene");
     }
 }

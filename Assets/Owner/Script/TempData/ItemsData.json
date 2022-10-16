@@ -1,0 +1,52 @@
+﻿{
+  "item": [
+    {
+      "ID": 1,
+      "Name": "cannon1",
+      "Description": "hfkjd",
+      "Type": 1,
+      "ImageURL": "",
+      "BonusATK": 5,
+      "BonusHP": 5,
+      "BonusSpeed": 0,
+      "BonusRota": 0,
+      "Price": 10,
+      "Addressable": "cannon1",
+      "IsOwner": true,
+      "IsEquipped": false,
+      "Amount": 1
+    },
+    {
+      "ID": 2,
+      "Description": "hfkjd",
+      "Type": 2,
+      "ImageURL": "",
+      "BonusATK": 10,
+      "BonusHP": 2,
+      "BonusSpeed": 0,
+      "BonusRota": 0,
+      "Price": 15,
+      "Addressable": "cannon2",
+      "IsOwner": false,
+      "IsEquipped": false,
+      "Name": "cannon2",
+      "Amount": 1
+    },
+    {
+      "ID": 3,
+      "Description": "hfkjd",
+      "Type": 1,
+      "ImageURL": "",
+      "BonusATK": 5,
+      "BonusHP": 0,
+      "BonusSpeed": 0,
+      "BonusRota": 0,
+      "Price": 5,
+      "Addressable": "cannon3",
+      "IsOwner": true,
+      "IsEquipped": true,
+      "Name": "cannon1",
+      "Amount": 1
+    }
+  ]
+}

@@ -54,10 +54,7 @@
                     this.isBuy.text = "Use";
                 }
             }
-            else if (data is ItemData itemData)
-            {
-
-            }
+            
         }
         
         public void SetUpData(ShopItemDataBase data)

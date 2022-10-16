@@ -1203,9 +1203,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab7530ac321d98447bdcaa8fd5c102de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  battleShip: {fileID: 6058158982083051089, guid: 76313472d6055c64d824eba653490058, type: 3}
+  battleShip: {fileID: 8059886972601150263, guid: 76313472d6055c64d824eba653490058, type: 3}
   _parentContainBtn: {fileID: 678216252}
   listItem: []
+  item: {fileID: 6058158982083051089, guid: 76313472d6055c64d824eba653490058, type: 3}
+  ListItemData: []
   goldValue: {fileID: 465655523}
   rubyValue: {fileID: 1954899860}
   diamondValue: {fileID: 79777068}
