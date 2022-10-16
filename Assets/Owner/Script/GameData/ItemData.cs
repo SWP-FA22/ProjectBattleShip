@@ -8,22 +8,9 @@ using System.Threading.Tasks;
 namespace Assets.Owner.Script.GameData
 {
     [Serializable]
-    public class ItemData 
+    public class ItemData : ShopItemDataBase
     {
-        [JsonProperty("id")]
-        public int ID { get; set; }
-
-        [JsonProperty("name")]
-        public string Name { get; set; }
-
-        [JsonProperty("description")]
-        public string Description { get; set; }
-
-        [JsonProperty("price")]
-        public float Price { get; set; }
-
-        [JsonProperty("addressable")]
-        public string Addressable { get; set; }
+        
         [JsonProperty("type")]
         public int Type { get; set; }
 

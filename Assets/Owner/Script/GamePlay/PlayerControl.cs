@@ -30,7 +30,8 @@ public class PlayerControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        this.gameManage = GameObject.Find("GameController");
+        this.speed           = 0;
+        this.gameManage      = GameObject.Find("GameController");
         this.HandleLocalData = new HandleLocalData();
         view                 = gameObject.GetComponent<PhotonView>();
         if (this.view.IsMine)
@@ -52,9 +53,9 @@ public class PlayerControl : MonoBehaviour
         {
             this.battleShipData = new BattleShipData { ID = 1, Name = "ship3", Description = "aaaaaa", BaseAttack = 0.5f, BaseHP = 2.0f, BaseSpeed = 5f, BaseRota = 5f, Price = 10f, Addressable = "ship1", IsOwner = true, IsEquipped = false };
         }
-        this.speed                                         = battleShipData.BaseSpeed;
+        this.speed                                         += battleShipData.BaseSpeed;
         this.cannon.GetComponent<CannonControl>().playerID = this.playerID;
-        //Observer.Instance.AddObserver("UpdateScore",UpdateScore);
+        
     }
 
     public void UpdateScore(object obj){
@@ -101,11 +102,7 @@ public class PlayerControl : MonoBehaviour
         {
             this.PropriedadesPlayer = PhotonNetwork.LocalPlayer.CustomProperties;
         }
-        
-
-
-        //this.playerID                                                                     =  PhotonNetwork.LocalPlayer.CustomProperties[PhotonNetwork.LocalPlayer.ActorNumber].ToString();
-
+      
     }
 
     [PunRPC]
