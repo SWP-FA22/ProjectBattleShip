@@ -76,10 +76,11 @@
             int        score  = this.player.GetComponent<PlayerControl>().score;
             if (this.player.GetComponent<PlayerControl>().playerID == playerID)
             {
-                score                                                                       += 10;
-                this.player.GetComponent<PlayerControl>().score                                  += 10;
-                GameObject.Find("GameController").GetComponent<GameManage>().score          =  score;
-                GameObject.Find("GameController").GetComponent<GameManage>().scoreText.text =  "SCORE: "+score.ToString();
+                score                                                                                                   += 10;
+                this.player.GetComponent<PlayerControl>().score                                                         += 10;
+                GameObject.Find("GameController").GetComponent<GameManage>().score                                      =  score;
+                GameObject.Find("GameController").GetComponent<GameManage>().scoreText.text                             =  "SCORE: "+score.ToString();
+                GameObject.Find("GameController").GetComponent<GameManage>().player.GetComponent<PlayerControl>().score =  score;
             }
 
             this.healthAmount = 1.6f;

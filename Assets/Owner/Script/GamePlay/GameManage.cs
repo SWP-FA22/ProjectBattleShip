@@ -31,6 +31,10 @@ public class GameManage : MonoBehaviour
         this.battleShip = new();
         this.HandleLocalData = new();
         PlayerData playerData     = this.HandleLocalData.LoadData<PlayerData>("PlayerData");
+        if (playerData == null)
+        {
+            
+        }
         //Vector3    randomPosition = new Vector3(Random.Range(-175f, -75f), Random.Range(-35, 35), 0);
         GameObject player = PhotonNetwork.Instantiate(this.Player.name, new Vector3(Random.Range(-175f, -75f), Random.Range(-35, 35), 0), Quaternion.identity);
         this.diContainer.InjectGameObject(player);

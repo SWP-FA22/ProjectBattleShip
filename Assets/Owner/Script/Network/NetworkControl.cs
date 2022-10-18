@@ -24,7 +24,7 @@ public class NetworkControl : MonoBehaviourPunCallbacks
 
     public override async void OnJoinedLobby()
     {
-        await LoadResource();
+        //await LoadResource();
         SceneManager.LoadScene("HomeScene");
     }
 
