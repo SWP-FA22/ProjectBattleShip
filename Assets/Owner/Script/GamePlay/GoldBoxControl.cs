@@ -50,7 +50,8 @@
             if(gameObject.GetComponent<GoldBoxControl>().baseHP<=0){
                 Debug.Log("inetr update score");
                 Observer.Instance.Notify("UpdateScore");
-                this.view.RPC("DestroyGoldBox", RpcTarget.AllBuffered,this.playerID);
+                this.player = GameObject.FindWithTag("CurrentPlayer");
+                this.view.RPC("DestroyGoldBox", RpcTarget.AllBuffered,this.playerID,this.player);
             }
         }
 
@@ -70,18 +71,28 @@
             
         }
         [PunRPC]
-        public void DestroyGoldBox(string playerID)
+        public void DestroyGoldBox(string playerID,GameObject player)
         {
-            this.player = GameObject.FindWithTag("CurrentPlayer");
+            
             int        score  = this.player.GetComponent<PlayerControl>().score;
-            if (this.player.GetComponent<PlayerControl>().playerID == playerID)
-            {
-                score                                                                                                   += 10;
-                this.player.GetComponent<PlayerControl>().score                                                         += 10;
-                GameObject.Find("GameController").GetComponent<GameManage>().score                                      =  score;
-                GameObject.Find("GameController").GetComponent<GameManage>().scoreText.text                             =  "SCORE: "+score.ToString();
-                GameObject.Find("GameController").GetComponent<GameManage>().player.GetComponent<PlayerControl>().score =  score;
-            }
+            // foreach (var player in GameObject.FindGameObjectsWithTag("Player"))
+            // {
+            //     if (player.GetComponent<PlayerControl>().playerID == playerID)
+            //     {
+            //         score                                                                                                                         += 10;
+            //         this.player.GetComponent<PlayerControl>().score                                                                               += 10;
+            //         GameObject.Find("GameController").GetComponent<GameManage>().score                                                            =  score;
+            //         GameObject.Find("GameController").GetComponent<GameManage>().scoreText.text                                                   =  "SCORE: "+score.ToString();
+            //         GameObject.Find("GameController").GetComponent<GameManage>().player.transform.GetChild(0).GetComponent<PlayerControl>().score =  score;
+            //     }
+            // }
+            
+                Debug.Log("get shoot");
+                score                                                                                                                        += 10;
+                player.GetComponent<PlayerControl>().score                                                                              += 10;
+                GameObject.Find("GameController").GetComponent<GameManage>().score                                                           =  score;
+                GameObject.Find("GameController").GetComponent<GameManage>().scoreText.text                                                  =  "SCORE: "+score.ToString();
+            
 
             this.healthAmount = 1.6f;
             this.baseHP       = 1.6f;

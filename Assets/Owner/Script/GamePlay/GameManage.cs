@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Owner.Script.GameData;
+using Owner.Script.GameData.HandleData;
 using Owner.Script.Signals;
 using UnityEngine;
 using Photon.Pun;
@@ -10,11 +11,11 @@ using Zenject;
 public class GameManage : MonoBehaviour
 {
 
-    public GameObject Player;
-    public GameObject GoldBox;
+    public  GameObject                        Player;
+    public  GameObject                        GoldBox;
     private ExitGames.Client.Photon.Hashtable playerPoperties = new ExitGames.Client.Photon.Hashtable();
-
-    public HandleLocalData HandleLocalData;
+    public  FakeDataIfLoadFail                FakeDataIfLoadFail;
+    public  HandleLocalData                   HandleLocalData;
     [Inject]
     private DiContainer diContainer;
     [Inject]
@@ -33,13 +34,14 @@ public class GameManage : MonoBehaviour
         PlayerData playerData     = this.HandleLocalData.LoadData<PlayerData>("PlayerData");
         if (playerData == null)
         {
-            
+            this.FakeDataIfLoadFail = new FakeDataIfLoadFail();
+            playerData              = this.FakeDataIfLoadFail.LoadPlayerData();
         }
         //Vector3    randomPosition = new Vector3(Random.Range(-175f, -75f), Random.Range(-35, 35), 0);
-        GameObject player = PhotonNetwork.Instantiate(this.Player.name, new Vector3(Random.Range(-175f, -75f), Random.Range(-35, 35), 0), Quaternion.identity);
+        this.player = PhotonNetwork.Instantiate(this.Player.name, new Vector3(Random.Range(-175f, -75f), Random.Range(-35, 35), 0), Quaternion.identity);
         this.diContainer.InjectGameObject(player);
         this.battleShip.Add(player);
-        this.player = player;
+      
         
         this.playerPoperties[PhotonNetwork.LocalPlayer.ActorNumber] = playerData.Extra?.Ship.Addressable;
 

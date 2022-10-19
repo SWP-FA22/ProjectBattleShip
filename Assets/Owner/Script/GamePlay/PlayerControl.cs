@@ -42,6 +42,11 @@ public class PlayerControl : MonoBehaviour
         this.HandleLocalData = new HandleLocalData();
         this.LoadDataItem    = new LoadDataItem();
         this.listItemData    = this.LoadDataItem.LoadData();
+        if (this.listItemData == null)
+        {
+            this.LoadDataItem.SetupData();
+            this.listItemData = this.LoadDataItem.LoadData();
+        }
         view                 = gameObject.GetComponent<PhotonView>();
         if (this.view.IsMine)
         {
@@ -62,6 +67,10 @@ public class PlayerControl : MonoBehaviour
         
     }
 
+    
+    
+    
+    
         
     public void ChangeStaff()
     {
@@ -69,8 +78,9 @@ public class PlayerControl : MonoBehaviour
         this.battleShipData = HandleLocalData.LoadData<BattleShipData>("ShipStaff");
         if (this.battleShipData == null)
         {
-            //this.battleShipData = new BattleShipData { ID = 1, Name = "ship3", Description = "aaaaaa", BaseAttack = 0.5f, BaseHP = 2.0f, BaseSpeed = 5f, BaseRota = 5f, Price = 10, Addressable = "ship1", IsOwner = true, IsEquipped = false };
-            Debug.LogError("Lost Ship!");
+            this.battleShipData = new BattleShipData { ID = 1, Name = "ship3", Description = "aaaaaa", BaseAttack = 0.5f, BaseHP = 2.0f, BaseSpeed = 5f, BaseRota = 5f, Price = 10, Addressable = "ship1", IsOwner = true, IsEquipped = false };
+            this.HandleLocalData.SaveData("ShipStaff",this.battleShipData);
+            // Debug.LogError("Lost Ship!");
         }
         this.speed       += battleShipData.BaseSpeed;
         this.speedRotate += this.battleShipData.BaseRota;
@@ -121,7 +131,6 @@ public class PlayerControl : MonoBehaviour
             {
                 data = new PlayerData();
             }
-
             this.battleShipData = data.Extra.Ship;
             string     shipName = this.battleShipData.Name;
             Debug.Log("manage" + shipName);
