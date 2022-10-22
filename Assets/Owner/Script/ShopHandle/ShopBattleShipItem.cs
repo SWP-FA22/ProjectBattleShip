@@ -94,8 +94,8 @@
                         this.HandleLocalData.SaveData("PlayerData", playerData);
                         this.HandleLocalData.SaveData("ShipStaff", battleShipData);
                         Debug.Log(this.view.ViewID);
-                        GamePlayData gamePlayData = new GamePlayData { ShipName = this.data.Name, Score = 0 };
-                        PhotonNetwork.LocalPlayer.CustomProperties[this.view.ViewID] = gamePlayData;
+                       // GamePlayData gamePlayData = new GamePlayData { ShipName = this.data.Name, Score = 0 };
+                        //PhotonNetwork.LocalPlayer.CustomProperties[this.view.ViewID] = gamePlayData;
                         //Debug.Log(PhotonNetwork.LocalPlayer.CustomProperties[PhotonNetwork.LocalPlayer.ActorNumber]);
                     }
                 }

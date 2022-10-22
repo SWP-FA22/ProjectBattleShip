@@ -4,6 +4,7 @@ using System.Threading;
 using Assets.Owner.Script.GameData;
 using Assets.Owner.Script.Util;
 using Owner.Script.GameData;
+using Owner.Script.GameData.HandleData;
 using Owner.Script.ShopHandle;
 using Owner.Script.Signals;
 using Unity.VisualScripting;
@@ -21,7 +22,7 @@ public class ShopBattleShipManage : MonoBehaviour
     public  ShopItem                 item;
     public  List<ItemData>           ListItemData = new();
     private string                   checkCurrentShop;
-    
+    private FakeDataIfLoadFail       FakeDataIfLoadFail = new();
     
     [FormerlySerializedAs("GoldValue")]    public TextMeshProUGUI  goldValue;
     [FormerlySerializedAs("RubyValue")]    public TextMeshProUGUI  rubyValue;
@@ -41,7 +42,8 @@ public class ShopBattleShipManage : MonoBehaviour
 
         if (checkCurrentShop == "BattleShipShop")
         {
-            listShopItems.AddRange(await ShopUtility.GetAllShips());
+            //listShopItems.AddRange(await ShopUtility.GetAllShips());
+            this.listShopItems = this.FakeDataIfLoadFail.LoadBattleShipDatas();
         }
         
         this.CreateButton();
@@ -74,7 +76,6 @@ public class ShopBattleShipManage : MonoBehaviour
         if (checkCurrentShop == "BattleShipShop")
         {
             Debug.Log("create button");
-            
         }
     }
 }

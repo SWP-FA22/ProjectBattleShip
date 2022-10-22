@@ -4,18 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="879c300a-fdf8-4bea-888f-0c671285a07a" name="Changes" comment="fix update score system">
-      <change afterPath="$PROJECT_DIR$/Assets/Owner/Script/GameData/GamePlayData.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Owner/Script/GameData/GamePlayData.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Owner/Script/GameData/HandleData/FakeDataIfLoadFail.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Owner/Script/GameData/HandleData/FakeDataIfLoadFail.cs.meta" afterDir="false" />
+    <list default="true" id="879c300a-fdf8-4bea-888f-0c671285a07a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ProjectBattleShip/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ProjectBattleShip/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/GameData/HandleData/LoadDataItem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/GameData/HandleData/LoadDataItem.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.login-data" beforeDir="false" afterPath="$PROJECT_DIR$/.login-data" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Owner/Prefabs/BattleShip/BattleshipShop/item2.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Prefabs/BattleShip/BattleshipShop/item2.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Owner/Scenes/ShopScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Scenes/ShopScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/GameData/HandleData/FakeDataIfLoadFail.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/GameData/HandleData/FakeDataIfLoadFail.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/GamePlay/GameManage.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/GamePlay/GameManage.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/GamePlay/GoldBoxControl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/GamePlay/GoldBoxControl.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/GamePlay/PlayerControl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/GamePlay/PlayerControl.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/Network/HttpRequests/HttpRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/Network/HttpRequests/HttpRequest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/ShopHandle/ItemShopManage.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/ShopHandle/ItemShopManage.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/ShopHandle/ShopBattleShipItem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/ShopHandle/ShopBattleShipItem.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/TempData/TempDataItem.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/TempData/TempDataItem.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/ShopHandle/ShopBattleShipManage.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/ShopHandle/ShopBattleShipManage.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -150,7 +151,7 @@
       <workItem from="1665614999470" duration="17880000" />
       <workItem from="1665701093257" duration="72133000" />
       <workItem from="1665969788234" duration="6039000" />
-      <workItem from="1666064996550" duration="16417000" />
+      <workItem from="1666064996550" duration="51398000" />
     </task>
     <task id="LOCAL-00001" summary="add login scene ui and ui flow setup">
       <created>1663033377719</created>
@@ -306,7 +307,14 @@
       <option name="project" value="LOCAL" />
       <updated>1666068714141</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="fix game data">
+      <created>1666155554811</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1666155554811</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -350,6 +358,7 @@
     <MESSAGE value="fix logic item shop and change staff of player after use" />
     <MESSAGE value="merge code from master branch" />
     <MESSAGE value="fix update score system" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix update score system" />
+    <MESSAGE value="fix game data" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix game data" />
   </component>
 </project>

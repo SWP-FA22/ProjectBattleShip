@@ -1,25 +1,28 @@
 ﻿namespace Owner.Script.GamePlay
 {
     using System;
+    using ExitGames.Client.Photon;
     using Owner.Script.Signals;
     using Photon.Pun;
+    using Photon.Realtime;
     using UnityEngine;
     using Zenject;
     using Random = UnityEngine.Random;
 
     public class GoldBoxControl : MonoBehaviour
     {
-        public  float      healthAmount = 1.6f;
-        public  GameObject healthBar;
-        private Vector3    localScale;
-        public  PhotonView view;
-        public  float      baseHP = 1.6f;
-        public  string     playerID;
-        private GameObject player;
+        private const byte       EVENT_CODE   = 1;
+        public        float      healthAmount = 1.6f;
+        public        GameObject healthBar;
+        private       Vector3    localScale;
+        public        PhotonView view;
+        public        float      baseHP = 1.6f;
+        public        string     playerID;
+        private       GameObject player;
         [Inject]
         private SignalBus signalBus;
-
-        public GameObject mainPlayer;
+        ExitGames.Client.Photon.Hashtable PropriedadesPlayer = new ExitGames.Client.Photon.Hashtable();
+        public GameObject                 mainPlayer;
         private void OnTriggerEnter2D(Collider2D col)
         {
             if (col.gameObject.CompareTag("island"))
@@ -38,7 +41,6 @@
         private void Start()
         {
             this.localScale = this.healthBar.transform.localScale;
-            Debug.Log("check signla"+this.signalBus);
             this.mainPlayer = GameObject.Find("GameController");
             
         }
@@ -46,12 +48,22 @@
         {
             this.localScale.x                   = this.baseHP;
             this.healthBar.transform.localScale = this.localScale;
-            
             if(gameObject.GetComponent<GoldBoxControl>().baseHP<=0){
-                Debug.Log("inetr update score");
-                Observer.Instance.Notify("UpdateScore");
                 this.player = GameObject.FindWithTag("CurrentPlayer");
-                this.view.RPC("DestroyGoldBox", RpcTarget.AllBuffered,this.playerID,this.player);
+                int score = this.player.GetComponent<PlayerControl>().score;
+                score += 10;
+                string shipName="ship3";
+                if (PhotonNetwork.LocalPlayer.CustomProperties[this.playerID] != null)
+                {
+                    shipName = PhotonNetwork.LocalPlayer.CustomProperties[this.playerID].ToString();
+                }
+                PhotonNetwork.LocalPlayer.CustomProperties[playerID] = shipName;
+                this.PropriedadesPlayer[playerID]                    = shipName;
+                PhotonNetwork.LocalPlayer.SetCustomProperties(this.PropriedadesPlayer);
+                this.view.RPC("DestroyGoldBox", RpcTarget.AllBuffered,this.playerID);
+                
+                
+                
             }
         }
 
@@ -60,7 +72,7 @@
         {
             if (gameObject.GetComponent<GoldBoxControl>() != null)
             {
-                Debug.Log("gold box lose health");
+                
                 if (gameObject.GetComponent<GoldBoxControl>().healthAmount > 0)
                 {
                     gameObject.GetComponent<GoldBoxControl>().baseHP       -= (lose*this.healthAmount/this.baseHP);
@@ -71,34 +83,24 @@
             
         }
         [PunRPC]
-        public void DestroyGoldBox(string playerID,GameObject player)
+        public void DestroyGoldBox(string playerID)
         {
             
-            int        score  = this.player.GetComponent<PlayerControl>().score;
-            // foreach (var player in GameObject.FindGameObjectsWithTag("Player"))
-            // {
-            //     if (player.GetComponent<PlayerControl>().playerID == playerID)
-            //     {
-            //         score                                                                                                                         += 10;
-            //         this.player.GetComponent<PlayerControl>().score                                                                               += 10;
-            //         GameObject.Find("GameController").GetComponent<GameManage>().score                                                            =  score;
-            //         GameObject.Find("GameController").GetComponent<GameManage>().scoreText.text                                                   =  "SCORE: "+score.ToString();
-            //         GameObject.Find("GameController").GetComponent<GameManage>().player.transform.GetChild(0).GetComponent<PlayerControl>().score =  score;
-            //     }
-            // }
-            
+            if (this.player!=null&&player.GetComponent<PlayerControl>().playerID == playerID)
+            {
+                this.PropriedadesPlayer = PhotonNetwork.LocalPlayer.CustomProperties;
+                int score = this.player.GetComponent<PlayerControl>().score;
                 Debug.Log("get shoot");
-                score                                                                                                                        += 10;
-                player.GetComponent<PlayerControl>().score                                                                              += 10;
-                GameObject.Find("GameController").GetComponent<GameManage>().score                                                           =  score;
-                GameObject.Find("GameController").GetComponent<GameManage>().scoreText.text                                                  =  "SCORE: "+score.ToString();
+                score                                                                       += 10;
+                GameObject.Find("GameController").GetComponent<GameManage>().score          =  score;
+                GameObject.Find("GameController").GetComponent<GameManage>().scoreText.text =  "SCORE: "+score.ToString();
+                
+                this.healthAmount = 1.6f;
+                this.baseHP       = 1.6f;
+                Vector3 randomPosition = new Vector3(Random.Range(-175f, -75f), Random.Range(-35, 35), 0);
+                gameObject.transform.position = randomPosition;
+            }
             
-
-            this.healthAmount = 1.6f;
-            this.baseHP       = 1.6f;
-            Vector3 randomPosition = new Vector3(Random.Range(-175f, -75f), Random.Range(-35, 35), 0);
-            gameObject.transform.position = randomPosition;
-            //gameObject.SetActive(false);
         }
         
     }

@@ -127,8 +127,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Owner.Script.ShopHandle.ShopItem, Assembly-CSharp
+      - m_Target: {fileID: 8059886972601150263}
+        m_TargetAssemblyTypeName: Owner.Script.ShopHandle.ShopBattleShipItem, Assembly-CSharp
         m_MethodName: ChangeModel
         m_Mode: 1
         m_Arguments:
@@ -293,7 +293,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 8059886972601150263}
         m_TargetAssemblyTypeName: Owner.Script.ShopHandle.ShopBattleShipItem, Assembly-CSharp
         m_MethodName: BuyItem
         m_Mode: 1
