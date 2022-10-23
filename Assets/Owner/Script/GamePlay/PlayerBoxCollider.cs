@@ -10,6 +10,10 @@
     using UnityEngine;
     using Zenject;
     using TMPro;
+    using Photon.Pun.Demo.PunBasics;
+    using Assets.Owner.Script.Network.HttpRequests;
+    using Assets.Owner.Script.Util;
+
     public class PlayerBoxCollider : MonoBehaviour
     {
         public  float           healthAmount = 0.6f;
@@ -44,14 +48,22 @@
             }
             
         }
-        private void Update()
+        private async void Update()
         {
             this.localScale.x                   = this.baseHP;
             this.healthBar.transform.localScale = this.localScale;
             this.healthStaff.text               = (this.healthAmount*100).ToString();
             if(gameObject.GetComponent<PlayerBoxCollider>().baseHP<=0){
                 Debug.Log("lose");
-                
+                GameObject gameManage = GameObject.Find("GameController");
+                int score = gameManage.GetComponent<GameManage>().score;
+                //TODO: parse from score to resource
+                int gold = score / 10 * 5;
+                //TODO: use api to update score in server;
+                ResourcesRequest resourceRequest = new ResourcesRequest(LoginUtility.GLOBAL_TOKEN);
+                resourceRequest.updateResource( 2, gold);
+                PlayerUtility playerUtility = new PlayerUtility();
+                PlayerData playerData = PlayerUtility.GetMyPlayerData().Result;
                 this.view.RPC("DestroyShip", RpcTarget.AllBuffered);
             }
         }
