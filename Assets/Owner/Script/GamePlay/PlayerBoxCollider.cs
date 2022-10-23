@@ -51,10 +51,7 @@
             this.healthStaff.text               = (this.healthAmount*100).ToString();
             if(gameObject.GetComponent<PlayerBoxCollider>().baseHP<=0){
                 Debug.Log("lose");
-                if (this.view.IsMine)
-                {
-                    this.popup.SetActive(true);
-                }
+                
                 this.view.RPC("DestroyShip", RpcTarget.AllBuffered);
             }
         }
@@ -112,6 +109,7 @@
 
         [PunRPC]
         public void DestroyShip(){
+            this.popup.SetActive(true);
             player.SetActive(false);
         }
 

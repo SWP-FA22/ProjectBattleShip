@@ -20,11 +20,23 @@
             {
                 if (col.GetComponent<PlayerBoxCollider>() != null)
                 {
-                    Debug.Log("lose health");
+                    if (col.CompareTag("Player"))
+                    {
+                        Debug.Log("lose health");
+                        GameObject otherPlayer = col.gameObject;
+                        int        score       =  GameObject.Find("GameController").GetComponent<GameManage>().score;
+                        if (otherPlayer.GetComponent<PlayerBoxCollider>().baseHP - this.damage <= 0)
+                        {
+                            Debug.Log("aaaaaaaaaaaa");
+                            score                                                                       += 20;
+                            GameObject.Find("GameController").GetComponent<GameManage>().score          =  score;
+                            GameObject.Find("GameController").GetComponent<GameManage>().scoreText.text =  "SCORE: "+score.ToString();
+                        }
+                    }
                     
-                }
 
-                this.gameObject.SetActive(false);
+                }
+                Destroy(gameObject);
             }
         }
 
@@ -42,10 +54,18 @@
         private async void AutoDestroy()
         {
             await UniTask.Delay(TimeSpan.FromMilliseconds(2500));
-            if (gameObject != null)
+            try
             {
-                Destroy(this.gameObject);
+                if (gameObject != null)
+                {
+                    Destroy(this.gameObject);
+                }
             }
+            catch
+            {
+                
+            }
+            
         }
     }
 }

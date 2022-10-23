@@ -34,7 +34,8 @@
             {
                 float dam = col.GetComponent<Bullet>().damage;
                 this.view.RPC("LoseHealth", RpcTarget.AllBuffered,dam);
-                this.playerID = col.gameObject.GetComponent<Bullet>().playerID;
+                this.playerID                       = col.gameObject.GetComponent<Bullet>().playerID;
+                
 
             }
         }
@@ -46,8 +47,7 @@
         }
         private void Update()
         {
-            this.localScale.x                   = this.baseHP;
-            this.healthBar.transform.localScale = this.localScale;
+           
             if(gameObject.GetComponent<GoldBoxControl>().baseHP<=0){
                 this.player = GameObject.FindWithTag("CurrentPlayer");
                 int score = this.player.GetComponent<PlayerControl>().score;
@@ -61,9 +61,6 @@
                 this.PropriedadesPlayer[playerID]                    = shipName;
                 PhotonNetwork.LocalPlayer.SetCustomProperties(this.PropriedadesPlayer);
                 this.view.RPC("DestroyGoldBox", RpcTarget.AllBuffered,this.playerID);
-                
-                
-                
             }
         }
 
@@ -77,6 +74,8 @@
                 {
                     gameObject.GetComponent<GoldBoxControl>().baseHP       -= (lose*this.healthAmount/this.baseHP);
                     gameObject.GetComponent<GoldBoxControl>().healthAmount -= lose;
+                    this.localScale.x                                      =  this.baseHP;
+                    this.healthBar.transform.localScale                    =  this.localScale;
                 }
                 
             }

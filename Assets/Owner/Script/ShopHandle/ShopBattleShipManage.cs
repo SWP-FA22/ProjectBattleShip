@@ -38,12 +38,12 @@ public class ShopBattleShipManage : MonoBehaviour
         // Initialize data
         this.handleLocalData = new HandleLocalData();
         this.ReloadData();
-        checkCurrentShop = PlayerPrefs.GetString("Shop");
-
+        checkCurrentShop   = PlayerPrefs.GetString("Shop");
+        this.listShopItems = this.FakeDataIfLoadFail.LoadBattleShipDatas();
         if (checkCurrentShop == "BattleShipShop")
         {
             //listShopItems.AddRange(await ShopUtility.GetAllShips());
-            this.listShopItems = this.FakeDataIfLoadFail.LoadBattleShipDatas();
+            
         }
         
         this.CreateButton();
