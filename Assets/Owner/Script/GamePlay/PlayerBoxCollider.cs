@@ -58,10 +58,14 @@
                 GameObject gameManage = GameObject.Find("GameController");
                 int score = gameManage.GetComponent<GameManage>().score;
                 //TODO: parse from score to resource
-                int gold = score / 10 * 5;
-                //TODO: use api to update score in server;
+                int gold = score / 10 * 5;                
                 ResourcesRequest resourceRequest = new ResourcesRequest(LoginUtility.GLOBAL_TOKEN);
                 resourceRequest.updateResource( 2, gold);
+                
+                //TODO: use api to update score in server;
+                PlayerRequest playerRequest = new PlayerRequest();
+                playerRequest.UpdateScore(LoginUtility.GLOBAL_TOKEN, score);
+
                 PlayerUtility playerUtility = new PlayerUtility();
                 PlayerData playerData = PlayerUtility.GetMyPlayerData().Result;
                 this.view.RPC("DestroyShip", RpcTarget.AllBuffered);
