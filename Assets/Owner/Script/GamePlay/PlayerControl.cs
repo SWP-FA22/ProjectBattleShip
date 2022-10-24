@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using Cinemachine;
+using ExitGames.Client.Photon;
 using Newtonsoft.Json;
 using Owner.Script.GameData;
 using Owner.Script.GameData.HandleData;
@@ -15,25 +16,38 @@ using UnityEngine.AddressableAssets;
 
 public class PlayerControl : MonoBehaviour
 {
-    public string          playerID;
-    public PhotonView      view;
-    public GameObject      camera;
-    public float           speed;
-    public float           speedRotate;
-    public PhotonView      viewOfCannon;
-    public GameObject      cannon;
-    public GameObject      healthBar;
-    public TextMeshPro     playerName;
-    public HandleLocalData HandleLocalData;
-    public int             score;
-    public BattleShipData  battleShipData;
-    public string          shipname;
-    public LoadDataItem    LoadDataItem;
+    private const byte            EVENT_CODE = 1;
+    public        string          playerID;
+    public        PhotonView      view;
+    public        GameObject      camera;
+    public        float           speed;
+    public        float           speedRotate;
+    public        PhotonView      viewOfCannon;
+    public        GameObject      cannon;
+    public        GameObject      healthBar;
+    public        TextMeshPro     playerName;
+    public        HandleLocalData HandleLocalData;
+    public        int             score;
+    public        BattleShipData  battleShipData;
+    public        string          shipname;
+    public        LoadDataItem    LoadDataItem;
 
     public GameObject                 gameManage;
     ExitGames.Client.Photon.Hashtable PropriedadesPlayer = new ExitGames.Client.Photon.Hashtable();
 
     private ListItemData listItemData;
+
+    private GamePlayData gamePlayData;
+
+    private void OnEnable()
+    {
+        
+    }
+
+    private void OnDisable()
+    {
+        PhotonNetwork.NetworkingClient.EventReceived -= this.GetScoreEvent;
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -41,27 +55,56 @@ public class PlayerControl : MonoBehaviour
         this.gameManage      = GameObject.Find("GameController");
         this.HandleLocalData = new HandleLocalData();
         this.LoadDataItem    = new LoadDataItem();
+        this.gamePlayData    = new GamePlayData { ShipName = "ship3", Score = 0 };
         this.listItemData    = this.LoadDataItem.LoadData();
+        if (this.listItemData == null)
+        {
+            this.LoadDataItem.SetupData();
+            this.listItemData = this.LoadDataItem.LoadData();
+        }
         view                 = gameObject.GetComponent<PhotonView>();
         if (this.view.IsMine)
         {
             Debug.Log("Send message to change");
             this.ChangeModel();
         }
-        this.camera                                             =  GameObject.Find("CM vcam1");
         
-        string shipName = PhotonNetwork.LocalPlayer.CustomProperties[this.playerID].ToString();
+        this.camera                                             =  GameObject.Find("CM vcam1");
         foreach (var customPropertiesKey in PhotonNetwork.LocalPlayer.CustomProperties.Values)
         {
-            Debug.Log(customPropertiesKey);
+            Debug.Log("custom key"+customPropertiesKey);
         }
+        //gamePlayData = (GamePlayData)PhotonNetwork.LocalPlayer.CustomProperties[this.playerID];
+        string       shipName     = PhotonNetwork.LocalPlayer.CustomProperties[this.playerID].ToString().Split("|")[0];
+        
         Addressables.LoadAssetAsync<Sprite>(shipName).Completed += (player) => { this.gameObject.transform.GetComponent<SpriteRenderer>().sprite = player.Result; };
         this.ChangeStaff();
         
         this.cannon.GetComponent<CannonControl>().playerID =  this.playerID;
+
+        PhotonNetwork.NetworkingClient.EventReceived += this.GetScoreEvent;
+
+    }
+
+    public void GetScoreEvent(EventData obj)
+    {
+        Debug.Log(obj.Code);
+        if (obj.Code == 253)
+        {
+            Debug.Log("event id"+obj.CustomData);
+            
+            if (this.playerID == obj.CustomData)
+            {
+                this.score += 10;
+            }
+        }
         
     }
 
+    
+    
+    
+    
         
     public void ChangeStaff()
     {
@@ -69,8 +112,9 @@ public class PlayerControl : MonoBehaviour
         this.battleShipData = HandleLocalData.LoadData<BattleShipData>("ShipStaff");
         if (this.battleShipData == null)
         {
-            //this.battleShipData = new BattleShipData { ID = 1, Name = "ship3", Description = "aaaaaa", BaseAttack = 0.5f, BaseHP = 2.0f, BaseSpeed = 5f, BaseRota = 5f, Price = 10, Addressable = "ship1", IsOwner = true, IsEquipped = false };
-            Debug.LogError("Lost Ship!");
+            this.battleShipData = new BattleShipData { ID = 1, Name = "ship3", Description = "aaaaaa", BaseAttack = 0.5f, BaseHP = 2.0f, BaseSpeed = 5f, BaseRota = 5f, Price = 10, Addressable = "ship1", IsOwner = true, IsEquipped = false };
+            this.HandleLocalData.SaveData("ShipStaff",this.battleShipData);
+            // Debug.LogError("Lost Ship!");
         }
         this.speed       += battleShipData.BaseSpeed;
         this.speedRotate += this.battleShipData.BaseRota;
@@ -101,11 +145,7 @@ public class PlayerControl : MonoBehaviour
     [PunRPC]
     public void UpdateScoreServer(int score)
     {
-        if (this.view.IsMine)
-        {
-            gameObject.GetComponent<PlayerControl>().score = score;
-        }
-        
+        this.score = score;
     }
 
     
@@ -121,12 +161,12 @@ public class PlayerControl : MonoBehaviour
             {
                 data = new PlayerData();
             }
-
             this.battleShipData = data.Extra.Ship;
             string     shipName = this.battleShipData.Name;
             Debug.Log("manage" + shipName);
-            this.shipname           = shipName;
-            this.view.RPC("SetData", RpcTarget.AllBuffered,shipName);
+            this.shipname              = shipName;
+            this.gamePlayData.ShipName = this.shipname;
+            this.view.RPC("SetData", RpcTarget.AllBuffered,this.shipname);
         }
         else
         {
@@ -146,9 +186,10 @@ public class PlayerControl : MonoBehaviour
         this.PropriedadesPlayer = PhotonNetwork.LocalPlayer.CustomProperties;
         if (!this.PropriedadesPlayer.ContainsKey(this.playerID))
         {
-            Debug.Log("set key");
             PropriedadesPlayer.Add(this.playerID,shipName);
         }
+        
+        
         PhotonNetwork.LocalPlayer.SetCustomProperties(this.PropriedadesPlayer);
     }
 
@@ -180,6 +221,8 @@ public class PlayerControl : MonoBehaviour
                 transform.Rotate(Vector3.forward * rotation);
             }
 
+            int tempScore = GameObject.Find("GameController").GetComponent<GameManage>().score;
+            this.view.RPC("UpdateScoreServer",RpcTarget.AllBuffered,tempScore);
             this.healthBar.transform.position = gameObject.transform.position;
         }
        

@@ -24,8 +24,8 @@ namespace Assets.Owner.Script.Network.HttpRequests
 
         public async Task<T> Send<T>()
         {
-            var op = www.SendWebRequest();
-
+            return default(T);
+            var op      = www.SendWebRequest();
             while (!op.isDone)
             {
                 Task.Delay(100).Wait();

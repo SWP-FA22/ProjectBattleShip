@@ -11432,7 +11432,11 @@ MonoBehaviour:
   GoldBox: {fileID: 6383710910993701116, guid: 2cbc77d88f6ff6a44b70a0eb75bd1013, type: 3}
   scoreText: {fileID: 141012854}
   view: {fileID: 769447808}
+  battleShip: []
+  listGoldBox: []
   score: 0
+  check: 0
+  player: {fileID: 0}
 --- !u!4 &769447806
 Transform:
   m_ObjectHideFlags: 0

@@ -43,7 +43,7 @@
             Debug.Log("start shop");
             this.HandleLocalData  = new HandleLocalData();
             
-            this.BindData();
+            //this.BindData();
             this.ReloadData();
             CreateButton(this.ListCannonItem);
             this.signalBus.Subscribe<ReloadResourceSignal>(this.ReloadData);

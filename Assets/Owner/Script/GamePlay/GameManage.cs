@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Owner.Script.GameData;
+using Owner.Script.GameData.HandleData;
 using Owner.Script.Signals;
 using UnityEngine;
 using Photon.Pun;
@@ -10,39 +11,50 @@ using Zenject;
 public class GameManage : MonoBehaviour
 {
 
-    public GameObject Player;
-    public GameObject GoldBox;
+    public  GameObject                        Player;
+    public  GameObject                        GoldBox;
     private ExitGames.Client.Photon.Hashtable playerPoperties = new ExitGames.Client.Photon.Hashtable();
-
-    public HandleLocalData HandleLocalData;
+    public  FakeDataIfLoadFail                FakeDataIfLoadFail;
+    public  HandleLocalData                   HandleLocalData;
     [Inject]
     private DiContainer diContainer;
     [Inject]
     private SignalBus signalBus;
-    public TextMeshProUGUI scoreText;
-    public PhotonView view;
+    public TextMeshProUGUI  scoreText;
+    public PhotonView       view;
     public List<GameObject> battleShip;
     public List<GameObject> listGoldBox;
-    public int score;
-
-    public GameObject player;
+    public int              score;
+    public int              check = 0;
+    public GameObject       player;
     void Start()
     {
         this.battleShip = new();
         this.HandleLocalData = new();
         PlayerData playerData     = this.HandleLocalData.LoadData<PlayerData>("PlayerData");
+        if (playerData == null)
+        {
+            this.FakeDataIfLoadFail = new FakeDataIfLoadFail();
+            playerData              = this.FakeDataIfLoadFail.LoadPlayerData();
+        }
         //Vector3    randomPosition = new Vector3(Random.Range(-175f, -75f), Random.Range(-35, 35), 0);
-        GameObject player = PhotonNetwork.Instantiate(this.Player.name, new Vector3(Random.Range(-175f, -75f), Random.Range(-35, 35), 0), Quaternion.identity);
+        this.player = PhotonNetwork.Instantiate(this.Player.name, new Vector3(Random.Range(-175f, -75f), Random.Range(-35, 35), 0), Quaternion.identity);
         this.diContainer.InjectGameObject(player);
         this.battleShip.Add(player);
-        this.player = player;
+          
         
         this.playerPoperties[PhotonNetwork.LocalPlayer.ActorNumber] = playerData.Extra?.Ship.Addressable;
 
         PhotonNetwork.LocalPlayer.CustomProperties = this.playerPoperties;
-        if (PhotonNetwork.PlayerList.Length < 2)
+            
+        if (PhotonNetwork.IsMasterClient)
         {
-            this.view.RPC("GenerateGoldBox", RpcTarget.AllBuffered);
+            for (int i = 0; i < 20; i++)
+            {
+                GameObject a = PhotonNetwork.Instantiate(this.GoldBox.name, new Vector3(Random.Range(-175f, -75f), Random.Range(-35, 35), 0), Quaternion.identity);
+                this.diContainer.InjectGameObject(a);
+                this.listGoldBox.Add(a);
+            }
         }
        
     }
@@ -69,16 +81,7 @@ public class GameManage : MonoBehaviour
         this.player.transform.GetChild(0).GetComponent<PlayerControl>().score = score;
     }
 
-    [PunRPC]
-    public void GenerateGoldBox()
-    {
-        for (int i = 0; i < 20; i++)
-        {
-            GameObject a = PhotonNetwork.Instantiate(this.GoldBox.name, new Vector3(Random.Range(-175f, -75f), Random.Range(-35, 35), 0), Quaternion.identity);
-            this.diContainer.InjectGameObject(a);
-            this.listGoldBox.Add(a);
-        }
-    }
+    
 
     // Update is called once per frame
     void Update()
