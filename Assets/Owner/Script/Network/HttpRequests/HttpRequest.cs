@@ -13,8 +13,8 @@ namespace Assets.Owner.Script.Network.HttpRequests
 {
     public class HttpRequest
     {
-        public const string BASE_URL = "http://103.185.184.47:8080/HttpServer";
-        
+        //public const string BASE_URL = "http://103.185.184.47:8080/HttpServer";
+        public const string BASE_URL = "http://localhost:9999/HttpServer";
         private UnityWebRequest www;
 
         public HttpRequest(UnityWebRequest www)
@@ -24,7 +24,6 @@ namespace Assets.Owner.Script.Network.HttpRequests
 
         public async Task<T> Send<T>()
         {
-            return default(T);
             var op      = www.SendWebRequest();
             while (!op.isDone)
             {
