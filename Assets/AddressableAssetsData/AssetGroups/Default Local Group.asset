@@ -45,20 +45,16 @@ MonoBehaviour:
     m_Address: ship
     m_ReadOnly: 0
     m_SerializedLabels: []
-  - m_GUID: c272455f01acfdf4383ff1388fe1dc99
-    m_Address: attack-poison
+  - m_GUID: 46ee4c66eab33c44986dd26566e1d0df
+    m_Address: Special2
     m_ReadOnly: 0
     m_SerializedLabels: []
-  - m_GUID: 4db8502076dd9b2439604484c7218605
-    m_Address: hp-poison
+  - m_GUID: ea652ad9d303b8544b61c7537c7eeff8
+    m_Address: Special3
     m_ReadOnly: 0
     m_SerializedLabels: []
-  - m_GUID: 02fb4f02f1d29ef40afe5b1bf3b4568d
-    m_Address: rota-poison
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 9e9f3f4d661d0a94c86576993925b82a
-    m_Address: speed-poison
+  - m_GUID: 176467257906f1a45b034bc8a35d5554
+    m_Address: Special1
     m_ReadOnly: 0
     m_SerializedLabels: []
   m_ReadOnly: 0

@@ -31,5 +31,12 @@
             listShopItems.Add(new BattleShipData { ID = 1, Name = "ship2", Description = "aaaaaa", BaseAttack = 0.1f, BaseHP = 2.5f, BaseSpeed = 10f, BaseRota = 5f, Price = 10, Addressable = "ship2", IsOwner = true, IsEquipped = true });
             return listShopItems;
         }
+
+        public void LoadSpecialItemData()
+        {
+            CurrentSpecialItem.Instance.SpecialData.Add(0,new SpecialItemData{ID = 1,Addressable = "Special1",Amount = 0,BonusATK = 5,BonusHP = 0f,BonusRate = 0,BonusSpeed = 0,Description = "Bonus attack",ImageURL = "",IsDouble = false,Name = "special1",IsTriple = false,Price = 10});
+            CurrentSpecialItem.Instance.SpecialData.Add(1,new SpecialItemData{ID = 2,Addressable = "Special2",Amount = 0,BonusATK = 0,BonusHP = 0.5f,BonusRate = 0,BonusSpeed = 0,Description = "Bonus HP",ImageURL = "",IsDouble = false,Name = "special2",IsTriple = false,Price = 10});
+            CurrentSpecialItem.Instance.SpecialData.Add(2,new SpecialItemData{ID = 3,Addressable = "Special3",Amount = 0,BonusATK = 0,BonusHP = 0f,BonusRate = 0,BonusSpeed = 0,Description = "triple bullet",ImageURL = "",IsDouble = false,Name = "special1",IsTriple = true,Price = 10});
+        }
     }
 }

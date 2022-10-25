@@ -4,6 +4,7 @@
     using Assets.Owner.Script.GameData;
     using Assets.Owner.Script.Util;
     using Owner.Script.GameData;
+    using Owner.Script.GameData.HandleData;
     using Owner.Script.ShopHandle;
     using UnityEngine;
     using UnityEngine.Serialization;
@@ -17,47 +18,47 @@
         [Inject]
         private DiContainer diContainer;
 
-        public List<ItemData> ListCannonItem = new();
-        public List<ItemData> ListEngineItem = new();
-        public List<ItemData> ListSailItem   = new();
-        public Transform      _parentContainBtn;
-        public List<ShopItem> listItem = new();
+        public FakeDataIfLoadFail FakeDataIfLoadFail;
+        public Transform          _parentContainBtn;
+        public List<SpecialItem>     listItem = new();
+
+        public SpecialItem specialItem;
         
         //item prefab
-        [FormerlySerializedAs("ShopItem")] public ShopItem shopItem;
+        [FormerlySerializedAs("ShopItem")] public SpecialItem shopItem;
         
         private async void Start()
         {
-            Debug.Log("start shop");
-            this.HandleLocalData  = new HandleLocalData();
-
-            foreach (var item in await ShopUtility.GetAllItems())
+            this.FakeDataIfLoadFail = new FakeDataIfLoadFail();
+            //get data from server
+            if (CurrentSpecialItem.Instance.SpecialData.Count == 0)
             {
-                new List<ItemData>[] { ListCannonItem, ListEngineItem, ListSailItem }[item.Type - 1].Add(item);
+                this.FakeDataIfLoadFail.LoadSpecialItemData();
             }
+            CreateButton();
             
-            CreateButton(this.ListCannonItem);
         }
         
-        public void CreateButton(List<ItemData>listItems)
+        public void CreateButton()
         {
-            foreach (var item in this.listItem)
-            {
-                Destroy(item.gameObject);
-            }
-            this.listItem.Clear();
-            for (int i = 0; i < listItems.Count; i++)
+            for (int i = 0; i < CurrentSpecialItem.Instance.SpecialData.Count; i++)
             {
                 try
                 {
-                    ShopItem ShipItemObject = Instantiate(this.shopItem, _parentContainBtn);
-                    ShipItemObject.SetUpData(listItems[i]);
-                    ShipItemObject.GetComponent<ShopItem>().ItemData = listItems[i];
-                    this.listItem.Add(ShipItemObject);
-                    this.diContainer.InjectGameObject(ShipItemObject.gameObject);
+                    if (CurrentSpecialItem.Instance.SpecialData[i].Amount > 0)
+                    {
+                        SpecialItem SpecialItemObject = Instantiate(this.specialItem, _parentContainBtn);
+                        SpecialItemObject.SetUpData(CurrentSpecialItem.Instance.SpecialData[i]);
+                        SpecialItemObject.GetComponent<SpecialItem>().SpecialItemData = CurrentSpecialItem.Instance.SpecialData[i];
+                        this.diContainer.InjectGameObject(SpecialItemObject.gameObject);
+                        SpecialItemObject.GetComponent<SpecialItem>().lockIcon.SetActive(false);
+                        SpecialItemObject.GetComponent<SpecialItem>().isBuy.text = "USE "+"x"+CurrentSpecialItem.Instance.SpecialData[i].Amount;
+                    }
+                    
                 }
                 catch { }
             }
+            
         }
 
         

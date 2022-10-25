@@ -25,10 +25,10 @@
         private SignalBus signalBus;
         public BattleShipData battleShipData;
         public TextMeshProUGUI isBuy;
-
         private void Start()
         {
             Debug.Log("signal:" + this.signalBus);
+            HandleLocalData = new HandleLocalData();
             view = gameObject.transform.parent.GetComponent<PhotonView>();
             this.HandleLocalData = new();
             this.priceText = gameObject.transform.GetChild(1).GetComponent<TextMeshProUGUI>();

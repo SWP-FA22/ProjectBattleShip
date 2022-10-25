@@ -180,6 +180,12 @@ public class PlayerControl : MonoBehaviour
             this.shipname              = shipName;
             this.gamePlayData.ShipName = this.shipname;
             this.view.RPC("SetData", RpcTarget.AllBuffered,this.shipname);
+
+            CurrentSpecialItem currentSpecialItem = CurrentSpecialItem.Instance;
+            foreach (var item in currentSpecialItem.SpecialData)
+            {
+                this.speed += item.Value.BonusSpeed;
+            }
         }
         else
         {
