@@ -72,7 +72,6 @@ public class ShopBattleShipManage : MonoBehaviour
             }
             catch { }
         }
-
         if (checkCurrentShop == "BattleShipShop")
         {
             Debug.Log("create button");

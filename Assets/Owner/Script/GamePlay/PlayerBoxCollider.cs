@@ -77,6 +77,12 @@
                 }
             }
             
+            CurrentSpecialItem currentSpecialItem = CurrentSpecialItem.Instance;
+            foreach (var item in currentSpecialItem.SpecialData)
+            {
+                this.healthAmount += item.Value.BonusHP;
+            }
+            
             
         }
 

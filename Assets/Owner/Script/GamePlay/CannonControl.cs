@@ -18,6 +18,7 @@
         private ListItemData    listItemData;
         public  LoadDataItem    LoadDataItem;
         public  float           damage;
+        public  float            timeRate =0;
         private void Start()
         {
             view                 = gameObject.GetComponent<PhotonView>();
@@ -65,6 +66,13 @@
                     this.damage += item.BonusATK;
                 }
             }
+            
+            CurrentSpecialItem currentSpecialItem = CurrentSpecialItem.Instance;
+            foreach (var item in currentSpecialItem.SpecialData)
+            {
+                this.damage   += item.Value.BonusATK;
+                this.timeRate += item.Value.BonusRate;
+            }
         }
         
         [PunRPC]
@@ -77,7 +85,7 @@
                 newBullet.GetComponent<Bullet>().damage        = this.damage;
                 newBullet.GetComponent<Bullet>().playerID      = this.playerID;
                 this.state                                     = false;
-                await UniTask.Delay(TimeSpan.FromMilliseconds(1000));
+                await UniTask.Delay(TimeSpan.FromMilliseconds(1000-this.timeRate));
                 this.state = true;
                 
             }
