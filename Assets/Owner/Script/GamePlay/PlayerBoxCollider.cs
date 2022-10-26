@@ -13,6 +13,7 @@
     using Photon.Pun.Demo.PunBasics;
     using Assets.Owner.Script.Network.HttpRequests;
     using Assets.Owner.Script.Util;
+    using Assets.Owner.Script.GameData;
 
     public class PlayerBoxCollider : MonoBehaviour
     {
@@ -48,6 +49,18 @@
             }
             
         }
+        private int Cal(int currentScore,int currentRank)
+        {
+            double ans = 0,k;
+            if (currentRank < 1600) k = 2.5;
+            else if (currentRank < 2000) k = 2;
+            else if (currentRank < 2400) k = 1.5;
+            else k = 1;
+            double predict = (currentRank - 1000) / 40 + 10;
+            ans = k * (currentScore - predict);
+            return (int)ans;
+            
+        }
         private async void Update()
         {
             this.localScale.x                   = this.baseHP;
@@ -61,8 +74,11 @@
                 int gold = score / 10 * 5;                
                 ResourcesRequest resourceRequest = new ResourcesRequest(LoginUtility.GLOBAL_TOKEN);
                 resourceRequest.updateResource( 2, gold);
-                
+                this.HandleLocalData = new HandleLocalData();
+                PlayerData data = this.HandleLocalData.LoadData<PlayerData>("PlayerData");
                 //TODO: use api to update score in server;
+                int rank = data.Rank;
+                score = Cal(score, rank);
                 PlayerRequest playerRequest = new PlayerRequest();
                 playerRequest.UpdateScore(LoginUtility.GLOBAL_TOKEN, score);
 
@@ -125,6 +141,7 @@
 
         [PunRPC]
         public void DestroyShip(){
+            ListCurrentPlayers.Instance.listPlayer.Remove(gameObject);
             this.popup.SetActive(true);
             player.SetActive(false);
         }
