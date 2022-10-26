@@ -25,10 +25,10 @@
         private SignalBus signalBus;
         public BattleShipData battleShipData;
         public TextMeshProUGUI isBuy;
+
         private void Start()
         {
             Debug.Log("signal:" + this.signalBus);
-            HandleLocalData = new HandleLocalData();
             view = gameObject.transform.parent.GetComponent<PhotonView>();
             this.HandleLocalData = new();
             this.priceText = gameObject.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
@@ -63,7 +63,7 @@
             this.data = data;
             this.name = data.Name;
             this.priceText = gameObject.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
-            this.priceText.text = "Price: " + data.Price;
+            this.priceText.text = $"{data.Price}$";
             Debug.Log(data.Addressable);
             Addressables.LoadAssetAsync<Sprite>(data.Addressable).Completed += (player) =>
             {
@@ -77,26 +77,21 @@
             {
                 if (data is BattleShipData shipData && shipData.IsOwner)
                 {
-                    Debug.Log("Change Model");
-                    GameObject.Find("ItemScroll").GetComponent<ShopBattleShipManage>().listItem.ForEach(x =>
-                    {
-                        if (x.data is BattleShipData) (x.data as BattleShipData).IsEquipped = false;
-                    });
-                    shipData.IsEquipped = true;
-
-                    PlayerData playerData = this.HandleLocalData.LoadData<PlayerData>("PlayerData");
-
-                    // TODO: Set player equiped ship
                     if (PlayerUtility.EquipShip(shipData.ID).Result)
                     {
-                        // after send request to server, update local data
-                        Debug.Log("sve model");
-                        this.HandleLocalData.SaveData("PlayerData", playerData);
                         this.HandleLocalData.SaveData("ShipStaff", battleShipData);
-                        Debug.Log(this.view.ViewID);
-                       // GamePlayData gamePlayData = new GamePlayData { ShipName = this.data.Name, Score = 0 };
-                        //PhotonNetwork.LocalPlayer.CustomProperties[this.view.ViewID] = gamePlayData;
-                        //Debug.Log(PhotonNetwork.LocalPlayer.CustomProperties[PhotonNetwork.LocalPlayer.ActorNumber]);
+
+                        GameObject
+                            .Find("ItemScroll")
+                            .GetComponent<ShopBattleShipManage>()
+                            .listItem
+                            .ForEach(x =>
+                            {
+                                if (x.data is BattleShipData @shipData)
+                                    @shipData.IsEquipped = false;
+                            });
+
+                        shipData.IsEquipped = true;
                     }
                 }
             }

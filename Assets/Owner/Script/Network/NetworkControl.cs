@@ -24,19 +24,12 @@ public class NetworkControl : MonoBehaviourPunCallbacks
 
     public override async void OnJoinedLobby()
     {
-        //await LoadResource();
+        await LoadResource();
         SceneManager.LoadScene("HomeScene");
     }
 
     public async Task LoadResource()
     {
-        // Delete shop data files then refetch from server
-        File.Delete(ShopUtility.FILE_PATH_ITEMS_DATA);
-        await ShopUtility.GetAllItems(true);
-
-        File.Delete(ShopUtility.FILE_PATH_SHIPS_DATA);
-        await ShopUtility.GetAllShips(true);
-
         // Load Player Data
         PlayerPrefs.DeleteAll();
         await PlayerUtility.GetMyPlayerData();
