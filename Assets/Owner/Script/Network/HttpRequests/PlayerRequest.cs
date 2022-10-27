@@ -21,7 +21,31 @@ namespace Assets.Owner.Script.Network.HttpRequests
         public static readonly string EQUIP_SHIP = $"{HttpRequest.BASE_URL}/api/equip-ship";
         
         public static readonly string UPDATE_SCORE = $"{HttpRequest.BASE_URL}/api/update-score";
+        
+        public static readonly string TOP_PLAYER = $"{HttpRequest.BASE_URL}/api/top-player";
+        
+        public async Task<List<PlayerData>> TopPlayer()
+            {
+            using var www = UnityWebRequest.Get(TOP_PLAYER);
 
+            try
+            {
+                var response = await new HttpRequest(www).Send<TopPlayerResponse>();
+
+                if (!response.Success)
+                {
+                    return null;
+                }
+
+                return response.Players;
+            }
+            catch (System.Exception ex)
+            {
+                Debug.LogException(ex);
+                return null;
+            }
+        }
+    
         public async Task<PlayerData> GetPlayerInfo(int id)
         {
             using var www = UnityWebRequest.Get(PLAYER_INFO + $"?id={id}");
@@ -130,6 +154,17 @@ namespace Assets.Owner.Script.Network.HttpRequests
                 Debug.LogException(ex);
                 return false;
             }
+        }
+        struct TopPlayerResponse
+        {
+            [JsonProperty("success")]
+            public bool Success { get; set; }
+
+            [JsonProperty("error")]
+            public string Error { get; set; }
+
+            [JsonProperty("players")]
+            public List<PlayerData> Players { get; set; }
         }
         struct UpdateScoreResponse
         {
