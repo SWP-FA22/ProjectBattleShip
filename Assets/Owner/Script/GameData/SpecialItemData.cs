@@ -37,5 +37,8 @@
         
         [JsonProperty("maxUse")]
         public int MaxUse {get; set;}
+        
+        [JsonProperty("currentUse")]
+        public int CurrentUse {get; set;}
     }
 }

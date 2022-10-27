@@ -14,6 +14,7 @@
     using Newtonsoft.Json;
     using Owner.Script.Signals;
     using Assets.Owner.Script.Util;
+    using Owner.Script.GameData.HandleData;
 
     public class ItemShopManage : MonoBehaviour
     {
@@ -26,12 +27,13 @@
         [Inject]
         private DiContainer diContainer;
 
-        public List<ItemData> ListCannonItem = new();
-        public List<ItemData> ListEngineItem = new();
-        public List<ItemData> ListSailItem   = new();
-        public Transform      _parentContainBtn;
-        public List<ShopItem> listItem = new();
-        public TextAsset      textJson;
+        public List<ItemData>     ListCannonItem = new();
+        public List<ItemData>     ListEngineItem = new();
+        public List<ItemData>     ListSailItem   = new();
+        public Transform          _parentContainBtn;
+        public List<ShopItem>     listItem = new();
+        public TextAsset          textJson;
+        public FakeDataIfLoadFail FakeDataIfLoadFail;
 
         //item prefab
         [FormerlySerializedAs("ShopItem")] public ShopItem shopItem;
@@ -41,11 +43,13 @@
         private void Start()
         {
             Debug.Log("start shop");
-            this.HandleLocalData  = new HandleLocalData();
-            
-            //this.BindData();
+            this.HandleLocalData    = new HandleLocalData();
+            this.FakeDataIfLoadFail = new FakeDataIfLoadFail();
+            this.BindData();
             this.ReloadData();
             CreateButton(this.ListCannonItem);
+            CreateButton(this.ListEngineItem);
+            CreateButton(this.ListSailItem);
             this.signalBus.Subscribe<ReloadResourceSignal>(this.ReloadData);
             
         }
@@ -53,18 +57,38 @@
 
         public void BindData()
         {
-            foreach (var item in ShopUtility.GetAllItems().Result)
+            ShopUtility.GetAllItems();
+            foreach (var item in CurrentItemData.Instance.Items)
             {
-                new List<ItemData>[] { ListCannonItem, ListEngineItem, ListSailItem }[item.Type - 1].Add(item);
+                if (item.Type == 1)
+                {
+                    this.ListCannonItem.Add(item);
+                }
+
+                if (item.Type == 2)
+                {
+                    this.ListEngineItem.Add(item);
+                }
+
+                if (item.Type == 3)
+                {
+                    this.ListSailItem.Add(item);
+                }
             }
         }
 
         public void ReloadData()
         { 
+            PlayerUtility.GetMyPlayerData();
             PlayerData playerData = this.HandleLocalData.LoadData<PlayerData>("PlayerData");
-            this.goldValue.text    = playerData.Extra?.Gold.ToString();
-            this.rubyValue.text    = playerData.Extra?.Ruby.ToString();
-            this.diamondValue.text = playerData.Extra?.Diamond.ToString();
+            if (playerData == null)
+            {
+                this.FakeDataIfLoadFail = new FakeDataIfLoadFail();
+                playerData              = this.FakeDataIfLoadFail.LoadPlayerData();
+            }
+            this.goldValue.text    = playerData.Extra?.Gold.ToString() ?? "";
+            this.rubyValue.text    = playerData.Extra?.Ruby.ToString() ?? "";
+            this.diamondValue.text = playerData.Extra?.Diamond.ToString() ?? "";
         }
 
         public void CreateButton(List<ItemData>listItems)
