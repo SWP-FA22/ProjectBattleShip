@@ -26,5 +26,11 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Owner/Scenes/ItemShopScene.unity
     guid: d52fab5d3df8ea94ab351bca29919ab3
+  - enabled: 1
+    path: Assets/Owner/Scenes/SpecialItemShop.unity
+    guid: 12a0f6f5dc9537f4c8e1d0075d3f939b
+  - enabled: 1
+    path: Assets/Owner/Scenes/BagScene.unity
+    guid: 8d8c740555e5c3d468f838e915ba64d9
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: f0d63f2eff9038643bcac826764f7dbd, type: 2}

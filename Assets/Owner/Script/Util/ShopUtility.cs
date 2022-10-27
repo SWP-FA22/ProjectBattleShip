@@ -13,6 +13,8 @@ using UnityEngine;
 
 namespace Assets.Owner.Script.Util
 {
+    using global::Owner.Script.GameData;
+
     public static class ShopUtility
     {
         public const string FILE_PATH_ITEMS_DATA = ".shop-data";
@@ -44,6 +46,7 @@ namespace Assets.Owner.Script.Util
                     return null;
                 }
 
+                CurrentItemData.Instance.Items = items;
                 File.WriteAllText(FILE_PATH_ITEMS_DATA, JsonConvert.SerializeObject(items));
                 return items;
             }

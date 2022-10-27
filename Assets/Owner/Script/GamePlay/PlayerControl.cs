@@ -129,6 +129,13 @@ public class PlayerControl : MonoBehaviour
                 this.speedRotate += item.BonusRota;
             }
         }
+        //change buy special item
+        foreach (var item in CurrentSpecialItem.Instance.SpecialData)
+        {
+            this.speed += item.Value.BonusSpeed*item.Value.Amount;
+        }
+        
+        
     }
 
     public void UpdateScore(object obj){

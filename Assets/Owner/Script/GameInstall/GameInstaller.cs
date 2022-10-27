@@ -10,5 +10,7 @@ public class GameInstaller : MonoInstaller
         this.Container.DeclareSignal<LoseGameSignal>();
         this.Container.DeclareSignal<ReloadResourceSignal>();
         this.Container.DeclareSignal<AddScoreSignal>();
+        this.Container.DeclareSignal<LoadItem>();
+        this.Container.DeclareSignal<UseItemSignal>();
     }
 }

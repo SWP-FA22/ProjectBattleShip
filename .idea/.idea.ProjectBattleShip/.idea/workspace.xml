@@ -4,32 +4,36 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="879c300a-fdf8-4bea-888f-0c671285a07a" name="Changes" comment="fix score system">
-      <change afterPath="$PROJECT_DIR$/Assets/Owner/Script/BagHandle/UseItem.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Owner/Script/BagHandle/UseItem.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Owner/Script/BagHandle/UseItemManage.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Owner/Script/BagHandle/UseItemManage.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Owner/Script/GameData/CurrentSpecialItem.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Owner/Script/GameData/CurrentSpecialItem.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Owner/Script/GameData/SpecialItemData.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Owner/Script/GameData/SpecialItemData.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Owner/Script/ShopHandle/SpecialItem.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Owner/Script/ShopHandle/SpecialItem.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Owner/Script/ShopHandle/SpecialShopManage.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Owner/Script/ShopHandle/SpecialShopManage.cs.meta" afterDir="false" />
+    <list default="true" id="879c300a-fdf8-4bea-888f-0c671285a07a" name="Changes" comment="fix special shop scene">
+      <change afterPath="$PROJECT_DIR$/Assets/Owner/Script/GameData/CurrentItemData.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Owner/Script/GameData/CurrentItemData.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Owner/Script/Signals/LoadItem.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Owner/Script/Signals/LoadItem.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Owner/Script/Signals/UseItemSignal.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Owner/Script/Signals/UseItemSignal.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ProjectBattleShip/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ProjectBattleShip/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/AddressableAssetsData/AssetGroups/Default Local Group.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/AddressableAssetsData/AssetGroups/Default Local Group.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Owner/Prefabs/BattleShip/ItemImage/hp-removebg-preview.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Owner/Prefabs/BattleShip/ItemImage/hp-removebg-preview.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Owner/Prefabs/BattleShip/BattleshipShop/UseItem.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Prefabs/BattleShip/BattleshipShop/UseItem.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Owner/Scenes/BagScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Scenes/BagScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Owner/Scenes/HomeScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Scenes/HomeScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Owner/Scenes/ShopScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Scenes/ShopScene.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/BagHandle/BagManage.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/BagHandle/BagManage.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/BagHandle/UseItem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/BagHandle/UseItem.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/BagHandle/UseItemManage.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/BagHandle/UseItemManage.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/GameData/HandleData/FakeDataIfLoadFail.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/GameData/HandleData/FakeDataIfLoadFail.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/GameData/SpecialItemData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/GameData/SpecialItemData.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/GameInstall/GameInstaller.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/GameInstall/GameInstaller.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/GamePlay/CannonControl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/GamePlay/CannonControl.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/GamePlay/PlayerBoxCollider.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/GamePlay/PlayerBoxCollider.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/GamePlay/PlayerControl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/GamePlay/PlayerControl.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/RoomControl/RoomController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/RoomControl/RoomController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/ShopHandle/ShopBattleShipItem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/ShopHandle/ShopBattleShipItem.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/Network/HttpRequests/HttpRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/Network/HttpRequests/HttpRequest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/Network/NetworkControl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/Network/NetworkControl.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/SceneFlow/SceneControl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/SceneFlow/SceneControl.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/ShopHandle/ItemShopManage.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/ShopHandle/ItemShopManage.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/ShopHandle/ShopBattleShipManage.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/ShopHandle/ShopBattleShipManage.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/ShopHandle/SpecialItem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/ShopHandle/SpecialItem.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/ShopHandle/SpecialShopManage.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/ShopHandle/SpecialShopManage.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/Util/ShopUtility.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/Util/ShopUtility.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -165,7 +169,7 @@
       <workItem from="1665614999470" duration="17880000" />
       <workItem from="1665701093257" duration="72133000" />
       <workItem from="1665969788234" duration="6039000" />
-      <workItem from="1666064996550" duration="78222000" />
+      <workItem from="1666064996550" duration="99733000" />
     </task>
     <task id="LOCAL-00001" summary="add login scene ui and ui flow setup">
       <created>1663033377719</created>
@@ -342,7 +346,14 @@
       <option name="project" value="LOCAL" />
       <updated>1666538928366</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="fix special shop scene">
+      <created>1666673779762</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1666673779762</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -364,7 +375,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="add login scene ui and ui flow setup" />
     <MESSAGE value="add more asset, fix hone scene ui and back logic" />
     <MESSAGE value="add player move control and setup camera follow player, add close button and quit game logic" />
     <MESSAGE value="fix error message ui" />
@@ -389,6 +399,7 @@
     <MESSAGE value="fix game data" />
     <MESSAGE value="fix update score" />
     <MESSAGE value="fix score system" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix score system" />
+    <MESSAGE value="fix special shop scene" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix special shop scene" />
   </component>
 </project>

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1994703118073480360}
   - component: {fileID: 1369932837134555695}
   - component: {fileID: 2537100813737782484}
-  - component: {fileID: 1305090917568789081}
+  - component: {fileID: 7103966018365918187}
   m_Layer: 6
   m_Name: UseItem
   m_TagString: Untagged
@@ -127,9 +127,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 2090833323956393914}
         m_TargetAssemblyTypeName: Owner.Script.ShopHandle.ShopItem, Assembly-CSharp
-        m_MethodName: BuyItem
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -154,7 +154,7 @@ MonoBehaviour:
   m_EffectColor: {r: 0.31835172, g: 0.5122841, b: 0.9245283, a: 0.5}
   m_EffectDistance: {x: 1, y: -1}
   m_UseGraphicAlpha: 1
---- !u!114 &1305090917568789081
+--- !u!114 &7103966018365918187
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -163,7 +163,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2090833323956393914}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6c1800a3ff64c73b9b3a50ef7e3f08f, type: 3}
+  m_Script: {fileID: 11500000, guid: bd81d842b2824d548f6c995e6bf1b30b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   priceText: {fileID: 6213251923150566436}
@@ -171,6 +171,7 @@ MonoBehaviour:
   lockIcon: {fileID: 6086333470108213395}
   view: {fileID: 0}
   isBuy: {fileID: 7523870965115525890}
+  currentUse: 0
 --- !u!1 &2387832568597447246
 GameObject:
   m_ObjectHideFlags: 0
@@ -293,9 +294,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1305090917568789081}
+      - m_Target: {fileID: 2090833323956393914}
         m_TargetAssemblyTypeName: Owner.Script.ShopHandle.SpecialItem, Assembly-CSharp
-        m_MethodName: BuyItem
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

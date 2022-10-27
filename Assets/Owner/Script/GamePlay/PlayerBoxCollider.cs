@@ -82,6 +82,11 @@
             {
                 this.healthAmount += item.Value.BonusHP;
             }
+            //change by special item
+            foreach (var item in CurrentSpecialItem.Instance.SpecialData)
+            {
+                this.healthAmount += item.Value.BonusHP*item.Value.Amount;
+            }
             
             
         }

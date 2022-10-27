@@ -12,7 +12,7 @@
     using Zenject;
 
     public class SpecialShopManage : MonoBehaviour
-    {
+    { 
         public  SpecialItem       specialItem;
    
     public  Transform             _parentContainBtn;
@@ -29,12 +29,18 @@
     private SignalBus signalBus;
     [Inject]
     private DiContainer diContainer;
+
+    public bool checkIsInBag;
     async void Start()
     {
         // Start Shop
         // Initialize data
         this.handleLocalData = new HandleLocalData();
-        this.ReloadData();
+        if (!this.checkIsInBag)
+        {
+            this.ReloadData();
+        }
+        
        
         this.signalBus.Subscribe<ReloadResourceSignal>(this.ReloadData);
         this.FakeDataIfLoadFail.LoadSpecialItemData();
@@ -43,9 +49,15 @@
 
     public void ReloadData()
     {
-        PlayerData playerData = PlayerUtility.GetMyPlayerData().Result;
-        this.goldValue.text = playerData.Extra?.Gold.ToString() ?? "";
-        this.rubyValue.text = playerData.Extra?.Ruby.ToString() ?? "";
+        PlayerUtility.GetMyPlayerData();
+        PlayerData playerData = this.handleLocalData.LoadData<PlayerData>("PlayerData");
+        if (playerData == null)
+        {
+            this.FakeDataIfLoadFail = new FakeDataIfLoadFail();
+            playerData              = this.FakeDataIfLoadFail.LoadPlayerData();
+        }
+        this.goldValue.text    = playerData.Extra?.Gold.ToString() ?? "";
+        this.rubyValue.text    = playerData.Extra?.Ruby.ToString() ?? "";
         this.diamondValue.text = playerData.Extra?.Diamond.ToString() ?? "";
     }
 
@@ -57,7 +69,16 @@
             try
             {
                 SpecialItem SpecialItemObject = Instantiate(this.specialItem, _parentContainBtn);
-                SpecialItemObject.SetUpData(CurrentSpecialItem.Instance.SpecialData[i]);
+                if (this.checkIsInBag)
+                {
+                    SpecialItemObject.SetUpDataForBag(CurrentSpecialItem.Instance.SpecialData[i]);
+                    SpecialItemObject.checkIsUseItem = true;
+                }
+                else
+                {
+                    SpecialItemObject.SetUpData(CurrentSpecialItem.Instance.SpecialData[i]);
+                    SpecialItemObject.checkIsUseItem = false;
+                }
                 SpecialItemObject.GetComponent<SpecialItem>().SpecialItemData = CurrentSpecialItem.Instance.SpecialData[i];
                 this.diContainer.InjectGameObject(SpecialItemObject.gameObject);
             }

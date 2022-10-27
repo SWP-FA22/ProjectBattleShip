@@ -71,4 +71,15 @@ public class SceneControl : MonoBehaviour
         PlayerPrefs.SetString("Shop","ItemShop");
         SceneManager.LoadScene("ItemShopScene");
     }
+
+    public void LoadToSpecialItem()
+    {
+        SceneManager.LoadScene("SpecialItemShop");
+    }
+
+    public void LoadToBagScene()
+    {
+        SceneManager.LoadScene("BagScene");
+    }
+    
 }

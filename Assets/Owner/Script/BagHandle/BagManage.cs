@@ -6,6 +6,7 @@
     using Owner.Script.GameData;
     using Owner.Script.GameData.HandleData;
     using Owner.Script.ShopHandle;
+    using Owner.Script.Signals;
     using UnityEngine;
     using UnityEngine.Serialization;
     using Zenject;
@@ -35,6 +36,7 @@
             {
                 this.FakeDataIfLoadFail.LoadSpecialItemData();
             }
+            this.signalBus.Fire<LoadItem>();
             CreateButton();
             
         }
