@@ -75,25 +75,25 @@
         public void ChangeStaff()
         {
             //change by ship
-            this.battleShipData = HandleLocalData.LoadData<BattleShipData>("ShipStaff");
-            if (this.battleShipData == null)
-            {
-                this.battleShipData = new BattleShipData { ID = 1, Name = "ship3", Description = "aaaaaa", BaseAttack = 0.5f, BaseHP = 2.0f, BaseSpeed = 5f, BaseRota = 5f, Price = 10, Addressable = "ship1", IsOwner = true, IsEquipped = false };
-            }
-            this.healthAmount = this.battleShipData.BaseHP;
-            
-            //change by item
-            this.listItemData = this.LoadDataItem.LoadData();
+            //this.battleShipData = HandleLocalData.LoadData<BattleShipData>("ShipStaff");
+            //if (this.battleShipData == null)
+            //{
+            //    this.battleShipData = new BattleShipData { ID = 1, Name = "ship3", Description = "aaaaaa", BaseAttack = 0.5f, BaseHP = 2.0f, BaseSpeed = 5f, BaseRota = 5f, Price = 10, Addressable = "ship1", IsOwner = true, IsEquipped = false };
+            //}
+            //this.healthAmount = this.battleShipData.BaseHP;
+
+            ////change by item
+            //this.listItemData = this.LoadDataItem.LoadData();
+            //PlayerData playerData = this.HandleLocalData.LoadData<PlayerData>("PlayerData");
+            //foreach (var item in this.listItemData.item)
+            //{
+            //    if (item.ID == playerData.CannonID || item.ID == playerData.EngineID || item.ID == playerData.SailID)
+            //    {
+            //        this.healthAmount += item.BonusHP;
+            //    }
+            //}
             PlayerData playerData = this.HandleLocalData.LoadData<PlayerData>("PlayerData");
-            foreach (var item in this.listItemData.item)
-            {
-                if (item.ID == playerData.CannonID || item.ID == playerData.EngineID || item.ID == playerData.SailID)
-                {
-                    this.healthAmount += item.BonusHP;
-                }
-            }
-            
-            
+            this.healthAmount = playerData.CalcHP();
         }
 
         private void OnTriggerEnter2D(Collider2D col)
