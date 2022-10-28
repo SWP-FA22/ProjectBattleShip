@@ -15,9 +15,6 @@ namespace Assets.Owner.Script.Util
 {
     public static class ShopUtility
     {
-        public const string FILE_PATH_ITEMS_DATA = ".shop-data";
-        public const string FILE_PATH_SHIPS_DATA = ".ship-data";
-
         /// <summary>
         /// Get all items of the shop or player owned items
         /// if isMine is true, then get player owned items
@@ -34,7 +31,6 @@ namespace Assets.Owner.Script.Util
                 return null;
             }
 
-            File.WriteAllText(FILE_PATH_ITEMS_DATA, JsonConvert.SerializeObject(items));
             return items;
         }
 

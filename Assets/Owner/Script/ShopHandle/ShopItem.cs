@@ -1,5 +1,6 @@
 ﻿namespace Owner.Script.ShopHandle
 {
+    using System;
     using System.IO;
     using Assets.Owner.Script.GameData;
     using Assets.Owner.Script.Util;
@@ -26,7 +27,7 @@
         public ItemData ItemData;
         public TextMeshProUGUI isBuy;
         string jsonData = "";
-
+        
         private void Start()
         {
             Debug.Log("signal:" + this.signalBus);
@@ -35,7 +36,7 @@
             this.HandleLocalData = new();
             this.priceText = gameObject.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
             this.outline = gameObject.GetComponent<Outline>();
-            SetUpData(this.ItemData);
+            
         }
         private void Update()
         {
@@ -62,7 +63,16 @@
             this.name = data.Name;
             this.priceText = gameObject.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
             this.priceText.text = "Price: " + data.Price;
-            Addressables.LoadAssetAsync<Sprite>(data.Addressable.Trim()).Completed += (player) => { gameObject.transform.GetChild(0).GetComponent<Image>().sprite = player.Result; };
+            try
+            {
+                Addressables.LoadAssetAsync<Sprite>(data.Addressable.Trim()).Completed += (player) => { gameObject.transform.GetChild(0).GetComponent<Image>().sprite = player.Result; };
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+            
         }
 
 
