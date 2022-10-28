@@ -31,6 +31,12 @@ public class PlayerControl : MonoBehaviour
     public        BattleShipData  battleShipData;
     public        string          shipname;
     public        LoadDataItem    LoadDataItem;
+    
+    public TMP_InputField        ChatField;
+    public TextMeshProUGUI       message;
+    public List<TextMeshProUGUI> listMessage = new();
+    public GameObject            parent;
+
 
     public GameObject                 gameManage;
     ExitGames.Client.Photon.Hashtable PropriedadesPlayer = new ExitGames.Client.Photon.Hashtable();
@@ -42,6 +48,17 @@ public class PlayerControl : MonoBehaviour
     private void OnEnable()
     {
         
+    }
+    
+    public void SendMessage()
+    {
+        this.view.RPC("CreateNewMessage", RpcTarget.AllBuffered);
+    }
+    [PunRPC]
+    public void CreateNewMessage()
+    {
+        TextMeshProUGUI message = Instantiate(this.message, this.parent.transform);
+        message.text = this.ChatField.text;
     }
 
     private void OnDisable()
@@ -101,11 +118,7 @@ public class PlayerControl : MonoBehaviour
         
     }
 
-    
-    
-    
-    
-        
+   
     public void ChangeStaff()
     {
         //change by ship

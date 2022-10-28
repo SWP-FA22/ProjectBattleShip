@@ -4,10 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="879c300a-fdf8-4bea-888f-0c671285a07a" name="Changes" comment="fix special shop ui">
+    <list default="true" id="879c300a-fdf8-4bea-888f-0c671285a07a" name="Changes" comment="fix ui game scene">
+      <change afterPath="$PROJECT_DIR$/Assets/Owner/Script/ChatManage.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Owner/Script/ChatManage/ChatManage.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Owner/Script/ChatManage/ChatManage.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ProjectBattleShip/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ProjectBattleShip/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Owner/Prefabs/BattleShip/GameObject/message.prefab" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Owner/Scenes/GameScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Scenes/GameScene.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/GamePlay/GameManage.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/GamePlay/GameManage.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/GamePlay/PlayerControl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/GamePlay/PlayerControl.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Photon.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Photon.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Photon/PhotonChat/Code/ChatClient.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Photon/PhotonChat/Code/ChatClient.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Photon/PhotonChat/Code/PhotonChat.asmdef" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Photon/PhotonChat/Code/PhotonChat.asmdef" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Photon/PhotonRealtime.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Photon/PhotonRealtime.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Photon/PhotonRealtime/Code.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Photon/PhotonRealtime/Code.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Photon/PhotonRealtime/Code/ConnectionHandler.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Photon/PhotonRealtime/Code/ConnectionHandler.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Photon/PhotonRealtime/Code/RegionHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Photon/PhotonRealtime/Code/RegionHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Photon/PhotonRealtime/Code/changes-realtime.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Photon/PhotonRealtime/Code/changes-realtime.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Photon/PhotonUnityNetworking/Resources/PhotonServerSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Photon/PhotonUnityNetworking/Resources/PhotonServerSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -146,7 +159,7 @@
       <workItem from="1665614999470" duration="17880000" />
       <workItem from="1665701093257" duration="72133000" />
       <workItem from="1665969788234" duration="6039000" />
-      <workItem from="1666064996550" duration="105483000" />
+      <workItem from="1666064996550" duration="117641000" />
     </task>
     <task id="LOCAL-00001" summary="add login scene ui and ui flow setup">
       <created>1663033377719</created>
@@ -337,7 +350,14 @@
       <option name="project" value="LOCAL" />
       <updated>1666894033623</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="fix ui game scene">
+      <created>1666932783449</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1666932783449</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -359,7 +379,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="add player move control and setup camera follow player, add close button and quit game logic" />
     <MESSAGE value="fix error message ui" />
     <MESSAGE value="add bullet and health bar" />
     <MESSAGE value="add bullet and health" />
@@ -384,6 +403,7 @@
     <MESSAGE value="fix score system" />
     <MESSAGE value="fix special shop scene" />
     <MESSAGE value="fix special shop ui" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix special shop ui" />
+    <MESSAGE value="fix ui game scene" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix ui game scene" />
   </component>
 </project>
