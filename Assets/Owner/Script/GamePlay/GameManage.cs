@@ -69,7 +69,11 @@ public class GameManage : MonoBehaviour
 
     public void SendMessage()
     {
-        this.view.RPC("CreateNewMessage", RpcTarget.AllBuffered);
+        //this.view.RPC("CreateNewMessage", RpcTarget.AllBuffered);
+        GameObject text = PhotonNetwork.Instantiate(this.message.name, new Vector3(Random.Range(-175f, -75f), Random.Range(-35, 35), 0), Quaternion.identity);
+        text.transform.parent                     = this.parent.transform;
+        text.GetComponent<TextMeshProUGUI>().text = this.ChatField.text;
+
     }
     [PunRPC]
     public void CreateNewMessage()
