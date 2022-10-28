@@ -7,6 +7,7 @@ using UnityEngine;
 using Photon.Pun;
 using TMPro;
 using UnityEngine.AddressableAssets;
+using UnityEngine.UIElements;
 using Zenject;
 public class GameManage : MonoBehaviour
 {
@@ -27,6 +28,13 @@ public class GameManage : MonoBehaviour
     public int              score;
     public int              check = 0;
     public GameObject       player;
+    
+    public TMP_InputField        ChatField;
+    public TextMeshProUGUI       message;
+    public List<TextMeshProUGUI> listMessage = new();
+    public GameObject            parent;
+
+
     void Start()
     {
         this.battleShip = new();
@@ -56,11 +64,21 @@ public class GameManage : MonoBehaviour
                 this.listGoldBox.Add(a);
             }
         }
-       
+
     }
 
+    public void SendMessage()
+    {
+        this.view.RPC("CreateNewMessage", RpcTarget.AllBuffered);
+    }
+    [PunRPC]
+    public void CreateNewMessage()
+    {
+        TextMeshProUGUI message = Instantiate(this.message, this.parent.transform);
+        message.text = this.ChatField.text;
+    }
 
-
+   
     public void UpdateScore(object obj)
     {
         Debug.Log("cap nhap diem");
@@ -80,12 +98,17 @@ public class GameManage : MonoBehaviour
     {
         this.player.transform.GetChild(0).GetComponent<PlayerControl>().score = score;
     }
+    
+    
 
     
 
     // Update is called once per frame
     void Update()
     {
-
+        if (this.ChatField.isFocused)
+        {
+            //player cannot move or do anything
+        }
     }
 }
