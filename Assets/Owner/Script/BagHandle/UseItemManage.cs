@@ -1,17 +1,17 @@
 ﻿namespace Owner.Script.BagHandle
 {
     using System.Collections.Generic;
-    using Assets.Owner.Script.GameData;
     using Assets.Owner.Script.Util;
     using Owner.Script.GameData;
     using Owner.Script.GameData.HandleData;
     using Owner.Script.ShopHandle;
     using Owner.Script.Signals;
+    using TMPro;
     using UnityEngine;
     using UnityEngine.Serialization;
     using Zenject;
 
-    public class BagManage : MonoBehaviour
+    public class UseItemManage : MonoBehaviour
     {
         public HandleLocalData HandleLocalData;
         [Inject]
@@ -21,14 +21,12 @@
 
         public FakeDataIfLoadFail FakeDataIfLoadFail;
         public Transform          _parentContainBtn;
-        public List<SpecialItem>     listItem = new();
-
-        public SpecialItem specialItem;
         
-        //item prefab
-        [FormerlySerializedAs("ShopItem")] public SpecialItem shopItem;
+        public UseItem specialItem;
         
-        private async void Start()
+       
+        
+        private void Start()
         {
             this.FakeDataIfLoadFail = new FakeDataIfLoadFail();
             //get data from server
@@ -36,8 +34,9 @@
             {
                 this.FakeDataIfLoadFail.LoadSpecialItemData();
             }
-            this.signalBus.Fire<LoadItem>();
-            CreateButton();
+            //this.signalBus.Subscribe<LoadItem>(this.CreateButton);
+            this.CreateButton();
+            
             
         }
         
@@ -49,7 +48,7 @@
                 {
                     if (CurrentSpecialItem.Instance.SpecialData[i].Amount > 0)
                     {
-                        SpecialItem SpecialItemObject = Instantiate(this.specialItem, _parentContainBtn);
+                        UseItem SpecialItemObject = Instantiate(this.specialItem, _parentContainBtn);
                         SpecialItemObject.SetUpData(CurrentSpecialItem.Instance.SpecialData[i]);
                         SpecialItemObject.GetComponent<SpecialItem>().SpecialItemData = CurrentSpecialItem.Instance.SpecialData[i];
                         this.diContainer.InjectGameObject(SpecialItemObject.gameObject);

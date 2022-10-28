@@ -18,7 +18,7 @@ public class RoomController : MonoBehaviourPunCallbacks
         if (RoomName.text?.Trim() != "")
         {
             RoomOptions roomOptions = new RoomOptions();
-            roomOptions.MaxPlayers = 4;
+            roomOptions.MaxPlayers = 5;
             PhotonNetwork.CreateRoom(RoomName.text, roomOptions);
         }
         else

@@ -129,6 +129,13 @@ public class PlayerControl : MonoBehaviour
                 this.speedRotate += item.BonusRota;
             }
         }
+        //change buy special item
+        foreach (var item in CurrentSpecialItem.Instance.SpecialData)
+        {
+            this.speed += item.Value.BonusSpeed*item.Value.Amount;
+        }
+        
+        
     }
 
     public void UpdateScore(object obj){
@@ -167,6 +174,12 @@ public class PlayerControl : MonoBehaviour
             this.shipname              = shipName;
             this.gamePlayData.ShipName = this.shipname;
             this.view.RPC("SetData", RpcTarget.AllBuffered,this.shipname);
+
+            CurrentSpecialItem currentSpecialItem = CurrentSpecialItem.Instance;
+            foreach (var item in currentSpecialItem.SpecialData)
+            {
+                this.speed += item.Value.BonusSpeed;
+            }
         }
         else
         {

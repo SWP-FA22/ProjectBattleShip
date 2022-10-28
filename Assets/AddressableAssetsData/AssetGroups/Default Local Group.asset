@@ -45,6 +45,18 @@ MonoBehaviour:
     m_Address: ship
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 46ee4c66eab33c44986dd26566e1d0df
+    m_Address: Special2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ea652ad9d303b8544b61c7537c7eeff8
+    m_Address: Special3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 176467257906f1a45b034bc8a35d5554
+    m_Address: Special1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: b010dac6ed705444dada0346b8359773, type: 2}
   m_SchemaSet:

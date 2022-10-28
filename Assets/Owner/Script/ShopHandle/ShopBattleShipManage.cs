@@ -52,7 +52,13 @@ public class ShopBattleShipManage : MonoBehaviour
 
     public void ReloadData()
     {
-        PlayerData playerData = PlayerUtility.GetMyPlayerData().Result;
+        PlayerUtility.GetMyPlayerData();
+        PlayerData playerData = this.handleLocalData.LoadData<PlayerData>("PlayerData");
+        if (playerData == null)
+        {
+            this.FakeDataIfLoadFail = new FakeDataIfLoadFail();
+            playerData              = this.FakeDataIfLoadFail.LoadPlayerData();
+        }
         this.goldValue.text = playerData.Extra?.Gold.ToString() ?? "";
         this.rubyValue.text = playerData.Extra?.Ruby.ToString() ?? "";
         this.diamondValue.text = playerData.Extra?.Diamond.ToString() ?? "";
@@ -72,7 +78,6 @@ public class ShopBattleShipManage : MonoBehaviour
             }
             catch { }
         }
-
         if (checkCurrentShop == "BattleShipShop")
         {
             Debug.Log("create button");

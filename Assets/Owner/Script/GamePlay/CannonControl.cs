@@ -18,6 +18,10 @@
         private ListItemData    listItemData;
         public  LoadDataItem    LoadDataItem;
         public  float           damage;
+        public  float           timeRate =0;
+        public  bool            checkDouble;
+        public  bool            checkTriple;
+        public  bool            checkSlow;
         private void Start()
         {
             view                 = gameObject.GetComponent<PhotonView>();
@@ -65,6 +69,27 @@
                     this.damage += item.BonusATK;
                 }
             }
+            
+            CurrentSpecialItem currentSpecialItem = CurrentSpecialItem.Instance;
+            foreach (var item in currentSpecialItem.SpecialData)
+            {
+                this.damage   += item.Value.BonusATK;
+                this.timeRate += item.Value.BonusRate;
+            }
+            //change by special item
+            foreach (var item in CurrentSpecialItem.Instance.SpecialData)
+            {
+                this.damage += item.Value.BonusATK*item.Value.Amount;
+                if (item.Value.IsDouble)
+                {
+                    this.checkDouble = true;
+                }
+
+                if (item.Value.IsTriple)
+                {
+                    this.checkTriple = true;
+                }
+            }
         }
         
         [PunRPC]
@@ -72,16 +97,32 @@
         {
             if (this.state)
             {
-                var newBullet = Instantiate(this.bullet, gameObject.transform.position, gameObject.transform.rotation);
-                newBullet.GetComponent<Rigidbody2D>().velocity = (this.gameObject.transform.up  * 15f);
-                newBullet.GetComponent<Bullet>().damage        = this.damage;
-                newBullet.GetComponent<Bullet>().playerID      = this.playerID;
-                this.state                                     = false;
-                await UniTask.Delay(TimeSpan.FromMilliseconds(1000));
-                this.state = true;
+                if (this.checkDouble)
+                {
+                    this.CreateNewBullet();
+                    await UniTask.Delay(TimeSpan.FromMilliseconds(200));
+                    this.CreateNewBullet();
+                    this.state = false;
+                    await UniTask.Delay(TimeSpan.FromMilliseconds(1000-this.timeRate));
+                    this.state = true;
+                }
+
+                if (this.checkTriple)
+                {
+                    
+                }
+                
                 
             }
             
+        }
+
+        public async void CreateNewBullet()
+        {
+            var newBullet = Instantiate(this.bullet, gameObject.transform.position, gameObject.transform.rotation);
+            newBullet.GetComponent<Rigidbody2D>().velocity = (this.gameObject.transform.up  * 15f);
+            newBullet.GetComponent<Bullet>().damage        = this.damage;
+            newBullet.GetComponent<Bullet>().playerID      = this.playerID;
         }
     }
 }
