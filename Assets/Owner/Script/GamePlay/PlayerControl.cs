@@ -96,6 +96,9 @@ public class PlayerControl : MonoBehaviour
         }
         //gamePlayData = (GamePlayData)PhotonNetwork.LocalPlayer.CustomProperties[this.playerID];
         string       shipName     = PhotonNetwork.LocalPlayer.CustomProperties[this.playerID].ToString().Split("|")[0];
+        if(shipName==""){
+            shipName="ship1";
+        }
         
         Addressables.LoadAssetAsync<Sprite>(shipName).Completed += (player) => { this.gameObject.transform.GetComponent<SpriteRenderer>().sprite = player.Result; };
         this.ChangeStaff();
