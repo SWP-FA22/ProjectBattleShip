@@ -15,7 +15,7 @@ MonoBehaviour:
   AppSettings:
     AppIdRealtime: d6fd00d4-1dce-45f3-a044-a20304ba064e
     AppIdFusion: 
-    AppIdChat: 
+    AppIdChat: 3cb620a6-15ba-43d8-9202-e4163fe3bca3
     AppIdVoice: 
     AppVersion: 
     UseNameServer: 1
@@ -53,5 +53,5 @@ MonoBehaviour:
   - SetID
   - CreateNewMessage
   DisableAutoOpenWizard: 1
-  ShowSettings: 0
+  ShowSettings: 1
   DevRegionSetOnce: 1
