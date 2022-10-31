@@ -18,7 +18,7 @@
             BattleShipData       battleShipData = this.LoadDataBattleShip();
             PlayerData.ExtraData extraData      = new PlayerData.ExtraData { Diamond = 5, Gold = 10, Ruby = 5, Ship = battleShipData };
             PlayerData playerData = new PlayerData
-                { CannonID = 1, Email = "khai1412200213@gmail.com", Extra = extraData, EngineID = 1, ID = 1, Name = "Khai1412", Rank = 10, SailID = 1, Username = "khai1412" };
+                { CannonID = 1, Email = "khai1412200213@gmail.com", Extra = extraData, EngineID = 1, ID = 1, Name = "Khai1412", Rank = 1000, SailID = 1, Username = "khai1412" };
             this.handleLocalData.SaveData("PlayerData",playerData);
             return playerData;
         }

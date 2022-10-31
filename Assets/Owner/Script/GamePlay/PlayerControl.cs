@@ -168,7 +168,7 @@ public class PlayerControl : MonoBehaviour
        
     }
 
-    [PunRPC]
+    [PunRPC] 
     public void UpdateScoreServer(int score)
     {
         this.score = score;
