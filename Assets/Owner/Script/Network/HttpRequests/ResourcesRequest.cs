@@ -11,7 +11,7 @@ namespace Assets.Owner.Script.Network.HttpRequests
 {
     internal class ResourcesRequest
     {
-        public static readonly string UPDATE_RESOURCE = $"{HttpRequest.BASE_URL}/api/update-resource";
+        public static readonly string UPDATE_RESOURCE = $"{HttpRequest.BASE_URL}/api/update-resource+";
         public string Token { get; private set; }
         public ResourcesRequest()
         {

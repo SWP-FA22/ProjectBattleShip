@@ -29,7 +29,7 @@ namespace Assets.Owner.Script.Network.HttpRequests
 
             var start = DateTime.Now;
 
-            Debug.Log($"Http Request: [{www.method}] {www.url}\nData: {Encoding.UTF8.GetString(www.uploadHandler.data)}");
+            Debug.Log($"Http Request: [{www.method}] {www.url}\nData: {Encoding.UTF8.GetString(www.uploadHandler?.data ?? new byte[0])}");
 
             while (!op.isDone)
                 Task.Delay(100).Wait();
