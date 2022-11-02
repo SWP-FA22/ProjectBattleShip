@@ -111,8 +111,12 @@
                 {
                     
                 }
-                
-                
+                this.CreateNewBullet();
+                this.state = false;
+                await UniTask.Delay(TimeSpan.FromMilliseconds(1000 - this.timeRate));
+                this.state = true;
+
+
             }
             
         }

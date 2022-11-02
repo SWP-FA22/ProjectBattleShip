@@ -14,7 +14,7 @@
     public class LoadDataItem
     {
         
-        string path = "D:\\Study\\SWP\\Inter3\\Inter3\\ProjectBattleShip\\ProjectBattleShip\\Assets\\Owner\\Script\\TempData\\TempDataItem.txt";
+        string path = "D:\\download\\SPR22\\SWP\\Project\\ProjectBattleShip\\Assets/Owner/Script/TempData/TempDataItem.txt";
         public ListItemData LoadData()
         {
             ListItemData listItemData;
