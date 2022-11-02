@@ -2286,6 +2286,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_SendPointerHoverToParent: 1
   m_HorizontalAxis: Horizontal
   m_VerticalAxis: Vertical
   m_SubmitButton: Submit
@@ -2609,6 +2610,7 @@ GameObject:
   - component: {fileID: 1188261596}
   - component: {fileID: 1188261598}
   - component: {fileID: 1188261597}
+  - component: {fileID: 1188261599}
   m_Layer: 5
   m_Name: CurrentRanking
   m_TagString: Untagged
@@ -2677,6 +2679,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1188261595}
   m_CullTransparentMesh: 1
+--- !u!114 &1188261599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1188261595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2812ece2923ddf344aff878f1b306712, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RankImage: {fileID: 956359011}
+  scoreText: {fileID: 466759440}
 --- !u!1 &1201354192
 GameObject:
   m_ObjectHideFlags: 0

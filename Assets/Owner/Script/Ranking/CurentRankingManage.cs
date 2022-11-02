@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Assets.Owner.Script.Util;
 using Owner.Script.GameData;
+using Owner.Script.GameData.HandleData;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.UI;
@@ -19,7 +20,14 @@ public class CurentRankingManage : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        this.playerData = PlayerUtility.GetMyPlayerData().Result;
+        this.playerData      = PlayerUtility.GetMyPlayerData().Result;
+        if (this.playerData == null)
+        {
+            FakeDataIfLoadFail fakeDataIfLoadFail = new();
+            fakeDataIfLoadFail.LoadPlayerData();
+            this.playerData = new HandleLocalData().LoadData<PlayerData>("PlayerData");
+        }
+        this.playerData.Rank = 1800;
         if(this.playerData.Rank<1600){
             this.addressableOfRank = "bonze";
         } else if(this.playerData.Rank<2000){

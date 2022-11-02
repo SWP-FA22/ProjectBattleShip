@@ -35,6 +35,16 @@
             //this.signalBus.Subscribe<UseItemSignal>(x=>ChangeDataItem(x.ID));
         }
 
+        public void UnEquipItem()
+        {
+            if (CurrentSpecialItem.Instance.SpecialData[this.SpecialItemData.ID].CurrentUse > 0)
+            {
+                CurrentSpecialItem.Instance.SpecialData[this.SpecialItemData.ID].CurrentUse -= 1;
+                CurrentSpecialItem.Instance.SpecialData[this.SpecialItemData.ID].Amount     += 1;
+            }
+            
+        }
+
         
         private void Update()
         {

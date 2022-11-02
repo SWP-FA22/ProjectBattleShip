@@ -57,6 +57,18 @@ MonoBehaviour:
     m_Address: Special1
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 52d19b80e6f6f864db9d75d958af7116
+    m_Address: bonze
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b8ae7c6a3072c6e478d11d925f58d042
+    m_Address: gold
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: be3f9f82dda73ce4896e6000789b5d43
+    m_Address: sliver
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: b010dac6ed705444dada0346b8359773, type: 2}
   m_SchemaSet:
