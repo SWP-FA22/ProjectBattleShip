@@ -11,6 +11,8 @@
         public float damage;
 
         public  string playerID;
+
+        public  string bulletType = "freeze";
         private void   Start() { this.AutoDestroy(); }
 
         private void OnTriggerEnter2D(Collider2D col)

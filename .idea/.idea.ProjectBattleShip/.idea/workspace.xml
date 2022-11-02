@@ -4,22 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="879c300a-fdf8-4bea-888f-0c671285a07a" name="Changes" comment="merge code data">
+    <list default="true" id="879c300a-fdf8-4bea-888f-0c671285a07a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ProjectBattleShip/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ProjectBattleShip/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/AddressableAssetsData/AssetGroups/Default Local Group.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/AddressableAssetsData/AssetGroups/Default Local Group.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Owner/Prefabs/BattleShip/Ranking/bonze-removebg-preview.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Owner/Prefabs/BattleShip/Ranking/bonze-removebg-preview.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Owner/Prefabs/BattleShip/Ranking/gold-removebg-preview.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Owner/Prefabs/BattleShip/Ranking/gold-removebg-preview.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Owner/Prefabs/BattleShip/Ranking/sliver-removebg-preview.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Owner/Prefabs/BattleShip/Ranking/sliver-removebg-preview.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Owner/Scenes/BagScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Scenes/BagScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Owner/Scenes/HomeScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Scenes/HomeScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/BagHandle/UseItem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/BagHandle/UseItem.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/GameData/HandleData/FakeDataIfLoadFail.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/GameData/HandleData/FakeDataIfLoadFail.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/Ranking/CurentRankingManage.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/Ranking/CurentRankingManage.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/ShopHandle/SpecialItem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/ShopHandle/SpecialItem.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/ShopHandle/SpecialShopManage.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/ShopHandle/SpecialShopManage.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AddressableAssetsData/link.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AddressableAssetsData/link.xml.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/GameData/HandleData/LoadDataItem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/GameData/HandleData/LoadDataItem.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/GamePlay/Bullet.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/GamePlay/Bullet.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/GamePlay/CannonControl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/GamePlay/CannonControl.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/GamePlay/PlayerBoxCollider.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/GamePlay/PlayerBoxCollider.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/Network/HttpRequests/PlayerRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/Network/HttpRequests/PlayerRequest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/StreamingAssets.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -160,7 +154,8 @@
       <workItem from="1665701093257" duration="72133000" />
       <workItem from="1665969788234" duration="6039000" />
       <workItem from="1666064996550" duration="122879000" />
-      <workItem from="1667346427829" duration="5382000" />
+      <workItem from="1667346427829" duration="7072000" />
+      <workItem from="1667357011925" duration="2070000" />
     </task>
     <task id="LOCAL-00001" summary="add login scene ui and ui flow setup">
       <created>1663033377719</created>
@@ -372,7 +367,14 @@
       <option name="project" value="LOCAL" />
       <updated>1666998492375</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="fix current ranking and bag">
+      <created>1667353363648</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1667353363648</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -394,7 +396,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="add bullet and health" />
     <MESSAGE value="fix health lose after shoot" />
     <MESSAGE value="fix handle shop data" />
     <MESSAGE value="fix shop scene" />
@@ -419,6 +420,7 @@
     <MESSAGE value="fix ui game scene" />
     <MESSAGE value="add chat realtime in game" />
     <MESSAGE value="merge code data" />
-    <option name="LAST_COMMIT_MESSAGE" value="merge code data" />
+    <MESSAGE value="fix current ranking and bag" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix current ranking and bag" />
   </component>
 </project>

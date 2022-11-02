@@ -99,34 +99,39 @@
             {
                 if (this.checkDouble)
                 {
-                    this.CreateNewBullet();
+                    this.CreateNewBullet("normal");
                     await UniTask.Delay(TimeSpan.FromMilliseconds(200));
-                    this.CreateNewBullet();
+                    this.CreateNewBullet("normal");
                     this.state = false;
                     await UniTask.Delay(TimeSpan.FromMilliseconds(1000-this.timeRate));
                     this.state = true;
                 }
-
                 if (this.checkTriple)
                 {
                     
                 }
-                this.CreateNewBullet();
-                this.state = false;
-                await UniTask.Delay(TimeSpan.FromMilliseconds(1000 - this.timeRate));
-                this.state = true;
+
+                if (this.checkSlow)
+                {
+                    this.CreateNewBullet("freeze");
+                    this.state = false;
+                    await UniTask.Delay(TimeSpan.FromMilliseconds(1000 - this.timeRate));
+                    this.state = true;
+                }
+                
 
 
             }
             
         }
 
-        public async void CreateNewBullet()
+        public async void CreateNewBullet(string type)
         {
             var newBullet = Instantiate(this.bullet, gameObject.transform.position, gameObject.transform.rotation);
             newBullet.GetComponent<Rigidbody2D>().velocity = (this.gameObject.transform.up  * 15f);
             newBullet.GetComponent<Bullet>().damage        = this.damage;
             newBullet.GetComponent<Bullet>().playerID      = this.playerID;
+            newBullet.GetComponent<Bullet>().bulletType     = type;
         }
     }
 }

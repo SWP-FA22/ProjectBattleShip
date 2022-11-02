@@ -14,6 +14,7 @@
     using Assets.Owner.Script.Network.HttpRequests;
     using Assets.Owner.Script.Util;
     using Assets.Owner.Script.GameData;
+    using Cysharp.Threading.Tasks;
 
     public class PlayerBoxCollider : MonoBehaviour
     {
@@ -123,12 +124,21 @@
             
         }
 
-        private void OnTriggerEnter2D(Collider2D col)
+        private async void OnTriggerEnter2D(Collider2D col)
         {
             if (col.CompareTag("Bullet"))
             {
-                float dam = col.GetComponent<Bullet>().damage;
+                float  dam          = col.GetComponent<Bullet>().damage;
+                string typeOfBullet = col.GetComponent<Bullet>().bulletType;
                 this.view.RPC("LoseHealth", RpcTarget.AllBuffered,dam);
+                if (typeOfBullet == "freeze")
+                {
+                    float speed = gameObject.transform.parent.GetComponent<PlayerControl>().speed;
+                    float tempspeed                                                           = speed * 0.8f;
+                    gameObject.transform.parent.GetComponent<PlayerControl>().speed =  tempspeed;
+                    await UniTask.Delay(TimeSpan.FromMilliseconds(1000));
+                    gameObject.transform.parent.GetComponent<PlayerControl>().speed = speed;
+                }
                 Debug.Log(gameObject.tag+", "+gameObject.GetComponent<PlayerBoxCollider>().healthAmount);
             }
         }
