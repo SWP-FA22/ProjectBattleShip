@@ -29,6 +29,8 @@
         [JsonProperty("isDouble")]
         public bool IsDouble {get; set; }
 
+       
+        
         [JsonProperty("isTriple")]
         public bool IsTriple {get; set;}
 

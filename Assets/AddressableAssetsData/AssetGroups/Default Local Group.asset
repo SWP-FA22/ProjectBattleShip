@@ -69,6 +69,14 @@ MonoBehaviour:
     m_Address: sliver
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: f4de4e229a7653e4b83fa51911d8c6f9
+    m_Address: Special4
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 58be461bb08c5724b93b8b900481bf86
+    m_Address: Special5
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: b010dac6ed705444dada0346b8359773, type: 2}
   m_SchemaSet:
