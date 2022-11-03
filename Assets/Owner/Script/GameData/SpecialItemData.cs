@@ -31,6 +31,9 @@
 
         [JsonProperty("isTriple")]
         public bool IsTriple {get; set;}
+
+        [JsonProperty("isFreeze")]
+        public bool IsFreeze {get; set;}
         
         [JsonProperty("amount")]
         public int Amount {get; set;}

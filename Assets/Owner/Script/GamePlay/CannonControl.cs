@@ -11,25 +11,25 @@
 
     public class CannonControl : MonoBehaviour
     {
-        public  PhotonView      view;
-        public  GameObject      bullet;
-        public  string          playerID;
-        public  HandleLocalData handleLocalData;
-        private ListItemData    listItemData;
-        public  LoadDataItem    LoadDataItem;
-        public  float           damage;
-        public  float           timeRate =0;
-        public  bool            checkDouble;
-        public  bool            checkTriple;
-        public  bool            checkSlow;
+        public PhotonView view;
+        public GameObject bullet;
+        public string playerID;
+        public HandleLocalData handleLocalData;
+        private ListItemData listItemData;
+        public LoadDataItem LoadDataItem;
+        public float damage;
+        public float timeRate = 0;
+        public bool checkDouble;
+        public bool checkTriple;
+        public bool checkSlow;
         private void Start()
         {
-            view                 = gameObject.GetComponent<PhotonView>();
+            view = gameObject.GetComponent<PhotonView>();
             this.handleLocalData = new HandleLocalData();
-            this.LoadDataItem    = new LoadDataItem();
+            this.LoadDataItem = new LoadDataItem();
             this.ChangeStaff();
-            
-            
+
+
             BattleShipData battleShipData =
                 handleLocalData.LoadData<BattleShipData>("ShipStaff") ??
                 PlayerUtility.GetMyPlayerData().Result.Extra?.Ship;
@@ -42,10 +42,10 @@
             if (this.view.IsMine)
             {
                 Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                gameObject.transform.rotation = Quaternion.LookRotation(Vector3.forward,mousePos-gameObject.transform.position);
+                gameObject.transform.rotation = Quaternion.LookRotation(Vector3.forward, mousePos - gameObject.transform.position);
                 if (Input.GetKey(KeyCode.Mouse0))
                 {
-                    this.view.RPC("CreateBullet", RpcTarget.AllBuffered,this.damage);
+                    this.view.RPC("CreateBullet", RpcTarget.AllBuffered, this.damage);
                 }
             }
         }
@@ -69,17 +69,17 @@
                     this.damage += item.BonusATK;
                 }
             }
-            
+
             CurrentSpecialItem currentSpecialItem = CurrentSpecialItem.Instance;
             foreach (var item in currentSpecialItem.SpecialData)
             {
-                this.damage   += item.Value.BonusATK;
+                this.damage += item.Value.BonusATK;
                 this.timeRate += item.Value.BonusRate;
             }
             //change by special item
             foreach (var item in CurrentSpecialItem.Instance.SpecialData)
             {
-                this.damage += item.Value.BonusATK*item.Value.Amount;
+                this.damage += item.Value.BonusATK * item.Value.Amount;
                 if (item.Value.IsDouble)
                 {
                     this.checkDouble = true;
@@ -89,9 +89,13 @@
                 {
                     this.checkTriple = true;
                 }
+                if (item.Value.IsFreeze)
+                {
+                    this.checkSlow = true;
+                }
             }
         }
-        
+
         [PunRPC]
         public async void CreateBullet(float damage)
         {
@@ -99,39 +103,60 @@
             {
                 if (this.checkDouble)
                 {
-                    this.CreateNewBullet("normal");
+                    this.CreateNewBullet("normal", false);
                     await UniTask.Delay(TimeSpan.FromMilliseconds(200));
-                    this.CreateNewBullet("normal");
-                    this.state = false;
-                    await UniTask.Delay(TimeSpan.FromMilliseconds(1000-this.timeRate));
-                    this.state = true;
-                }
-                if (this.checkTriple)
-                {
-                    
-                }
-
-                if (this.checkSlow)
-                {
-                    this.CreateNewBullet("freeze");
+                    this.CreateNewBullet("normal", false);
                     this.state = false;
                     await UniTask.Delay(TimeSpan.FromMilliseconds(1000 - this.timeRate));
                     this.state = true;
                 }
-                
+                if (this.checkTriple)
+                {
+                    this.CreateNewBullet("normal", true);
+                    this.state = false;
+                    await UniTask.Delay(TimeSpan.FromMilliseconds(1000 - this.timeRate));
+                    this.state = true;
+                }
+
+                if (this.checkSlow)
+                {
+                    this.CreateNewBullet("freeze", false);
+                    this.state = false;
+                    await UniTask.Delay(TimeSpan.FromMilliseconds(1000 - this.timeRate));
+                    this.state = true;
+                }
+
 
 
             }
-            
+
         }
 
-        public async void CreateNewBullet(string type)
+        public async void CreateNewBullet(string type, bool isTriple)
         {
-            var newBullet = Instantiate(this.bullet, gameObject.transform.position, gameObject.transform.rotation);
-            newBullet.GetComponent<Rigidbody2D>().velocity = (this.gameObject.transform.up  * 15f);
-            newBullet.GetComponent<Bullet>().damage        = this.damage;
-            newBullet.GetComponent<Bullet>().playerID      = this.playerID;
-            newBullet.GetComponent<Bullet>().bulletType     = type;
+            if (isTriple)
+            {
+                int[] rotatepoint = { -5, 0, 5 };
+                for (int i = 0; i < 3; i++)
+                {
+                    var newBullet = Instantiate(this.bullet, gameObject.transform.position, gameObject.transform.rotation);
+                    newBullet.transform.Rotate(new Vector3(rotatepoint[i], 0, 0));
+                    newBullet.GetComponent<Rigidbody2D>().velocity = (this.gameObject.transform.up * 15f);
+                    newBullet.GetComponent<Bullet>().damage = this.damage;
+                    newBullet.GetComponent<Bullet>().playerID = this.playerID;
+                    newBullet.GetComponent<Bullet>().bulletType = type;
+                }
+
+            }
+            else
+            {
+                var newBullet = Instantiate(this.bullet, gameObject.transform.position, gameObject.transform.rotation);
+                newBullet.GetComponent<Rigidbody2D>().velocity = (this.gameObject.transform.up * 15f);
+                newBullet.GetComponent<Bullet>().damage = this.damage;
+                newBullet.GetComponent<Bullet>().playerID = this.playerID;
+                newBullet.GetComponent<Bullet>().bulletType = type;
+            }
+
         }
     }
 }
