@@ -5,33 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="879c300a-fdf8-4bea-888f-0c671285a07a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Owner/Script/ChatManage/ChatUIManage.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Owner/Script/ChatManage/ChatUIManage.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Owner/Script/MiniMap.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Owner/Script/Signals/ClosePopup.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Owner/Script/Signals/ClosePopup.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Owner/Script/Signals/ShowPopupSignal.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Owner/Script/Signals/ShowPopupSignal.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ProjectBattleShip/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ProjectBattleShip/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Owner/Prefabs/BattleShip/BattleshipShop/item2.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Prefabs/BattleShip/BattleshipShop/item2.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Owner/Prefabs/BattleShip/Minimap/MiniMapController.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Owner/Prefabs/BattleShip/Minimap/MiniMapController.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Owner/Scenes/BagScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Scenes/BagScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Owner/Scenes/BattleShipShop.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Scenes/BattleShipShop.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Owner/Scenes/GameScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Scenes/GameScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Owner/Scenes/ItemShopScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Scenes/ItemShopScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/GameData/HandleData/FakeDataIfLoadFail.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/GameData/HandleData/FakeDataIfLoadFail.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/GameData/HandleData/LoadDataItem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/GameData/HandleData/LoadDataItem.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/GameInstall/GameInstaller.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/GameInstall/GameInstaller.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/GamePlay/CannonControl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/GamePlay/CannonControl.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/GamePlay/LeaderBoardControl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/GamePlay/LeaderBoardControl.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/GamePlay/RankingControl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/GamePlay/RankingControl.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/ShopHandle/ShopBattleShipItem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/ShopHandle/ShopBattleShipItem.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/ShopHandle/ShopBattleShipManage.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/ShopHandle/ShopBattleShipManage.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/ShopHandle/SpecialShopManage.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/ShopHandle/SpecialShopManage.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,6 +29,9 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/4a31731933e0419ca5a995305014ad37157a00/21/56a916f0/Object.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/50b3ee6bc5684f689f67a0824d36c3e5be00/47/5073b480/UnityWebRequest.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Admin/ProjectBattleShip/Assets/Owner/Scenes/BagScene.unity" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Admin/ProjectBattleShip/Assets/Owner/Scenes/BagScene.unity" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Admin/ProjectBattleShip/Assets/Owner/Scenes/BagScene.unity" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Owner/Script/GameInstall/GameInstaller.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Owner/Script/GamePlay/CannonControl.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Owner/Script/GamePlay/CheckValidateToken.cs" root0="FORCE_HIGHLIGHTING" />
@@ -174,7 +151,7 @@
       <workItem from="1666064996550" duration="122879000" />
       <workItem from="1667346427829" duration="7072000" />
       <workItem from="1667357011925" duration="8010000" />
-      <workItem from="1667471716092" duration="12060000" />
+      <workItem from="1667471716092" duration="12779000" />
     </task>
     <task id="LOCAL-00001" summary="add login scene ui and ui flow setup">
       <created>1663033377719</created>
@@ -407,7 +384,14 @@
       <option name="project" value="LOCAL" />
       <updated>1667451716422</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="fix mini map and fix bag scene, show popup">
+      <created>1667535719805</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1667535719805</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -429,7 +413,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="fix shop scene" />
     <MESSAGE value="add ui shop" />
     <MESSAGE value="add player health staff" />
     <MESSAGE value="add gold box and generate gold box in map" />
@@ -454,6 +437,7 @@
     <MESSAGE value="fix current ranking and bag" />
     <MESSAGE value="add freeze bullet" />
     <MESSAGE value="addd mini map" />
-    <option name="LAST_COMMIT_MESSAGE" value="addd mini map" />
+    <MESSAGE value="fix mini map and fix bag scene, show popup" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix mini map and fix bag scene, show popup" />
   </component>
 </project>
