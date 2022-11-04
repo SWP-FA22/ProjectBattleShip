@@ -49,8 +49,13 @@
 
     public void ReloadData()
     {
-        PlayerUtility.GetMyPlayerData();
+        
         PlayerData playerData = this.handleLocalData.LoadData<PlayerData>("PlayerData");
+        if (playerData == null)
+        {
+            PlayerUtility.GetMyPlayerData();
+            playerData = this.handleLocalData.LoadData<PlayerData>("PlayerData");
+        }
         if (playerData == null)
         {
             this.FakeDataIfLoadFail = new FakeDataIfLoadFail();

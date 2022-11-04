@@ -10,6 +10,7 @@
     using TMPro;
     using UnityEngine;
     using UnityEngine.AddressableAssets;
+    using UnityEngine.EventSystems;
     using UnityEngine.UI;
     using Zenject;
 
@@ -23,8 +24,9 @@
         public PhotonView view;
         [Inject]
         private SignalBus signalBus;
-        public BattleShipData battleShipData;
-        public TextMeshProUGUI isBuy;
+        public  BattleShipData  battleShipData;
+        public  TextMeshProUGUI isBuy;
+        private bool            isClicked = false;
         private void Start()
         {
             Debug.Log("signal:" + this.signalBus);
@@ -37,6 +39,7 @@
 
         private void Update()
         {
+           
             if (this.data == null) return;
             if (data is BattleShipData shipData)
             {
@@ -56,6 +59,20 @@
                 }
             }
 
+        }
+
+        public void ShowPopup()
+        {
+            if (this.isClicked)
+            {
+                this.signalBus.Fire<ClosePopup>();
+                this.isClicked = false;
+            }
+            else
+            {
+                this.signalBus.Fire(new ShowPopupSignal{Position = gameObject.transform.position,BattleShipData = this.battleShipData});
+                this.isClicked = true;
+            }
         }
 
         public void SetUpData(ShopItemDataBase data)

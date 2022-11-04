@@ -126,6 +126,14 @@
                     this.state = true;
                 }
 
+                if (!this.checkDouble && !this.checkTriple && !this.checkSlow)
+                {
+                    this.CreateNewBullet("normal", false);
+                    this.state = false;
+                    await UniTask.Delay(TimeSpan.FromMilliseconds(1000 - this.timeRate));
+                    this.state = true;
+                }
+
 
 
             }

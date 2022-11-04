@@ -14,43 +14,21 @@
     public class LoadDataItem
     {
         
-        string path = "D:\\Study\\SWP\\Inter3\\Inter3\\ProjectBattleShip\\ProjectBattleShip\\Assets\\Owner\\Script\\TempData\\TempDataItem.txt";
+        
         public ListItemData LoadData()
         {
-            ListItemData listItemData;
-            
-            string       jsonData = "";
-            while (jsonData == "")
+            if (CurrentItemData.Instance.Items.Count == 0)
             {
-                if (File.Exists(path))
-                {
-                    using (StreamReader reader = new StreamReader(path))
-                    {
-                        jsonData = reader.ReadToEnd();
-                    }
-                }
-
-                if (jsonData != "")
-                {
-                    listItemData = JsonConvert.DeserializeObject<ListItemData>(jsonData);
-                    return listItemData;
-                }
-                else
-                {
-                    this.SetupData();
-                }
+                this.SetupData();
             }
-            
 
-            return null;
+            ListItemData listItemData = new ListItemData();
+            listItemData.item = CurrentItemData.Instance.Items.ToArray();
+
+            return listItemData;
         }
 
-        public void SaveData(ListItemData listItemData)
-        {
-            string data = JsonConvert.SerializeObject(listItemData);
-            File.WriteAllText(path,data);
-        }
-
+       
         public void SetupData()
         {
             ListItemData   ListItemDataArray = new ListItemData();
@@ -70,8 +48,8 @@
                 Type        = 1,ImageURL        = "",BonusATK     = 5,BonusHP  = 15,BonusSpeed    = 5,BonusRota = 5,Price = 15,
                 Addressable = "cannon1",IsOwner = true,IsEquipped = false,Name = "cannon1"
             });
-            ListItemDataArray.item = ListItemData.ToArray();
-            SaveData(ListItemDataArray);
+            ListItemDataArray.item         = ListItemData.ToArray();
+            CurrentItemData.Instance.Items = ListItemData;
         }
     }
 }

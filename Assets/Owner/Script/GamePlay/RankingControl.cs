@@ -36,7 +36,7 @@ public class RankingControl : MonoBehaviour
             if (text.Length > 12) text = text.Substring(0, 12);
             while (text.Length < 16) text = text + " ";
             text += players[i].GetComponent<PlayerControl>().score;
-            Debug.Log(text);
+            
             a[i].GetComponent<TextMeshProUGUI>().text = "";
             a[i].GetComponent<TextMeshProUGUI>().text = text;
         }

@@ -11,6 +11,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using TMPro;
 using UnityEngine.Serialization;
+using UnityEngine.UIElements;
 using Zenject;
 
 public class ShopBattleShipManage : MonoBehaviour
@@ -23,6 +24,7 @@ public class ShopBattleShipManage : MonoBehaviour
     public  List<ItemData>           ListItemData = new();
     private string                   checkCurrentShop;
     private FakeDataIfLoadFail       FakeDataIfLoadFail = new();
+    public  GameObject               popupInfo;
     
     [FormerlySerializedAs("GoldValue")]    public TextMeshProUGUI  goldValue;
     [FormerlySerializedAs("RubyValue")]    public TextMeshProUGUI  rubyValue;
@@ -44,6 +46,21 @@ public class ShopBattleShipManage : MonoBehaviour
         
         this.CreateButton();
         this.signalBus.Subscribe<ReloadResourceSignal>(this.ReloadData);
+        this.signalBus.Subscribe<ShowPopupSignal>(x=>ShowPopupInfo(x.Position,x.BattleShipData));
+        this.signalBus.Subscribe<ClosePopup>(this.ClosePopUp);
+    }
+
+    public void ClosePopUp()
+    {
+        this.popupInfo.SetActive(false);
+    }
+
+    public void ShowPopupInfo(Vector3 position,BattleShipData battleShipData)
+    {
+        this.popupInfo.SetActive(true);
+        this.popupInfo.transform.position = position + new Vector3(160,160,0);
+        this.popupInfo.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text =
+            $"Name: {battleShipData.Name}\nBase HP: {battleShipData.BaseHP}\nBase Attack: {battleShipData.BaseAttack}\nBase Speed: {battleShipData.BaseSpeed}\nBase Rotate: {battleShipData.BaseRota}";
     }
 
     public void ReloadData()
