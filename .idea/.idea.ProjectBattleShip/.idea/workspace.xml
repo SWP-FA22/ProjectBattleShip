@@ -4,24 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="879c300a-fdf8-4bea-888f-0c671285a07a" name="Changes" comment="fix ui game scene">
-      <change afterPath="$PROJECT_DIR$/Assets/Owner/Script/ChatManage.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Owner/Script/ChatManage/ChatManage.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Owner/Script/ChatManage/ChatManage.cs.meta" afterDir="false" />
+    <list default="true" id="879c300a-fdf8-4bea-888f-0c671285a07a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ProjectBattleShip/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ProjectBattleShip/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Owner/Prefabs/BattleShip/GameObject/message.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Owner/Scenes/GameScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Scenes/GameScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/GamePlay/GameManage.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/GamePlay/GameManage.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/GamePlay/PlayerControl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/GamePlay/PlayerControl.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Photon.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Photon.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Photon/PhotonChat/Code/ChatClient.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Photon/PhotonChat/Code/ChatClient.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Photon/PhotonChat/Code/PhotonChat.asmdef" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Photon/PhotonChat/Code/PhotonChat.asmdef" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Photon/PhotonRealtime.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Photon/PhotonRealtime.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Photon/PhotonRealtime/Code.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Photon/PhotonRealtime/Code.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Photon/PhotonRealtime/Code/ConnectionHandler.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Photon/PhotonRealtime/Code/ConnectionHandler.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Photon/PhotonRealtime/Code/RegionHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Photon/PhotonRealtime/Code/RegionHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Photon/PhotonRealtime/Code/changes-realtime.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Photon/PhotonRealtime/Code/changes-realtime.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Photon/PhotonUnityNetworking/Resources/PhotonServerSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Photon/PhotonUnityNetworking/Resources/PhotonServerSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,25 +22,29 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="khai/develop/player-control" />
+        <entry key="$PROJECT_DIR$" value="khai/develop/shop-manage" />
       </map>
     </option>
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/4a31731933e0419ca5a995305014ad37157a00/21/56a916f0/Object.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/50b3ee6bc5684f689f67a0824d36c3e5be00/47/5073b480/UnityWebRequest.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/Admin/ProjectBattleShip/Assets/Owner/Script/BagHandle/BagManage.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Admin/ProjectBattleShip/Assets/Owner/Scenes/BagScene.unity" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Admin/ProjectBattleShip/Assets/Owner/Scenes/BagScene.unity" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Admin/ProjectBattleShip/Assets/Owner/Scenes/BagScene.unity" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Owner/Script/GameInstall/GameInstaller.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/Admin/ProjectBattleShip/Assets/Owner/Script/GamePlay/Bullet.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Owner/Script/GamePlay/CannonControl.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Owner/Script/GamePlay/CheckValidateToken.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Owner/Script/GamePlay/GameManage.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Owner/Script/GamePlay/PlayerControl.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Owner/Script/MiniMap/MiniMapController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Owner/Script/Network/HttpRequests/HttpRequest.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Owner/Script/Network/HttpRequests/LoginRequest.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Owner/Script/Network/NetworkControl.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Owner/Script/RoomControl/RoomController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Owner/Script/SceneFlow/SceneControl.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.addressables@1.19.19/Runtime/ResourceManager/Util/MonoBehaviourCallbackHooks.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.textmeshpro@3.0.6/Scripts/Runtime/TMP_Text.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/UI/Core/Mask.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://D:/Quang Anh/Find-Object/Assets/FindObject/Scripts/Blueprints/MapItemBlueprint.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://D:/Quang Anh/Find-Object/Assets/FindObject/Scripts/Blueprints/MiscParamBlueprint.cs" root0="SKIP_HIGHLIGHTING" />
@@ -72,6 +60,7 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;Discover.Launch.Via.Unity&quot;: &quot;true&quot;,
+    &quot;Git.Branch.Popup.ShowAllRemotes&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
@@ -95,7 +84,7 @@
       <method v="2" />
     </configuration>
     <configuration name="UnitTests (batch mode)" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\2021.3.6f1\Editor\Unity.exe" />
+      <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\2021.3.11f1\Editor\Unity.exe" />
       <option name="PROGRAM_PARAMETERS" value="-runTests -batchmode -projectPath C:\Users\Admin\ProjectBattleShip -testResults Logs/results.xml -testPlatform EditMode -debugCodeOptimization" />
       <option name="WORKING_DIRECTORY" value="C:\Users\Admin\ProjectBattleShip" />
       <option name="PASS_PARENT_ENVS" value="1" />
@@ -159,7 +148,10 @@
       <workItem from="1665614999470" duration="17880000" />
       <workItem from="1665701093257" duration="72133000" />
       <workItem from="1665969788234" duration="6039000" />
-      <workItem from="1666064996550" duration="117641000" />
+      <workItem from="1666064996550" duration="122879000" />
+      <workItem from="1667346427829" duration="7072000" />
+      <workItem from="1667357011925" duration="8010000" />
+      <workItem from="1667471716092" duration="12779000" />
     </task>
     <task id="LOCAL-00001" summary="add login scene ui and ui flow setup">
       <created>1663033377719</created>
@@ -357,7 +349,49 @@
       <option name="project" value="LOCAL" />
       <updated>1666932783449</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="add chat realtime in game">
+      <created>1666989501751</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1666989501751</updated>
+    </task>
+    <task id="LOCAL-00030" summary="merge code data">
+      <created>1666998492375</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1666998492375</updated>
+    </task>
+    <task id="LOCAL-00031" summary="fix current ranking and bag">
+      <created>1667353363648</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1667353363648</updated>
+    </task>
+    <task id="LOCAL-00032" summary="add freeze bullet">
+      <created>1667359798653</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1667359798654</updated>
+    </task>
+    <task id="LOCAL-00033" summary="addd mini map">
+      <created>1667451716422</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1667451716422</updated>
+    </task>
+    <task id="LOCAL-00034" summary="fix mini map and fix bag scene, show popup">
+      <created>1667535719805</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1667535719805</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -379,12 +413,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="fix error message ui" />
-    <MESSAGE value="add bullet and health bar" />
-    <MESSAGE value="add bullet and health" />
-    <MESSAGE value="fix health lose after shoot" />
-    <MESSAGE value="fix handle shop data" />
-    <MESSAGE value="fix shop scene" />
     <MESSAGE value="add ui shop" />
     <MESSAGE value="add player health staff" />
     <MESSAGE value="add gold box and generate gold box in map" />
@@ -404,6 +432,12 @@
     <MESSAGE value="fix special shop scene" />
     <MESSAGE value="fix special shop ui" />
     <MESSAGE value="fix ui game scene" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix ui game scene" />
+    <MESSAGE value="add chat realtime in game" />
+    <MESSAGE value="merge code data" />
+    <MESSAGE value="fix current ranking and bag" />
+    <MESSAGE value="add freeze bullet" />
+    <MESSAGE value="addd mini map" />
+    <MESSAGE value="fix mini map and fix bag scene, show popup" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix mini map and fix bag scene, show popup" />
   </component>
 </project>

@@ -18,7 +18,7 @@
             BattleShipData       battleShipData = this.LoadDataBattleShip();
             PlayerData.ExtraData extraData      = new PlayerData.ExtraData { Diamond = 5, Gold = 10, Ruby = 5, Ship = battleShipData };
             PlayerData playerData = new PlayerData
-                { CannonID = 1, Email = "khai1412200213@gmail.com", Extra = extraData, EngineID = 1, ID = 1, Name = "Khai1412", Rank = 10, SailID = 1, Username = "khai1412" };
+                { CannonID = 1, Email = "khai1412200213@gmail.com", Extra = extraData, EngineID = 1, ID = 1, Name = "Khai1412", Rank = 1000, SailID = 1, Username = "khai1412" };
             this.handleLocalData.SaveData("PlayerData",playerData);
             return playerData;
         }
@@ -34,9 +34,15 @@
 
         public void LoadSpecialItemData()
         {
-            CurrentSpecialItem.Instance.SpecialData.Add(0,new SpecialItemData{ID = 0,Addressable = "Special1",Amount = 2,BonusATK = 5,BonusHP = 0f,BonusRate = 0,BonusSpeed = 0,Description = "Bonus attack",ImageURL = "",IsDouble = false,Name = "special1",IsTriple = false,Price = 10});
-            CurrentSpecialItem.Instance.SpecialData.Add(1,new SpecialItemData{ID = 1,Addressable = "Special2",Amount = 2,BonusATK = 0,BonusHP = 0.5f,BonusRate = 0,BonusSpeed = 0,Description = "Bonus HP",ImageURL = "",IsDouble = false,Name = "special2",IsTriple = false,Price = 10});
-            CurrentSpecialItem.Instance.SpecialData.Add(2,new SpecialItemData{ID = 2,Addressable = "Special3",Amount = 3,BonusATK = 0,BonusHP = 0f,BonusRate = 0,BonusSpeed = 0,Description = "triple bullet",ImageURL = "",IsDouble = false,Name = "special1",IsTriple = true,Price = 10});
+            if (CurrentSpecialItem.Instance.SpecialData.Count <= 0)
+            {
+                CurrentSpecialItem.Instance.SpecialData.Add(0,new SpecialItemData{ID = 0,Addressable = "Special1",Amount = 2,BonusATK = 5,BonusHP = 0f,BonusRate = 0,BonusSpeed = 0,Description = "Bonus attack",ImageURL = "",IsDouble = false,Name = "special1",IsTriple = false,Price = 10});
+                CurrentSpecialItem.Instance.SpecialData.Add(1,new SpecialItemData{ID = 1,Addressable = "Special2",Amount = 2,BonusATK = 0,BonusHP = 0.5f,BonusRate = 0,BonusSpeed = 0,Description = "Bonus HP",ImageURL = "",IsDouble = false,Name = "special2",IsTriple = false,Price = 10});
+                CurrentSpecialItem.Instance.SpecialData.Add(2,new SpecialItemData{ID = 2,Addressable = "Special3",Amount = 3,BonusATK = 0,BonusHP = 0f,BonusRate = 0,BonusSpeed = 0,Description = "triple bullet",ImageURL = "",IsDouble = false,Name = "special1",IsTriple =false,Price = 10});
+                CurrentSpecialItem.Instance.SpecialData.Add(3,new SpecialItemData{ID = 3,Addressable = "Special4",Amount = 3,BonusATK = 0,BonusHP = 0f,BonusRate = 0,BonusSpeed = 0,Description = "triple bullet",ImageURL = "",IsDouble = false,Name = "special1",IsTriple = false,IsFreeze = true,Price = 20});
+                CurrentSpecialItem.Instance.SpecialData.Add(4,new SpecialItemData{ID = 4,Addressable = "Special5",Amount = 3,BonusATK = 0,BonusHP = 0f,BonusRate = 0,BonusSpeed = 0,Description = "triple bullet",ImageURL = "",IsDouble = false,Name = "special1",IsTriple = true,Price = 10});
+            }
+            
         }
     }
 }

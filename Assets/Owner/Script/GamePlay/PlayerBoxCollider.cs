@@ -13,6 +13,8 @@
     using Photon.Pun.Demo.PunBasics;
     using Assets.Owner.Script.Network.HttpRequests;
     using Assets.Owner.Script.Util;
+    using Assets.Owner.Script.GameData;
+    using Cysharp.Threading.Tasks;
 
     public class PlayerBoxCollider : MonoBehaviour
     {
@@ -48,7 +50,19 @@
             }
             
         }
-        private async void Update()
+        private int Cal(int currentScore,int currentRank)
+        {
+            double ans = 0,k;
+            if (currentRank < 1600) k = 2.5;
+            else if (currentRank < 2000) k = 2;
+            else if (currentRank < 2400) k = 1.5;
+            else k = 1;
+            double predict = (currentRank - 1000) / 40 + 10;
+            ans = k * (currentScore - predict);
+            return (int)ans;
+
+        }
+        private void Update()
         {
             this.localScale.x                   = this.baseHP;
             this.healthBar.transform.localScale = this.localScale;
@@ -61,8 +75,11 @@
                 int gold = score / 10 * 5;                
                 ResourcesRequest resourceRequest = new ResourcesRequest(LoginUtility.GLOBAL_TOKEN);
                 resourceRequest.updateResource( 2, gold);
-                
+                this.HandleLocalData = new HandleLocalData();
+                PlayerData data = this.HandleLocalData.LoadData<PlayerData>("PlayerData");
                 //TODO: use api to update score in server;
+                int rank = data.Rank;
+                score = Cal(score, rank);
                 PlayerRequest playerRequest = new PlayerRequest();
                 playerRequest.UpdateScore(LoginUtility.GLOBAL_TOKEN, score);
 
@@ -107,12 +124,21 @@
             
         }
 
-        private void OnTriggerEnter2D(Collider2D col)
+        private async void OnTriggerEnter2D(Collider2D col)
         {
             if (col.CompareTag("Bullet"))
             {
-                float dam = col.GetComponent<Bullet>().damage;
+                float  dam          = col.GetComponent<Bullet>().damage;
+                string typeOfBullet = col.GetComponent<Bullet>().bulletType;
                 this.view.RPC("LoseHealth", RpcTarget.AllBuffered,dam);
+                if (typeOfBullet == "freeze")
+                {
+                    float speed = gameObject.transform.parent.GetComponent<PlayerControl>().speed;
+                    float tempspeed                                                           = speed * 0.8f;
+                    gameObject.transform.parent.GetComponent<PlayerControl>().speed =  tempspeed;
+                    await UniTask.Delay(TimeSpan.FromMilliseconds(1000));
+                    gameObject.transform.parent.GetComponent<PlayerControl>().speed = speed;
+                }
                 Debug.Log(gameObject.tag+", "+gameObject.GetComponent<PlayerBoxCollider>().healthAmount);
             }
         }
@@ -136,6 +162,7 @@
 
         [PunRPC]
         public void DestroyShip(){
+            ListCurrentPlayers.Instance.listPlayer.Remove(gameObject);
             this.popup.SetActive(true);
             player.SetActive(false);
         }

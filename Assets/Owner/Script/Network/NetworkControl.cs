@@ -30,13 +30,6 @@ public class NetworkControl : MonoBehaviourPunCallbacks
 
     public async Task LoadResource()
     {
-        // Delete shop data files then refetch from server
-        File.Delete(ShopUtility.FILE_PATH_ITEMS_DATA);
-        await ShopUtility.GetAllItems(true);
-
-        File.Delete(ShopUtility.FILE_PATH_SHIPS_DATA);
-        await ShopUtility.GetAllShips(true);
-
         // Load Player Data
         PlayerPrefs.DeleteAll();
         await PlayerUtility.GetMyPlayerData();

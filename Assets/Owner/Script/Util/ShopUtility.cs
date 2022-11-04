@@ -13,13 +13,8 @@ using UnityEngine;
 
 namespace Assets.Owner.Script.Util
 {
-    using global::Owner.Script.GameData;
-
     public static class ShopUtility
     {
-        public const string FILE_PATH_ITEMS_DATA = ".shop-data";
-        public const string FILE_PATH_SHIPS_DATA = ".ship-data";
-
         /// <summary>
         /// Get all items of the shop or player owned items
         /// if isMine is true, then get player owned items
@@ -28,28 +23,15 @@ namespace Assets.Owner.Script.Util
         /// <returns>List of ItemData</returns>
         public static async Task<List<ItemData>> GetAllItems(bool isMine = false)
         {
-            try
-            {
-                if (!File.Exists(FILE_PATH_ITEMS_DATA))
-                {
-                    throw null;
-                }
-                return JsonConvert.DeserializeObject<List<ItemData>>(File.ReadAllText(FILE_PATH_ITEMS_DATA));
-            }
-            catch
-            {
-                List<ItemData> items = await new ShopRequest(LoginUtility.GLOBAL_TOKEN).GetAllItems(isMine);
+            List<ItemData> items = await new ShopRequest(LoginUtility.GLOBAL_TOKEN).GetAllItems(isMine);
 
-                if (items == null)
-                {
-                    Debug.LogException(new Exception("Cannot get items from server"));
-                    return null;
-                }
-
-                CurrentItemData.Instance.Items = items;
-                File.WriteAllText(FILE_PATH_ITEMS_DATA, JsonConvert.SerializeObject(items));
-                return items;
+            if (items == null)
+            {
+                Debug.LogException(new Exception("Cannot get items from server"));
+                return null;
             }
+
+            return items;
         }
 
 
@@ -61,27 +43,15 @@ namespace Assets.Owner.Script.Util
         /// <returns>List of ItemData</returns>
         public static async Task<List<BattleShipData>> GetAllShips(bool isMine = false)
         {
-            try
-            {
-                if (!File.Exists(FILE_PATH_SHIPS_DATA))
-                {
-                    throw null;
-                }
-                return JsonConvert.DeserializeObject<List<BattleShipData>>(File.ReadAllText(FILE_PATH_SHIPS_DATA));
-            }
-            catch
-            {
-                List<BattleShipData> ships = await new ShopRequest(LoginUtility.GLOBAL_TOKEN).GetAllShips(isMine);
+            List<BattleShipData> ships = await new ShopRequest(LoginUtility.GLOBAL_TOKEN).GetAllShips(isMine);
 
-                if (ships == null)
-                {
-                    Debug.LogException(new Exception("Cannot get ships from server"));
-                    return null;
-                }
-
-                File.WriteAllText(FILE_PATH_SHIPS_DATA, JsonConvert.SerializeObject(ships));
-                return ships;
+            if (ships == null)
+            {
+                Debug.LogException(new Exception("Cannot get ships from server"));
+                return null;
             }
+
+            return ships;
         }
 
 

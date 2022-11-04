@@ -294,9 +294,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2090833323956393914}
-        m_TargetAssemblyTypeName: Owner.Script.ShopHandle.SpecialItem, Assembly-CSharp
-        m_MethodName: 
+      - m_Target: {fileID: 7103966018365918187}
+        m_TargetAssemblyTypeName: Owner.Script.BagHandle.UseItem, Assembly-CSharp
+        m_MethodName: UnEquipItem
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

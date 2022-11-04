@@ -49,8 +49,13 @@
 
     public void ReloadData()
     {
-        PlayerUtility.GetMyPlayerData();
+        
         PlayerData playerData = this.handleLocalData.LoadData<PlayerData>("PlayerData");
+        if (playerData == null)
+        {
+            PlayerUtility.GetMyPlayerData();
+            playerData = this.handleLocalData.LoadData<PlayerData>("PlayerData");
+        }
         if (playerData == null)
         {
             this.FakeDataIfLoadFail = new FakeDataIfLoadFail();
@@ -66,23 +71,27 @@
         Debug.Log(CurrentSpecialItem.Instance.SpecialData.Count);
         for (int i = 0; i < CurrentSpecialItem.Instance.SpecialData.Count; i++)
         {
-            try
+            if (CurrentSpecialItem.Instance.SpecialData[i].Amount > 0)
             {
-                SpecialItem SpecialItemObject = Instantiate(this.specialItem, _parentContainBtn);
-                if (this.checkIsInBag)
+                try
                 {
-                    SpecialItemObject.SetUpDataForBag(CurrentSpecialItem.Instance.SpecialData[i]);
-                    SpecialItemObject.checkIsUseItem = true;
+                    SpecialItem SpecialItemObject = Instantiate(this.specialItem, _parentContainBtn);
+                    if (this.checkIsInBag)
+                    {
+                        SpecialItemObject.SetUpDataForBag(CurrentSpecialItem.Instance.SpecialData[i]);
+                        SpecialItemObject.checkIsUseItem = true;
+                    }
+                    else
+                    {
+                        SpecialItemObject.SetUpData(CurrentSpecialItem.Instance.SpecialData[i]);
+                        SpecialItemObject.checkIsUseItem = false;
+                    }
+                    SpecialItemObject.GetComponent<SpecialItem>().SpecialItemData = CurrentSpecialItem.Instance.SpecialData[i];
+                    this.diContainer.InjectGameObject(SpecialItemObject.gameObject);
                 }
-                else
-                {
-                    SpecialItemObject.SetUpData(CurrentSpecialItem.Instance.SpecialData[i]);
-                    SpecialItemObject.checkIsUseItem = false;
-                }
-                SpecialItemObject.GetComponent<SpecialItem>().SpecialItemData = CurrentSpecialItem.Instance.SpecialData[i];
-                this.diContainer.InjectGameObject(SpecialItemObject.gameObject);
+                catch { }
             }
-            catch { }
+            
         }
         if (checkCurrentShop == "BattleShipShop")
         {

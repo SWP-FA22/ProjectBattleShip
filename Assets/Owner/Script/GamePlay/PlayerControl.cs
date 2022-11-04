@@ -13,6 +13,7 @@ using UnityEngine;
 using Photon.Pun;
 using TMPro;
 using UnityEngine.AddressableAssets;
+using Assets.Owner.Script.GameData;
 
 public class PlayerControl : MonoBehaviour
 {
@@ -68,12 +69,14 @@ public class PlayerControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         this.speed           = 0;
         this.gameManage      = GameObject.Find("GameController");
         this.HandleLocalData = new HandleLocalData();
         this.LoadDataItem    = new LoadDataItem();
         this.gamePlayData    = new GamePlayData { ShipName = "ship3", Score = 0 };
         this.listItemData    = this.LoadDataItem.LoadData();
+        ListCurrentPlayers.Instance.listPlayer.Add(gameObject);
         if (this.listItemData == null)
         {
             this.LoadDataItem.SetupData();
@@ -93,6 +96,9 @@ public class PlayerControl : MonoBehaviour
         }
         //gamePlayData = (GamePlayData)PhotonNetwork.LocalPlayer.CustomProperties[this.playerID];
         string       shipName     = PhotonNetwork.LocalPlayer.CustomProperties[this.playerID].ToString().Split("|")[0];
+        if(shipName==""){
+            shipName="ship1";
+        }
         
         Addressables.LoadAssetAsync<Sprite>(shipName).Completed += (player) => { this.gameObject.transform.GetComponent<SpriteRenderer>().sprite = player.Result; };
         this.ChangeStaff();
@@ -162,10 +168,20 @@ public class PlayerControl : MonoBehaviour
        
     }
 
-    [PunRPC]
+    [PunRPC] 
     public void UpdateScoreServer(int score)
     {
         this.score = score;
+        //this.gameManage.GetComponent<GameManage>().score = this.score;
+        int index = ListCurrentPlayers.Instance.listPlayer.FindIndex(x => x.GetComponent<PlayerControl>().playerID == this.playerID);
+        while (index>0 && ListCurrentPlayers.Instance.listPlayer[index].GetComponent<PlayerControl>().score> ListCurrentPlayers.Instance.listPlayer[index-1].GetComponent<PlayerControl>().score)
+        {
+            GameObject temp = ListCurrentPlayers.Instance.listPlayer[index];
+            ListCurrentPlayers.Instance.listPlayer[index] = ListCurrentPlayers.Instance.listPlayer[index - 1];
+            ListCurrentPlayers.Instance.listPlayer[index - 1] = temp;
+            index--;
+        }
+        //ListCurrentPlayers.Instance.listPlayer[index].GetComponent<PlayerControl>().score = this.score;
     }
 
     

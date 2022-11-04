@@ -57,7 +57,7 @@
 
         public void BindData()
         {
-            ShopUtility.GetAllItems();
+            CurrentItemData.Instance.Items = ShopUtility.GetAllItems().Result;
             foreach (var item in CurrentItemData.Instance.Items)
             {
                 if (item.Type == 1)

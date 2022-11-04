@@ -39,7 +39,11 @@
         private void Update()
         {
             if (this.SpecialItemData == null) return;
-            
+            if (this.isBuy.text.Contains("USE x"))
+            {
+                this.isBuy.text = "USE x" + CurrentSpecialItem.Instance.SpecialData[this.SpecialItemData.ID].Amount;
+            }
+           
 
         }
 

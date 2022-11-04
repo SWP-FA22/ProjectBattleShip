@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Photon/PhotonChat/Demos/DemoChat/Files/eurof_tt.txt.meta
 guid: e96690bd3586cf643a223def4feaa4d4
 TextScriptImporter:
+========
+guid: d3a4dc75bf3efbd4cb9344b2d25452f3
+PrefabImporter:
+>>>>>>>> a4f8c68f05f4e81be5663f87b40cb5a28f6a6743:Assets/Owner/Prefabs/BattleShip/GameObject/PlayerRank.prefab.meta
   externalObjects: {}
   userData: 
   assetBundleName: 
