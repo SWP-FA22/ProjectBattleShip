@@ -34,6 +34,7 @@
         public List<ShopItem>     listItem = new();
         public TextAsset          textJson;
         public FakeDataIfLoadFail FakeDataIfLoadFail;
+        public GameObject         popupInfo;
 
         //item prefab
         [FormerlySerializedAs("ShopItem")] public ShopItem shopItem;
@@ -51,7 +52,24 @@
             CreateButton(this.ListEngineItem);
             CreateButton(this.ListSailItem);
             this.signalBus.Subscribe<ReloadResourceSignal>(this.ReloadData);
+            this.signalBus.Subscribe<ShowPopupSignal>(x=>ShowPopupInfo(x.Position,x.ItemData));
+            this.signalBus.Subscribe<ClosePopup>(this.ClosePopUp);
             
+        }
+        public void ShowPopupInfo(Vector3 position,ItemData itemData)
+        {
+            if (itemData != null)
+            {
+                this.popupInfo.SetActive(true);
+                this.popupInfo.transform.position = position + new Vector3(160,160,0);
+                this.popupInfo.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text =
+                    $"Name: {itemData.Name}\nBase HP: {itemData.BonusHP}\nBonus Attack: {itemData.BonusATK}\nBonus Speed: {itemData.BonusSpeed}\nBonus Rotate: {itemData.BonusRota}";
+
+            }
+        }
+        public void ClosePopUp()
+        {
+            this.popupInfo.SetActive(false);
         }
         
 

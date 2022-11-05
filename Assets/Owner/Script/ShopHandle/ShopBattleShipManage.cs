@@ -57,10 +57,14 @@ public class ShopBattleShipManage : MonoBehaviour
 
     public void ShowPopupInfo(Vector3 position,BattleShipData battleShipData)
     {
-        this.popupInfo.SetActive(true);
-        this.popupInfo.transform.position = position + new Vector3(160,160,0);
-        this.popupInfo.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text =
-            $"Name: {battleShipData.Name}\nBase HP: {battleShipData.BaseHP}\nBase Attack: {battleShipData.BaseAttack}\nBase Speed: {battleShipData.BaseSpeed}\nBase Rotate: {battleShipData.BaseRota}";
+        if (battleShipData != null)
+        {
+            this.popupInfo.SetActive(true);
+            this.popupInfo.transform.position = position + new Vector3(160,160,0);
+            this.popupInfo.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text =
+                $"Name: {battleShipData.Name}\nBase HP: {battleShipData.BaseHP}\nBase Attack: {battleShipData.BaseAttack}\nBase Speed: {battleShipData.BaseSpeed}\nBase Rotate: {battleShipData.BaseRota}";
+            
+        }
     }
 
     public void ReloadData()

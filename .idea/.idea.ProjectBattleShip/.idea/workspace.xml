@@ -5,7 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="879c300a-fdf8-4bea-888f-0c671285a07a" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.ProjectBattleShip/.idea/shelf/Uncommitted_changes_before_Update_at_2_11_2022_7_12_AM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ProjectBattleShip/.idea/shelf/Uncommitted_changes_before_Update_at_2_11_2022_7_12_AM__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.ProjectBattleShip/.idea/shelf/Uncommitted_changes_before_Update_at_3_11_2022_10_36_AM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ProjectBattleShip/.idea/shelf/Uncommitted_changes_before_Update_at_3_11_2022_10_36_AM__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ProjectBattleShip/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ProjectBattleShip/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/ShopHandle/ItemShopManage.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/ShopHandle/ItemShopManage.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/ShopHandle/ShopBattleShipItem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/ShopHandle/ShopBattleShipItem.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/ShopHandle/ShopBattleShipManage.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/ShopHandle/ShopBattleShipManage.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/ShopHandle/ShopItem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/ShopHandle/ShopItem.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/ShopHandle/SpecialItem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/ShopHandle/SpecialItem.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/ShopHandle/SpecialShopManage.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/ShopHandle/SpecialShopManage.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/Signals/ShowPopupSignal.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/Signals/ShowPopupSignal.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Plugins/Zenject/OptionalExtras/ReflectionBaking/Zenject-ReflectionBaking.csproj.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Plugins/Zenject/OptionalExtras/Signals/Zenject-Signals.csproj.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Plugins/Zenject/Source/Zenject.csproj.meta" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,13 +37,11 @@
         <entry key="$PROJECT_DIR$" value="khai/develop/shop-manage" />
       </map>
     </option>
+    <option name="RESET_MODE" value="HARD" />
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/4a31731933e0419ca5a995305014ad37157a00/21/56a916f0/Object.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/50b3ee6bc5684f689f67a0824d36c3e5be00/47/5073b480/UnityWebRequest.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/Admin/ProjectBattleShip/Assets/Owner/Scenes/BagScene.unity" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/Admin/ProjectBattleShip/Assets/Owner/Scenes/BagScene.unity" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/Admin/ProjectBattleShip/Assets/Owner/Scenes/BagScene.unity" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Owner/Script/GameInstall/GameInstaller.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Owner/Script/GamePlay/CannonControl.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Owner/Script/GamePlay/CheckValidateToken.cs" root0="FORCE_HIGHLIGHTING" />
@@ -43,11 +53,12 @@
     <setting file="file://$PROJECT_DIR$/Assets/Owner/Script/Network/NetworkControl.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Owner/Script/RoomControl/RoomController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Owner/Script/SceneFlow/SceneControl.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Owner/Script/ShopHandle/ShopBattleShipItem.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.addressables@1.19.19/Runtime/ResourceManager/Util/MonoBehaviourCallbackHooks.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.textmeshpro@3.0.6/Scripts/Runtime/TMP_Text.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/UI/Core/Mask.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://D:/Quang Anh/Find-Object/Assets/FindObject/Scripts/Blueprints/MapItemBlueprint.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://D:/Quang Anh/Find-Object/Assets/FindObject/Scripts/Blueprints/MiscParamBlueprint.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../../Quang Anh/Find-Object/Assets/FindObject/Scripts/Blueprints/MapItemBlueprint.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../../Quang Anh/Find-Object/Assets/FindObject/Scripts/Blueprints/MiscParamBlueprint.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />

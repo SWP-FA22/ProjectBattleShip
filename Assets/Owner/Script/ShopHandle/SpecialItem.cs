@@ -24,7 +24,7 @@
         public TextMeshProUGUI isBuy;
         string                 jsonData = "";
         public bool            checkIsUseItem;
-        
+        public bool            isClicked = false;
 
         private void Start()
         {
@@ -35,6 +35,20 @@
             this.priceText = gameObject.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
             this.outline = gameObject.GetComponent<Outline>();
             
+        }
+        
+        public void ShowPopup()
+        {
+            if (this.isClicked)
+            {
+                this.signalBus.Fire<ClosePopup>();
+                this.isClicked = false;
+            }
+            else
+            {
+                this.signalBus.Fire(new ShowPopupSignal{Position = gameObject.transform.position,SpecialItemData = this.SpecialItemData});
+                this.isClicked = true;
+            }
         }
         private void Update()
         {
