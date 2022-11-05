@@ -97,7 +97,6 @@
                     if (PlayerUtility.EquipShip(shipData.ID).Result)
                     {
                         this.HandleLocalData.SaveData("ShipStaff", battleShipData);
-
                         GameObject
                             .Find("ItemScroll")
                             .GetComponent<ShopBattleShipManage>()

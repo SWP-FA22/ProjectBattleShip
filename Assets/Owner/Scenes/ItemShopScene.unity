@@ -1237,6 +1237,7 @@ MonoBehaviour:
   _parentContainBtn: {fileID: 598752545}
   listItem: []
   textJson: {fileID: 4900000, guid: 770f297c94734b039d3e335e59f7e651, type: 3}
+  popupInfo: {fileID: 1116672157}
   shopItem: {fileID: -7480451249721452071, guid: 0ccd5d801cc34cc47949fba8fe0fd0db, type: 3}
 --- !u!1 &908774019
 GameObject:
