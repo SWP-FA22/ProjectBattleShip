@@ -38,6 +38,8 @@
                     
 
                 }
+                GameObject sound = GameObject.Find("Explosion");
+                sound.GetComponent<AudioSource>().Play();
                 Destroy(gameObject);
             }
         }

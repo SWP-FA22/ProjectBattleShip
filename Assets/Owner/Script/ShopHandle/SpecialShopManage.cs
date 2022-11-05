@@ -30,6 +30,8 @@
     [Inject]
     private DiContainer diContainer;
 
+    public GameObject popupInfo;
+
     public bool checkIsInBag;
     async void Start()
     {
@@ -45,7 +47,26 @@
         this.signalBus.Subscribe<ReloadResourceSignal>(this.ReloadData);
         this.FakeDataIfLoadFail.LoadSpecialItemData();
         this.CreateButton();
+        this.signalBus.Subscribe<ShowPopupSignal>(x=>ShowPopupInfo(x.Position,x.SpecialItemData));
+        this.signalBus.Subscribe<ClosePopup>(this.ClosePopUp);
     }
+    
+    public void ShowPopupInfo(Vector3 position,SpecialItemData specialItemData)
+    {
+        if (specialItemData != null)
+        {
+            this.popupInfo.SetActive(true);
+            this.popupInfo.transform.position = position + new Vector3(160,160,0);
+            this.popupInfo.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text =
+                $"Name: {specialItemData.Name}\nBonus HP: {specialItemData.BonusHP}\nBonus Attack: {specialItemData.BonusATK}\nBonus Speed: {specialItemData.BonusSpeed}\nBonus Rotate: {specialItemData.BonusRate}";
+            
+        }
+    }
+    public void ClosePopUp()
+    {
+        this.popupInfo.SetActive(false);
+    }
+        
 
     public void ReloadData()
     {

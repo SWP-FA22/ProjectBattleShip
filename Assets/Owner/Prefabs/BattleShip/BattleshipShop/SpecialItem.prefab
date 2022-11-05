@@ -127,9 +127,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Owner.Script.ShopHandle.ShopItem, Assembly-CSharp
-        m_MethodName: BuyItem
+      - m_Target: {fileID: 1305090917568789081}
+        m_TargetAssemblyTypeName: Owner.Script.ShopHandle.SpecialItem, Assembly-CSharp
+        m_MethodName: ShowPopup
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -171,6 +171,8 @@ MonoBehaviour:
   lockIcon: {fileID: 6086333470108213395}
   view: {fileID: 0}
   isBuy: {fileID: 7523870965115525890}
+  checkIsUseItem: 0
+  isClicked: 0
 --- !u!1 &2387832568597447246
 GameObject:
   m_ObjectHideFlags: 0
