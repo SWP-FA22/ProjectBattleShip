@@ -24,7 +24,7 @@
         public bool checkSlow;
         private void Start()
         {
-            view = gameObject.GetComponent<PhotonView>();
+           
             this.handleLocalData = new HandleLocalData();
             this.LoadDataItem = new LoadDataItem();
             this.ChangeStaff();
@@ -45,7 +45,7 @@
                 gameObject.transform.rotation = Quaternion.LookRotation(Vector3.forward, mousePos - gameObject.transform.position);
                 if (Input.GetKey(KeyCode.Mouse0))
                 {
-                    this.view.RPC("CreateBullet", RpcTarget.AllBuffered, this.damage);
+                    this.view.RPC("CreateBullet", RpcTarget.All, this.damage);
                 }
             }
         }
@@ -93,6 +93,7 @@
                 {
                     this.checkSlow = true;
                 }
+                
             }
         }
 
@@ -128,8 +129,12 @@
 
                 if (!this.checkDouble && !this.checkTriple && !this.checkSlow)
                 {
-                    this.CreateNewBullet("normal", false);
-                    this.state = false;
+                    var newBullet = PhotonNetwork.Instantiate(this.bullet.name, gameObject.transform.position, gameObject.transform.rotation);
+                    newBullet.GetComponent<Rigidbody2D>().velocity = (this.gameObject.transform.up * 15f);
+                    newBullet.GetComponent<Bullet>().damage        = this.damage;
+                    newBullet.GetComponent<Bullet>().playerID      = this.playerID;
+                    newBullet.GetComponent<Bullet>().bulletType    = "normal";
+                    this.state                                     = false;
                     await UniTask.Delay(TimeSpan.FromMilliseconds(1000 - this.timeRate));
                     this.state = true;
                 }
@@ -140,7 +145,7 @@
 
         }
 
-        public async void CreateNewBullet(string type, bool isTriple)
+        public void CreateNewBullet(string type, bool isTriple)
         {
             if (isTriple)
             {

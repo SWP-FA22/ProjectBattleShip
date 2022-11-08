@@ -34,7 +34,8 @@
         
         [Inject]
         private SignalBus signalBus;
-        public GameObject popup;
+        public  GameObject popup;
+        private bool       check = true;
         private void Start()
         {
             this.score           = 0;
@@ -67,7 +68,8 @@
             this.localScale.x                   = this.baseHP;
             this.healthBar.transform.localScale = this.localScale;
             this.healthStaff.text               = (this.healthAmount*100).ToString();
-            if(gameObject.GetComponent<PlayerBoxCollider>().baseHP<=0){
+            if(gameObject.GetComponent<PlayerBoxCollider>().baseHP<=0&&check){
+                this.healthBar.SetActive(false);
                 Debug.Log("lose");
                 GameObject gameManage = GameObject.Find("GameController");
                 int score = gameManage.GetComponent<GameManage>().score;
@@ -86,6 +88,7 @@
                 PlayerUtility playerUtility = new PlayerUtility();
                 PlayerData playerData = PlayerUtility.GetMyPlayerData().Result;
                 this.view.RPC("DestroyShip", RpcTarget.AllBuffered);
+                this.check = false;
             }
         }
 

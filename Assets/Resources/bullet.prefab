@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 458252079741016068}
   - component: {fileID: 3859033597602790390}
   - component: {fileID: -985150255320068151}
+  - component: {fileID: -5171308398480558758}
   m_Layer: 0
   m_Name: bullet
   m_TagString: Untagged
@@ -99,6 +100,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80dc10924a014d6d89474f6863f16f25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 0
+  playerID: 
+  bulletType: freeze
+  photonView: {fileID: 0}
 --- !u!50 &3859033597602790390
 Rigidbody2D:
   serializedVersion: 4
@@ -208,3 +213,25 @@ PolygonCollider2D:
       - {x: 0.355, y: -1.9749999}
       - {x: 0.565, y: -1.925}
       - {x: 0.625, y: -1.895}
+--- !u!114 &-5171308398480558758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1388218490466732666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0

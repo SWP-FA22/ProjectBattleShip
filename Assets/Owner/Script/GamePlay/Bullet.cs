@@ -12,34 +12,50 @@
 
         public  string playerID;
 
-        public  string bulletType = "freeze";
-        private void   Start() { this.AutoDestroy(); }
+        public  string     bulletType = "freeze";
+        public  PhotonView photonView;
+        private void Start()
+        {
+            this.AutoDestroy();
+            this.photonView = this.GetComponent<PhotonView>();
+        }
 
         private void OnTriggerEnter2D(Collider2D col)
         {
-            Debug.Log("des");
-            if (col.transform.CompareTag("island") || col.CompareTag("Player")||col.CompareTag("GoldBox"))
+            if (gameObject.tag == "Bullet")
             {
-                if (col.GetComponent<PlayerBoxCollider>() != null)
+                Debug.Log("des");
+                if (col.transform.CompareTag("island") || col.CompareTag("Player")||col.CompareTag("GoldBox"))
                 {
-                    if (col.CompareTag("Player"))
+                    if (col.GetComponent<PlayerBoxCollider>() != null)
                     {
-                        Debug.Log("lose health");
-                        GameObject otherPlayer = col.gameObject;
-                        int        score       =  GameObject.Find("GameController").GetComponent<GameManage>().score;
-                        if (otherPlayer.GetComponent<PlayerBoxCollider>().baseHP - this.damage <= 0)
+                        if (col.CompareTag("Player"))
                         {
-                            Debug.Log("aaaaaaaaaaaa");
-                            score                                                                       += 20;
-                            GameObject.Find("GameController").GetComponent<GameManage>().score          =  score;
-                            GameObject.Find("GameController").GetComponent<GameManage>().scoreText.text =  "SCORE: "+score.ToString();
+                            Debug.Log("lose health");
+                            GameObject otherPlayer = col.gameObject;
+                            int        score       =  GameObject.Find("GameController").GetComponent<GameManage>().score;
+                            if (otherPlayer.GetComponent<PlayerBoxCollider>().baseHP - this.damage <= 0)
+                            {
+                                Debug.Log("aaaaaaaaaaaa");
+                                score                                                                       += 20;
+                                GameObject.Find("GameController").GetComponent<GameManage>().score          =  score;
+                                GameObject.Find("GameController").GetComponent<GameManage>().scoreText.text =  "SCORE: "+score.ToString();
+                            }
                         }
-                    }
                     
 
+                    }
+                    this.photonView.RPC("DestroyBullet", RpcTarget.AllBuffered);
+                    
                 }
-                Destroy(gameObject);
             }
+            
+        }
+
+        [PunRPC]
+        public void DestroyBullet()
+        {
+            Destroy(this.gameObject);
         }
 
         
@@ -47,6 +63,9 @@
         private void OnTriggerExit2D(Collider2D other)
         {
             if (other.CompareTag("CurrentPlayer"))
+            {
+                gameObject.tag = "Bullet";
+            } else if (other.CompareTag("Player"))
             {
                 gameObject.tag = "Bullet";
             }
@@ -60,7 +79,8 @@
             {
                 if (gameObject != null)
                 {
-                    Destroy(this.gameObject);
+                    this.photonView.RPC("DestroyBullet", RpcTarget.AllBuffered);
+                   
                 }
             }
             catch
