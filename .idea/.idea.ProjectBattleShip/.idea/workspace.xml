@@ -5,20 +5,47 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="879c300a-fdf8-4bea-888f-0c671285a07a" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/Owner/Script/GameData/CurrentPlayerData.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Owner/Script/GameData/CurrentPlayerData.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Owner/Script/GamePlay/FinishGame.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Owner/Script/GamePlay/FinishGame.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Owner/Script/GamePlay/ParticalControl.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Owner/Script/GamePlay/ParticalControl.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Owner/Script/Information.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Owner/Script/Information/InformationControl.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Owner/Script/Information/InformationControl.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.ProjectBattleShip/.idea/shelf/Uncommitted_changes_before_Update_at_2_11_2022_7_12_AM_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.ProjectBattleShip/.idea/shelf/Uncommitted_changes_before_Update_at_2_11_2022_7_12_AM__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.ProjectBattleShip/.idea/shelf/Uncommitted_changes_before_Update_at_3_11_2022_10_36_AM_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.ProjectBattleShip/.idea/shelf/Uncommitted_changes_before_Update_at_3_11_2022_10_36_AM__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ProjectBattleShip/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ProjectBattleShip/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Owner/Prefabs/BattleShip/bullet.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Owner/Prefabs/BattleShip/bullet.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Owner/Scenes/BagScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Scenes/BagScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Owner/Scenes/BattleShipShop.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Scenes/BattleShipShop.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Owner/Scenes/GameScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Scenes/GameScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Owner/Scenes/HomeScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Scenes/HomeScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Owner/Scenes/ItemShopScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Scenes/ItemShopScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Owner/Scenes/LoadingScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Scenes/LoadingScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Owner/Scenes/ShopScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Scenes/ShopScene.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Owner/Scenes/SpecialItemShop.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Scenes/SpecialItemShop.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/BagHandle/UseItem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/BagHandle/UseItem.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/ChatManage/ChatManage.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/ChatManage/ChatManage.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/ChatManage/ChatUIManage.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/ChatManage/ChatUIManage.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/GameData/HandleData/FakeDataIfLoadFail.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/GameData/HandleData/FakeDataIfLoadFail.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/GamePlay/Bullet.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/GamePlay/Bullet.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/GamePlay/CannonControl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/GamePlay/CannonControl.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/GamePlay/GoldBoxControl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/GamePlay/GoldBoxControl.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/GamePlay/PlayerBoxCollider.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/GamePlay/PlayerBoxCollider.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Photon/PhotonUnityNetworking/Resources/PhotonServerSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Photon/PhotonUnityNetworking/Resources/PhotonServerSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/GoldBox.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/GoldBox.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Player.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Player.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/GamePlay/PlayerControl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/GamePlay/PlayerControl.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/RoomControl/RoomController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/RoomControl/RoomController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/SceneFlow/SceneControl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/SceneFlow/SceneControl.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/ShopHandle/ShopBattleShipItem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/ShopHandle/ShopBattleShipItem.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/ShopHandle/ShopItem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/ShopHandle/ShopItem.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/ShopHandle/SpecialItem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/ShopHandle/SpecialItem.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/ShopHandle/SpecialShopManage.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/ShopHandle/SpecialShopManage.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Photon/PhotonUnityNetworking/Demos/DemoSlotRacer/Kenney Assets/Stylized city/Materials/24 - Default.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Photon/PhotonUnityNetworking/Demos/DemoSlotRacer/Kenney Assets/Stylized city/Materials/24 - Default.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/bullet.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/bullet.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/QualitySettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/QualitySettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/TimelineSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TimelineSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,6 +71,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/4a31731933e0419ca5a995305014ad37157a00/21/56a916f0/Object.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/50b3ee6bc5684f689f67a0824d36c3e5be00/47/5073b480/UnityWebRequest.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/86acb61e0d2b4b36bc20af11093be9a5157e00/6c/4f71d41d/Component.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/86acb61e0d2b4b36bc20af11093be9a5157e00/80/6527aea4/GameObject.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Owner/Script/GameInstall/GameInstaller.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Owner/Script/GamePlay/CannonControl.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Owner/Script/GamePlay/CheckValidateToken.cs" root0="FORCE_HIGHLIGHTING" />
@@ -167,7 +195,10 @@
       <workItem from="1667471716092" duration="12779000" />
       <workItem from="1667663532356" duration="605000" />
       <workItem from="1667794341739" duration="5775000" />
-      <workItem from="1667863782269" duration="10479000" />
+      <workItem from="1667863782269" duration="11108000" />
+      <workItem from="1667962434520" duration="3095000" />
+      <workItem from="1667989826732" duration="49345000" />
+      <workItem from="1668073919226" duration="6258000" />
     </task>
     <task id="LOCAL-00001" summary="add login scene ui and ui flow setup">
       <created>1663033377719</created>
@@ -414,7 +445,14 @@
       <option name="project" value="LOCAL" />
       <updated>1667616783762</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="fix bullet">
+      <created>1667878246116</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1667878246116</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -436,7 +474,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="add player health staff" />
     <MESSAGE value="add gold box and generate gold box in map" />
     <MESSAGE value="fix local data if null" />
     <MESSAGE value="fix health for goldbox" />
@@ -461,6 +498,7 @@
     <MESSAGE value="addd mini map" />
     <MESSAGE value="fix mini map and fix bag scene, show popup" />
     <MESSAGE value="add sound" />
-    <option name="LAST_COMMIT_MESSAGE" value="add sound" />
+    <MESSAGE value="fix bullet" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix bullet" />
   </component>
 </project>

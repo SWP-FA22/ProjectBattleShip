@@ -44,7 +44,10 @@
         {
             Debug.Log("run here");
         }
-        public  void OnDisconnected()                                                         { throw new NotImplementedException(); }
+        public void OnDisconnected()
+        {
+            Debug.Log("close");
+        }
         public void OnConnected()
         {
             this.isConnected = true;

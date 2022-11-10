@@ -110,6 +110,7 @@
             {
                 this.ChangeItem();
             }
+            GameObject.Find("Pick").GetComponent<AudioSource>().Play();
         }
 
         public void ChangeItem()

@@ -42,6 +42,7 @@
                 CurrentSpecialItem.Instance.SpecialData[this.SpecialItemData.ID].CurrentUse -= 1;
                 CurrentSpecialItem.Instance.SpecialData[this.SpecialItemData.ID].Amount     += 1;
             }
+            GameObject.Find("Pick").GetComponent<AudioSource>().Play();
             
         }
 

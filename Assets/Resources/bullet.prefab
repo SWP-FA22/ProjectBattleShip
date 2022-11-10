@@ -104,6 +104,8 @@ MonoBehaviour:
   playerID: 
   bulletType: freeze
   photonView: {fileID: 0}
+  sound: {fileID: 8807339341767524268, guid: 5d8238a46ecdd6841a78c2583aa0f6b7, type: 3}
+  vfx: {fileID: 2033619073171869987, guid: 678cbbdfa0a918442b078dae4ef5d128, type: 3}
 --- !u!50 &3859033597602790390
 Rigidbody2D:
   serializedVersion: 4

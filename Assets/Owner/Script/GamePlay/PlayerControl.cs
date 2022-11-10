@@ -135,8 +135,10 @@ public class PlayerControl : MonoBehaviour
             this.HandleLocalData.SaveData("ShipStaff",this.battleShipData);
             // Debug.LogError("Lost Ship!");
         }
-        this.speed       += battleShipData.BaseSpeed;
-        this.speedRotate += this.battleShipData.BaseRota;
+        this.speed                        += battleShipData.BaseSpeed;
+        this.speedRotate                  += this.battleShipData.BaseRota;
+        CurrentPlayerData.Instance.Speed  += battleShipData.BaseSpeed;
+        CurrentPlayerData.Instance.Rotate += this.battleShipData.BaseRota;
         //change by item
         PlayerData playerData = this.HandleLocalData.LoadData<PlayerData>("PlayerData");
         foreach (var item in this.listItemData.item)
@@ -144,14 +146,17 @@ public class PlayerControl : MonoBehaviour
             if (item.ID == playerData.CannonID || item.ID == playerData.EngineID || item.ID == playerData.SailID)
             {
                 
-                this.speed       += item.BonusSpeed;
-                this.speedRotate += item.BonusRota;
+                this.speed                        += item.BonusSpeed;
+                this.speedRotate                  += item.BonusRota;
+                CurrentPlayerData.Instance.Speed  += item.BonusSpeed;
+                CurrentPlayerData.Instance.Rotate += item.BonusRota;
             }
         }
         //change buy special item
         foreach (var item in CurrentSpecialItem.Instance.SpecialData)
         {
-            this.speed += item.Value.BonusSpeed*item.Value.Amount;
+            this.speed                       += item.Value.BonusSpeed*item.Value.Amount;
+            CurrentPlayerData.Instance.Speed += item.Value.BonusSpeed * item.Value.Amount;
         }
         
         
@@ -203,12 +208,6 @@ public class PlayerControl : MonoBehaviour
             this.shipname              = shipName;
             this.gamePlayData.ShipName = this.shipname;
             this.view.RPC("SetData", RpcTarget.AllBuffered,this.shipname);
-
-            CurrentSpecialItem currentSpecialItem = CurrentSpecialItem.Instance;
-            foreach (var item in currentSpecialItem.SpecialData)
-            {
-                this.speed += item.Value.BonusSpeed;
-            }
         }
         else
         {

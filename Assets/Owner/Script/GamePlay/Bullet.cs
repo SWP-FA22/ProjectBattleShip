@@ -3,6 +3,7 @@
     using System;
     using Cysharp.Threading.Tasks;
     using Photon.Pun;
+    using Unity.Mathematics;
     using UnityEngine;
 
     public class Bullet : MonoBehaviour
@@ -12,12 +13,19 @@
 
         public  string playerID;
 
-        public  string     bulletType = "freeze";
-        public  PhotonView photonView;
+        public string      bulletType = "freeze";
+        public PhotonView  photonView;
+        public AudioSource sound;
+        public GameObject  vfx;
         private void Start()
         {
             this.AutoDestroy();
             this.photonView = this.GetComponent<PhotonView>();
+            this.sound      = GameObject.Find("ExplosiveSound").GetComponent<AudioSource>();
+        }
+        private void Update()
+        {
+            gameObject.transform.position += transform.up * Mathf.Clamp01(1) * 15f * Time.deltaTime;
         }
 
         private void OnTriggerEnter2D(Collider2D col)
@@ -42,8 +50,6 @@
                                 GameObject.Find("GameController").GetComponent<GameManage>().scoreText.text =  "SCORE: "+score.ToString();
                             }
                         }
-                    
-
                     }
                     this.photonView.RPC("DestroyBullet", RpcTarget.AllBuffered);
                     
@@ -55,7 +61,10 @@
         [PunRPC]
         public void DestroyBullet()
         {
+            this.sound.Play();
+            Instantiate(this.vfx, gameObject.transform.position, quaternion.identity);
             Destroy(this.gameObject);
+            
         }
 
         

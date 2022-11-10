@@ -15,6 +15,7 @@
     using Assets.Owner.Script.Util;
     using Assets.Owner.Script.GameData;
     using Cysharp.Threading.Tasks;
+    using UnityEngine.SceneManagement;
 
     public class PlayerBoxCollider : MonoBehaviour
     {
@@ -51,18 +52,7 @@
             }
             
         }
-        private int Cal(int currentScore,int currentRank)
-        {
-            double ans = 0,k;
-            if (currentRank < 1600) k = 2.5;
-            else if (currentRank < 2000) k = 2;
-            else if (currentRank < 2400) k = 1.5;
-            else k = 1;
-            double predict = (currentRank - 1000) / 40 + 10;
-            ans = k * (currentScore - predict);
-            return (int)ans;
-
-        }
+        
         private void Update()
         {
             this.localScale.x                   = this.baseHP;
@@ -73,23 +63,14 @@
                 Debug.Log("lose");
                 GameObject gameManage = GameObject.Find("GameController");
                 int score = gameManage.GetComponent<GameManage>().score;
-                //TODO: parse from score to resource
-                int gold = score / 10 * 5;                
-                ResourcesRequest resourceRequest = new ResourcesRequest(LoginUtility.GLOBAL_TOKEN);
-                resourceRequest.updateResource( 2, gold);
-                this.HandleLocalData = new HandleLocalData();
-                PlayerData data = this.HandleLocalData.LoadData<PlayerData>("PlayerData");
-                //TODO: use api to update score in server;
-                int rank = data.Rank;
-                score = Cal(score, rank);
-                PlayerRequest playerRequest = new PlayerRequest();
-                playerRequest.UpdateScore(LoginUtility.GLOBAL_TOKEN, score);
-
-                PlayerUtility playerUtility = new PlayerUtility();
-                PlayerData playerData = PlayerUtility.GetMyPlayerData().Result;
+                CurrentPlayerData.Instance.Score = score;
                 this.view.RPC("DestroyShip", RpcTarget.AllBuffered);
                 this.check = false;
+                PhotonNetwork.Disconnect();
+                SceneManager.LoadScene("FinishGame");
             }
+
+            
         }
 
         public void ChangeStaff()
@@ -100,8 +81,8 @@
             {
                 this.battleShipData = new BattleShipData { ID = 1, Name = "ship3", Description = "aaaaaa", BaseAttack = 0.5f, BaseHP = 2.0f, BaseSpeed = 5f, BaseRota = 5f, Price = 10, Addressable = "ship1", IsOwner = true, IsEquipped = false };
             }
-            this.healthAmount = this.battleShipData.BaseHP;
-            
+            this.healthAmount                 =  this.battleShipData.BaseHP;
+            CurrentPlayerData.Instance.BaseHP += this.battleShipData.BaseHP;
             //change by item
             this.listItemData = this.LoadDataItem.LoadData();
             PlayerData playerData = this.HandleLocalData.LoadData<PlayerData>("PlayerData");
@@ -109,19 +90,22 @@
             {
                 if (item.ID == playerData.CannonID || item.ID == playerData.EngineID || item.ID == playerData.SailID)
                 {
-                    this.healthAmount += item.BonusHP;
+                    this.healthAmount                 += item.BonusHP;
+                    CurrentPlayerData.Instance.BaseHP += item.BonusHP;
                 }
             }
             
             CurrentSpecialItem currentSpecialItem = CurrentSpecialItem.Instance;
             foreach (var item in currentSpecialItem.SpecialData)
             {
-                this.healthAmount += item.Value.BonusHP;
+                this.healthAmount                 += item.Value.BonusHP;
+                CurrentPlayerData.Instance.BaseHP += item.Value.BonusHP;
             }
             //change by special item
             foreach (var item in CurrentSpecialItem.Instance.SpecialData)
             {
-                this.healthAmount += item.Value.BonusHP*item.Value.Amount;
+                this.healthAmount                 += item.Value.BonusHP*item.Value.Amount;
+                CurrentPlayerData.Instance.BaseHP += item.Value.BonusHP*item.Value.Amount;
             }
             
             
@@ -166,8 +150,7 @@
         [PunRPC]
         public void DestroyShip(){
             ListCurrentPlayers.Instance.listPlayer.Remove(gameObject);
-            this.popup.SetActive(true);
-            player.SetActive(false);
+            GameObject.Find("BattleshipExplosion").GetComponent<AudioSource>().Play();
         }
 
         [PunRPC]

@@ -58,7 +58,8 @@
             {
                 battleShipData = new BattleShipData { ID = 1, Name = "ship3", Description = "aaaaaa", BaseAttack = 0.5f, BaseHP = 2.0f, BaseSpeed = 5f, BaseRota = 5f, Price = 10, Addressable = "ship1", IsOwner = true, IsEquipped = false };
             }
-            this.damage = battleShipData.BaseAttack;
+            this.damage                    =  battleShipData.BaseAttack;
+            CurrentPlayerData.Instance.ATK += battleShipData.BaseAttack;
             //change by item
             this.listItemData = this.LoadDataItem.LoadData();
             PlayerData playerData = this.handleLocalData.LoadData<PlayerData>("PlayerData");
@@ -66,15 +67,18 @@
             {
                 if (item.ID == playerData.CannonID || item.ID == playerData.EngineID || item.ID == playerData.SailID)
                 {
-                    this.damage += item.BonusATK;
+                    this.damage                    += item.BonusATK;
+                    CurrentPlayerData.Instance.ATK += item.BonusATK;
                 }
             }
 
             CurrentSpecialItem currentSpecialItem = CurrentSpecialItem.Instance;
             foreach (var item in currentSpecialItem.SpecialData)
             {
-                this.damage += item.Value.BonusATK;
-                this.timeRate += item.Value.BonusRate;
+                this.damage                     += item.Value.BonusATK;
+                this.timeRate                   += item.Value.BonusRate;
+                CurrentPlayerData.Instance.ATK  += item.Value.BonusATK;
+                CurrentPlayerData.Instance.Rate += item.Value.BonusRate;
             }
             //change by special item
             foreach (var item in CurrentSpecialItem.Instance.SpecialData)
@@ -95,6 +99,8 @@
                 }
                 
             }
+
+            this.checkTriple = true;
         }
 
         [PunRPC]
@@ -149,15 +155,15 @@
         {
             if (isTriple)
             {
-                int[] rotatepoint = { -5, 0, 5 };
+                int[] rotatepoint = { -20, 0, 20 };
                 for (int i = 0; i < 3; i++)
                 {
-                    var newBullet = Instantiate(this.bullet, gameObject.transform.position, gameObject.transform.rotation);
-                    newBullet.transform.Rotate(new Vector3(rotatepoint[i], 0, 0));
-                    newBullet.GetComponent<Rigidbody2D>().velocity = (this.gameObject.transform.up * 15f);
-                    newBullet.GetComponent<Bullet>().damage = this.damage;
-                    newBullet.GetComponent<Bullet>().playerID = this.playerID;
-                    newBullet.GetComponent<Bullet>().bulletType = type;
+                    var newBullet = PhotonNetwork.Instantiate(this.bullet.name, gameObject.transform.position, gameObject.transform.rotation);
+                    newBullet.transform.Rotate(new Vector3(0, 0, rotatepoint[i]));
+                    //Vector3 shootPosition = this.gameObject.transform.up + new Vector3(rotatepoint[i], 0, 0);
+                    newBullet.GetComponent<Bullet>().damage        = this.damage;
+                    newBullet.GetComponent<Bullet>().playerID      = this.playerID;
+                    newBullet.GetComponent<Bullet>().bulletType    = type;
                 }
 
             }

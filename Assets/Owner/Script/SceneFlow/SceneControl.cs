@@ -20,6 +20,7 @@ public class SceneControl : MonoBehaviour
 
     public void SetDeactive(){
         gameObject.SetActive(false);
+        GameObject.Find("Pick").GetComponent<AudioSource>().Play();
     }
     
     public void BackToHome()
@@ -33,12 +34,17 @@ public class SceneControl : MonoBehaviour
             Console.WriteLine(e);
             throw;
         }
-        SceneManager.LoadScene("HomeScene");
+        PhotonNetwork.LoadLevel("HomeScene");
     }
 
     public void Back()
     {
         SceneManager.LoadScene("HomeScene");
+    }
+
+    public void BackToLoading()
+    {
+        SceneManager.LoadScene("LoadingScene");
     }
     public void QuitGame()
     {
@@ -47,6 +53,7 @@ public class SceneControl : MonoBehaviour
     public void LoadToShop()
     {
         SceneManager.LoadScene("ShopScene");
+        GameObject.Find("Pick").GetComponent<AudioSource>().Play();
     }
 
     public void LoadToBattleShipScene()
@@ -64,22 +71,26 @@ public class SceneControl : MonoBehaviour
     public void LoadToBattleShipShop(){
         
         SceneManager.LoadScene("BattleShipShop");
+        GameObject.Find("Pick").GetComponent<AudioSource>().Play();
     }
 
     public void LoadToItemScene()
     {
         PlayerPrefs.SetString("Shop","ItemShop");
         SceneManager.LoadScene("ItemShopScene");
+        GameObject.Find("Pick").GetComponent<AudioSource>().Play();
     }
 
     public void LoadToSpecialItem()
     {
         SceneManager.LoadScene("SpecialItemShop");
+        GameObject.Find("Pick").GetComponent<AudioSource>().Play();
     }
 
     public void LoadToBagScene()
     {
         SceneManager.LoadScene("BagScene");
+        GameObject.Find("Pick").GetComponent<AudioSource>().Play();
     }
     
 }

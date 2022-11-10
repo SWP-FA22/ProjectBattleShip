@@ -34,8 +34,11 @@
             this.HandleLocalData = new();
             this.priceText = gameObject.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
             this.outline = gameObject.GetComponent<Outline>();
-            
+            this.lockIcon.SetActive(false);
+
         }
+
+        
         
         public void ShowPopup()
         {
@@ -94,15 +97,16 @@
                 //TODO: call api to check data when buy item
                 PlayerData playerData = this.HandleLocalData.LoadData<PlayerData>("PlayerData");
                 //ShopUtility.BuyItem(ItemData.ID).Result
-                if (playerData.Extra?.Diamond >= this.SpecialItemData.Price)
+                if (playerData.Extra?.Gold >= this.SpecialItemData.Price)
                 {
                     this.SpecialItemData.Amount += 1;
-                    playerData.Extra.Diamond    -= (int)this.SpecialItemData.Price;
+                    playerData.Extra.Gold   -= (int)this.SpecialItemData.Price;
                     this.UpdateData();
                     this.HandleLocalData.SaveData("PlayerData", playerData);
                     this.signalBus.Fire<ReloadResourceSignal>();
                 }
             }
+            GameObject.Find("Pick").GetComponent<AudioSource>().Play();
             
             
         }

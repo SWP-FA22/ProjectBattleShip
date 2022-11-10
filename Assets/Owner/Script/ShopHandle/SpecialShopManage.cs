@@ -49,7 +49,9 @@
         this.CreateButton();
         this.signalBus.Subscribe<ShowPopupSignal>(x=>ShowPopupInfo(x.Position,x.SpecialItemData));
         this.signalBus.Subscribe<ClosePopup>(this.ClosePopUp);
+        
     }
+
     
     public void ShowPopupInfo(Vector3 position,SpecialItemData specialItemData)
     {
@@ -90,9 +92,15 @@
     public void CreateButton()
     {
         Debug.Log(CurrentSpecialItem.Instance.SpecialData.Count);
+        int amount = 0;
+        if (this.checkIsInBag)
+        {
+            amount = 1;
+        }
         for (int i = 0; i < CurrentSpecialItem.Instance.SpecialData.Count; i++)
         {
-            if (CurrentSpecialItem.Instance.SpecialData[i].Amount > 0)
+           
+            if (CurrentSpecialItem.Instance.SpecialData[i].Amount >= amount)
             {
                 try
                 {
