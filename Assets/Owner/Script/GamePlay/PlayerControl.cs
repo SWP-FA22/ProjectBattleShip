@@ -14,6 +14,7 @@ using Photon.Pun;
 using TMPro;
 using UnityEngine.AddressableAssets;
 using Assets.Owner.Script.GameData;
+using Unity.VisualScripting;
 
 public class PlayerControl : MonoBehaviour
 {
@@ -104,6 +105,10 @@ public class PlayerControl : MonoBehaviour
         this.ChangeStaff();
         
         this.cannon.GetComponent<CannonControl>().playerID =  this.playerID;
+        foreach (var item in CurrentSpecialItem.Instance.SpecialData)
+        {
+            item.Value.CurrentUse = 0;
+        }
 
         PhotonNetwork.NetworkingClient.EventReceived += this.GetScoreEvent;
 
@@ -137,8 +142,8 @@ public class PlayerControl : MonoBehaviour
         }
         this.speed                        += battleShipData.BaseSpeed;
         this.speedRotate                  += this.battleShipData.BaseRota;
-        CurrentPlayerData.Instance.Speed  += battleShipData.BaseSpeed;
-        CurrentPlayerData.Instance.Rotate += this.battleShipData.BaseRota;
+        CurrentPlayerData.Instance.Speed  = battleShipData.BaseSpeed;
+        CurrentPlayerData.Instance.Rotate = this.battleShipData.BaseRota;
         //change by item
         PlayerData playerData = this.HandleLocalData.LoadData<PlayerData>("PlayerData");
         foreach (var item in this.listItemData.item)
@@ -188,9 +193,12 @@ public class PlayerControl : MonoBehaviour
         }
         //ListCurrentPlayers.Instance.listPlayer[index].GetComponent<PlayerControl>().score = this.score;
     }
+    private void OnDestroy()
+    {
+        ListCurrentPlayers.Instance.listPlayer.Remove(this.gameObject);
+    }
 
-    
-    
+
     public void ChangeModel()
     {
         this.view.RPC("SetID", RpcTarget.AllBuffered);

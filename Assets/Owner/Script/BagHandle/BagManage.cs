@@ -47,7 +47,7 @@
             {
                 try
                 {
-                    if (CurrentSpecialItem.Instance.SpecialData[i].Amount > 0)
+                    if (CurrentSpecialItem.Instance.SpecialData[i].Amount > 0||CurrentSpecialItem.Instance.SpecialData[i].CurrentUse>0)
                     {
                         SpecialItem SpecialItemObject = Instantiate(this.specialItem, _parentContainBtn);
                         SpecialItemObject.SetUpData(CurrentSpecialItem.Instance.SpecialData[i]);

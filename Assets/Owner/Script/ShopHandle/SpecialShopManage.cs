@@ -100,7 +100,7 @@
         for (int i = 0; i < CurrentSpecialItem.Instance.SpecialData.Count; i++)
         {
            
-            if (CurrentSpecialItem.Instance.SpecialData[i].Amount >= amount)
+            if (CurrentSpecialItem.Instance.SpecialData[i].Amount >= amount||CurrentSpecialItem.Instance.SpecialData[i].CurrentUse>0)
             {
                 try
                 {

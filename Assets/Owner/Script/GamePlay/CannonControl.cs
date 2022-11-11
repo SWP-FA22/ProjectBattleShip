@@ -68,7 +68,7 @@
                 if (item.ID == playerData.CannonID || item.ID == playerData.EngineID || item.ID == playerData.SailID)
                 {
                     this.damage                    += item.BonusATK;
-                    CurrentPlayerData.Instance.ATK += item.BonusATK;
+                    CurrentPlayerData.Instance.ATK = item.BonusATK;
                 }
             }
 
@@ -101,6 +101,7 @@
             }
 
             this.checkTriple = true;
+            this.checkDouble = false;
         }
 
         [PunRPC]

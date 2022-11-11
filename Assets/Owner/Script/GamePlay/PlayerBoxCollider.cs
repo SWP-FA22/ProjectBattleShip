@@ -82,7 +82,7 @@
                 this.battleShipData = new BattleShipData { ID = 1, Name = "ship3", Description = "aaaaaa", BaseAttack = 0.5f, BaseHP = 2.0f, BaseSpeed = 5f, BaseRota = 5f, Price = 10, Addressable = "ship1", IsOwner = true, IsEquipped = false };
             }
             this.healthAmount                 =  this.battleShipData.BaseHP;
-            CurrentPlayerData.Instance.BaseHP += this.battleShipData.BaseHP;
+            CurrentPlayerData.Instance.BaseHP = this.battleShipData.BaseHP;
             //change by item
             this.listItemData = this.LoadDataItem.LoadData();
             PlayerData playerData = this.HandleLocalData.LoadData<PlayerData>("PlayerData");

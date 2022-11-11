@@ -32,13 +32,17 @@ public class RankingControl : MonoBehaviour
         
         for (int i = 0; i < players.Count; i++)
         {
-            string text = (i + 1) + ". " + players[i].GetComponent<PlayerControl>().playerName.text;
-            if (text.Length > 12) text = text.Substring(0, 12);
-            while (text.Length < 16) text = text + " ";
-            text += players[i].GetComponent<PlayerControl>().score;
+            if (players[i] != null)
+            {
+                string text                   = (i + 1) + ". " + players[i].GetComponent<PlayerControl>().playerName.text;
+                if (text.Length > 12) text    = text.Substring(0, 12);
+                while (text.Length < 16) text = text + " ";
+                text += players[i].GetComponent<PlayerControl>().score;
             
-            a[i].GetComponent<TextMeshProUGUI>().text = "";
-            a[i].GetComponent<TextMeshProUGUI>().text = text;
+                a[i].GetComponent<TextMeshProUGUI>().text = "";
+                a[i].GetComponent<TextMeshProUGUI>().text = text;
+            }
+           
         }
 
     }

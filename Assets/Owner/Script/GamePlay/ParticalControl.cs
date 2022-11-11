@@ -9,7 +9,11 @@
         private async void Start()
         {
             await UniTask.Delay(TimeSpan.FromMilliseconds(2000));
-            Destroy(this.gameObject);
+            if (this.gameObject != null)
+            {
+                Destroy(this.gameObject);
+            }
+            
         }
     }
 }
