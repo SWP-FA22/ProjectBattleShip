@@ -105,6 +105,10 @@
                     this.HandleLocalData.SaveData("PlayerData", playerData);
                     this.signalBus.Fire<ReloadResourceSignal>();
                 }
+                else
+                {
+                    this.signalBus.Fire(new ErrorSignal(){Message = "Not Enough!!"});
+                }
             }
             GameObject.Find("Pick").GetComponent<AudioSource>().Play();
             
@@ -113,13 +117,17 @@
 
         public void UseItem()
         {
-            if (this.SpecialItemData.Amount > 0)
+            if (this.SpecialItemData.Amount > 0&&this.SpecialItemData.CurrentUse<this.SpecialItemData.MaxUse)
             {
                 this.SpecialItemData.Amount     -= 1;
                 this.SpecialItemData.CurrentUse += 1;
                 this.isBuy.text                 =  "USE x" + this.SpecialItemData.Amount;
                 this.UpdateData();
                 this.signalBus.Fire(new UseItemSignal{ID = this.SpecialItemData.ID});
+            }
+            else if(this.SpecialItemData.CurrentUse>this.SpecialItemData.MaxUse)
+            {
+                this.signalBus.Fire(new ErrorSignal(){Message = "can not use!!"});
             }
             
         }

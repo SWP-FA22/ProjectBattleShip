@@ -35,6 +35,7 @@
         public TextAsset          textJson;
         public FakeDataIfLoadFail FakeDataIfLoadFail;
         public GameObject         popupInfo;
+        public GameObject         popupError;
 
         //item prefab
         [FormerlySerializedAs("ShopItem")] public ShopItem shopItem;
@@ -54,7 +55,15 @@
             this.signalBus.Subscribe<ReloadResourceSignal>(this.ReloadData);
             this.signalBus.Subscribe<ShowPopupSignal>(x=>ShowPopupInfo(x.Position,x.ItemData));
             this.signalBus.Subscribe<ClosePopup>(this.ClosePopUp);
+            this.signalBus.Subscribe<ErrorSignal>(x=>ShowPopupError(x.Message));
             
+        }
+        
+        public void ShowPopupError(string message)
+        {
+            this.popupError.SetActive(true);
+            this.popupError.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = message;
+
         }
         public void ShowPopupInfo(Vector3 position,ItemData itemData)
         {
@@ -104,9 +113,9 @@
                 this.FakeDataIfLoadFail = new FakeDataIfLoadFail();
                 playerData              = this.FakeDataIfLoadFail.LoadPlayerData();
             }
-            this.goldValue.text    = playerData.Extra?.Gold.ToString() ?? "";
-            this.rubyValue.text    = playerData.Extra?.Ruby.ToString() ?? "";
-            this.diamondValue.text = playerData.Extra?.Diamond.ToString() ?? "";
+            this.goldValue.text    = ResolveData(playerData.Extra.Gold);
+            this.rubyValue.text    = ResolveData(playerData.Extra.Ruby);
+            this.diamondValue.text = ResolveData(playerData.Extra.Diamond);
         }
 
         public void CreateButton(List<ItemData>listItems)
@@ -145,6 +154,21 @@
         public void ChangeToSailTag()
         {
             CreateButton(this.ListSailItem);
+        }
+        
+        public string ResolveData(int data)
+        {
+            string result = "";
+            if (data >= 1000)
+            {
+                int temp = data / 100 - (data / 1000)*10;
+                result += temp!=0?(data / 1000) + "k" + (temp):(data / 1000) + "k";
+                return result;
+            }
+            else
+            {
+                return data.ToString();
+            }
         }
         
     }

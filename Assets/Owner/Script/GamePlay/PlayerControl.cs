@@ -75,7 +75,7 @@ public class PlayerControl : MonoBehaviour
         this.gameManage      = GameObject.Find("GameController");
         this.HandleLocalData = new HandleLocalData();
         this.LoadDataItem    = new LoadDataItem();
-        this.gamePlayData    = new GamePlayData { ShipName = "ship3", Score = 0 };
+        this.gamePlayData    = new GamePlayData { ShipName = "ship5", Score = 0 };
         this.listItemData    = this.LoadDataItem.LoadData();
         ListCurrentPlayers.Instance.listPlayer.Add(gameObject);
         if (this.listItemData == null)
@@ -98,17 +98,14 @@ public class PlayerControl : MonoBehaviour
         //gamePlayData = (GamePlayData)PhotonNetwork.LocalPlayer.CustomProperties[this.playerID];
         string       shipName     = PhotonNetwork.LocalPlayer.CustomProperties[this.playerID].ToString().Split("|")[0];
         if(shipName==""){
-            shipName="ship1";
+            shipName="ship5";
         }
         
         Addressables.LoadAssetAsync<Sprite>(shipName).Completed += (player) => { this.gameObject.transform.GetComponent<SpriteRenderer>().sprite = player.Result; };
         this.ChangeStaff();
         
         this.cannon.GetComponent<CannonControl>().playerID =  this.playerID;
-        foreach (var item in CurrentSpecialItem.Instance.SpecialData)
-        {
-            item.Value.CurrentUse = 0;
-        }
+        
 
         PhotonNetwork.NetworkingClient.EventReceived += this.GetScoreEvent;
 
@@ -160,8 +157,8 @@ public class PlayerControl : MonoBehaviour
         //change buy special item
         foreach (var item in CurrentSpecialItem.Instance.SpecialData)
         {
-            this.speed                       += item.Value.BonusSpeed*item.Value.Amount;
-            CurrentPlayerData.Instance.Speed += item.Value.BonusSpeed * item.Value.Amount;
+            this.speed                       += item.Value.BonusSpeed*item.Value.CurrentUse;
+            CurrentPlayerData.Instance.Speed += item.Value.BonusSpeed * item.Value.CurrentUse;
         }
         
         
@@ -196,6 +193,16 @@ public class PlayerControl : MonoBehaviour
     private void OnDestroy()
     {
         ListCurrentPlayers.Instance.listPlayer.Remove(this.gameObject);
+        CurrentPlayerData.Instance.ATK          = 0;
+        CurrentPlayerData.Instance.Speed        = 0;
+        CurrentPlayerData.Instance.Score        = 0;
+        CurrentPlayerData.Instance.Rotate       = 0;
+        CurrentPlayerData.Instance.BaseHP       = 0;
+        CurrentPlayerData.Instance.SpecialItems = new List<string>();
+        foreach (var item in CurrentSpecialItem.Instance.SpecialData)
+        {
+            item.Value.CurrentUse = 0;
+        }
     }
 
 

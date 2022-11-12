@@ -7,6 +7,7 @@
     using Owner.Script.GameData.HandleData;
     using Owner.Script.ShopHandle;
     using Owner.Script.Signals;
+    using TMPro;
     using UnityEngine;
     using UnityEngine.Serialization;
     using Zenject;
@@ -24,6 +25,7 @@
         public List<SpecialItem>     listItem = new();
 
         public SpecialItem specialItem;
+        public GameObject  popupError;
         
         //item prefab
         [FormerlySerializedAs("ShopItem")] public SpecialItem shopItem;
@@ -38,7 +40,14 @@
             }
             this.signalBus.Fire<LoadItem>();
             CreateButton();
+            this.signalBus.Subscribe<ErrorSignal>(x=>ShowPopupError(x.Message));
             
+        }
+        public void ShowPopupError(string message)
+        {
+            this.popupError.SetActive(true);
+            this.popupError.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = message;
+
         }
         
         public void CreateButton()

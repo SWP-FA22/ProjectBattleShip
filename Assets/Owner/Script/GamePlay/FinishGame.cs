@@ -19,6 +19,7 @@
         public  Image           RankImage;
         public  TextMeshProUGUI score;
         public  TextMeshProUGUI rankReward;
+        public  TextMeshProUGUI goldReward;
         private void Start()
         {
             //TODO: parse from score to resource
@@ -35,6 +36,7 @@
             playerRequest.UpdateScore(LoginUtility.GLOBAL_TOKEN, score);
             this.score.text      = "Total Score: "+CurrentPlayerData.Instance.Score;
             this.rankReward.text = "Rank Score Reward: "+score;
+            this.goldReward.text = "Gold: " + gold;
             this.ControlRank();
 
         }

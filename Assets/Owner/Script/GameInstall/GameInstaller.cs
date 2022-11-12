@@ -14,5 +14,6 @@ public class GameInstaller : MonoInstaller
         this.Container.DeclareSignal<UseItemSignal>();
         this.Container.DeclareSignal<ShowPopupSignal>();
         this.Container.DeclareSignal<ClosePopup>();
+        this.Container.DeclareSignal<ErrorSignal>();
     }
 }

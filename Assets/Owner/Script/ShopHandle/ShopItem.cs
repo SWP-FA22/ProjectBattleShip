@@ -105,6 +105,10 @@
                     this.HandleLocalData.SaveData("PlayerData", playerData);
                     this.signalBus.Fire<ReloadResourceSignal>();
                 }
+                else
+                {
+                    this.signalBus.Fire(new ErrorSignal(){Message = "Not Enough!!"});
+                }
             }
             else
             {

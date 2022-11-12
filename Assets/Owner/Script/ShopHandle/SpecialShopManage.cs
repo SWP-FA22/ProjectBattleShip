@@ -31,6 +31,7 @@
     private DiContainer diContainer;
 
     public GameObject popupInfo;
+    public GameObject popupError;
 
     public bool checkIsInBag;
     async void Start()
@@ -49,7 +50,15 @@
         this.CreateButton();
         this.signalBus.Subscribe<ShowPopupSignal>(x=>ShowPopupInfo(x.Position,x.SpecialItemData));
         this.signalBus.Subscribe<ClosePopup>(this.ClosePopUp);
+        this.signalBus.Subscribe<ErrorSignal>(x=>ShowPopupError(x.Message));
         
+    }
+    
+    public void ShowPopupError(string message)
+    {
+        this.popupError.SetActive(true);
+        this.popupError.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = message;
+
     }
 
     
@@ -84,9 +93,24 @@
             this.FakeDataIfLoadFail = new FakeDataIfLoadFail();
             playerData              = this.FakeDataIfLoadFail.LoadPlayerData();
         }
-        this.goldValue.text    = playerData.Extra?.Gold.ToString() ?? "";
-        this.rubyValue.text    = playerData.Extra?.Ruby.ToString() ?? "";
-        this.diamondValue.text = playerData.Extra?.Diamond.ToString() ?? "";
+        this.goldValue.text    = ResolveData(playerData.Extra.Gold);
+        this.rubyValue.text    = ResolveData(playerData.Extra.Ruby);
+        this.diamondValue.text = ResolveData(playerData.Extra.Diamond);
+    }
+    
+    public string ResolveData(int data)
+    {
+        string result = "";
+        if (data >= 1000)
+        {
+            int temp = data / 100 - (data / 1000)*10;
+            result += temp!=0?(data / 1000) + "k" + (temp):(data / 1000) + "k";
+            return result;
+        }
+        else
+        {
+            return data.ToString();
+        }
     }
 
     public void CreateButton()

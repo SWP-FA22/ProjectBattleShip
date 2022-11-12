@@ -55,6 +55,10 @@ public class SceneControl : MonoBehaviour
         SceneManager.LoadScene("ShopScene");
         GameObject.Find("Pick").GetComponent<AudioSource>().Play();
     }
+    private void OnApplicationQuit()
+    {
+        //Todo request api to logout
+    }
 
     public void LoadToBattleShipScene()
     {

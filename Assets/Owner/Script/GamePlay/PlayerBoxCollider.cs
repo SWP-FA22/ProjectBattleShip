@@ -104,8 +104,8 @@
             //change by special item
             foreach (var item in CurrentSpecialItem.Instance.SpecialData)
             {
-                this.healthAmount                 += item.Value.BonusHP*item.Value.Amount;
-                CurrentPlayerData.Instance.BaseHP += item.Value.BonusHP*item.Value.Amount;
+                this.healthAmount                 += item.Value.BonusHP*item.Value.CurrentUse;
+                CurrentPlayerData.Instance.BaseHP += item.Value.BonusHP*item.Value.CurrentUse;
             }
             
             

@@ -33,8 +33,7 @@
             BattleShipData battleShipData =
                 handleLocalData.LoadData<BattleShipData>("ShipStaff") ??
                 PlayerUtility.GetMyPlayerData().Result.Extra?.Ship;
-
-            this.damage = battleShipData.BaseAttack;
+            
         }
         private bool state = true;
         private void Update()
@@ -58,7 +57,7 @@
             {
                 battleShipData = new BattleShipData { ID = 1, Name = "ship3", Description = "aaaaaa", BaseAttack = 0.5f, BaseHP = 2.0f, BaseSpeed = 5f, BaseRota = 5f, Price = 10, Addressable = "ship1", IsOwner = true, IsEquipped = false };
             }
-            this.damage                    =  battleShipData.BaseAttack;
+            this.damage                    +=  battleShipData.BaseAttack;
             CurrentPlayerData.Instance.ATK += battleShipData.BaseAttack;
             //change by item
             this.listItemData = this.LoadDataItem.LoadData();
@@ -68,27 +67,25 @@
                 if (item.ID == playerData.CannonID || item.ID == playerData.EngineID || item.ID == playerData.SailID)
                 {
                     this.damage                    += item.BonusATK;
-                    CurrentPlayerData.Instance.ATK = item.BonusATK;
+                    CurrentPlayerData.Instance.ATK += item.BonusATK;
                 }
-            }
-
-            CurrentSpecialItem currentSpecialItem = CurrentSpecialItem.Instance;
-            foreach (var item in currentSpecialItem.SpecialData)
-            {
-                this.damage                     += item.Value.BonusATK;
-                this.timeRate                   += item.Value.BonusRate;
-                CurrentPlayerData.Instance.ATK  += item.Value.BonusATK;
-                CurrentPlayerData.Instance.Rate += item.Value.BonusRate;
             }
             //change by special item
             foreach (var item in CurrentSpecialItem.Instance.SpecialData)
             {
-                this.damage += item.Value.BonusATK * item.Value.Amount;
+                Debug.Log("number of spec:"+item.Value.CurrentUse+", atk:"+item.Value.BonusATK);
+                this.damage                     += item.Value.BonusATK*item.Value.CurrentUse;
+                this.timeRate                   += item.Value.BonusRate*item.Value.CurrentUse;
+                CurrentPlayerData.Instance.ATK  += item.Value.BonusATK*item.Value.CurrentUse;
+                CurrentPlayerData.Instance.Rate += item.Value.BonusRate*item.Value.CurrentUse;
+            }
+            
+            foreach (var item in CurrentSpecialItem.Instance.SpecialData)
+            {
                 if (item.Value.IsDouble)
                 {
                     this.checkDouble = true;
                 }
-
                 if (item.Value.IsTriple)
                 {
                     this.checkTriple = true;
@@ -102,6 +99,7 @@
 
             this.checkTriple = true;
             this.checkDouble = false;
+            this.checkSlow   = false;
         }
 
         [PunRPC]
@@ -166,7 +164,6 @@
                     newBullet.GetComponent<Bullet>().playerID      = this.playerID;
                     newBullet.GetComponent<Bullet>().bulletType    = type;
                 }
-
             }
             else
             {
