@@ -78,6 +78,22 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: a7e1bc6f332c9a4478c5684afb03f27c
+    m_Address: ship3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f1fd5bd89303c5e428b6b82747d9a2ec
+    m_Address: ship6
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 84d6e6ccf9bd3254bb6cd4b71087d77a
+    m_Address: ship7
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 7ac7d1eac4d37eb43b515ac1c45569fb
+    m_Address: ship4
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 3e251578afd9b7d4ca642023476d86ba
     m_Address: ship5
     m_ReadOnly: 0
     m_SerializedLabels: []
