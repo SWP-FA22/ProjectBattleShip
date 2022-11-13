@@ -41,7 +41,7 @@ MonoBehaviour:
     m_Address: sail1
     m_ReadOnly: 0
     m_SerializedLabels: []
-  - m_GUID: 02e4e01b4e13d524da9686309e1b1a64
+  - m_GUID: b3889df562155044ba137b713ba7705e
     m_Address: ship
     m_ReadOnly: 0
     m_SerializedLabels: []

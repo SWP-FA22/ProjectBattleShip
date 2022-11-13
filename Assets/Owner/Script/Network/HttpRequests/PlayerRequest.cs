@@ -16,7 +16,7 @@ namespace Assets.Owner.Script.Network.HttpRequests
 {
     public class PlayerRequest
     {
-        public static readonly string PLAYER_INFO = $"{HttpRequest.BASE_URL}/api/player-data";
+        public static readonly string PLAYER_INFO = $"{HttpRequest.BASE_URL}/api/player-info";
         
         public static readonly string EQUIP_SHIP = $"{HttpRequest.BASE_URL}/api/equip-ship";
         

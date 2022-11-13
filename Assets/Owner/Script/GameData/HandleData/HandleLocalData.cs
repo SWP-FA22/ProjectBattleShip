@@ -14,7 +14,7 @@ public class HandleLocalData
         try
         {
             PlayerPrefs.SetString(key, JsonConvert.SerializeObject(data));
-            Debug.Log(PlayerPrefs.GetString(key));
+           
             Debug.Log("save successfully");
         }
         catch
