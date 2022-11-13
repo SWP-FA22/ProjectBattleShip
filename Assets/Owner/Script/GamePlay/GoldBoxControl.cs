@@ -2,6 +2,7 @@
 {
     using System;
     using ExitGames.Client.Photon;
+    using Owner.Script.GameData;
     using Owner.Script.Signals;
     using Photon.Pun;
     using Photon.Realtime;
@@ -89,6 +90,7 @@
                 int score = this.player.GetComponent<PlayerControl>().score;
                 Debug.Log("get shoot");
                 score                                                                       += 10;
+                CurrentPlayerData.Instance.Score                                            += 10;
                 GameObject.Find("GameController").GetComponent<GameManage>().score          =  score;
                 GameObject.Find("GameController").GetComponent<GameManage>().scoreText.text =  "SCORE: "+score.ToString();
                 this.healthAmount                                                           =  1.6f;

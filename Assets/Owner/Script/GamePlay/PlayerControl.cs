@@ -71,12 +71,12 @@ public class PlayerControl : MonoBehaviour
     void Start()
     {
         
-        this.speed           = 0;
-        this.gameManage      = GameObject.Find("GameController");
-        this.HandleLocalData = new HandleLocalData();
-        this.LoadDataItem    = new LoadDataItem();
-        this.gamePlayData    = new GamePlayData { ShipName = "ship5", Score = 0 };
-        this.listItemData    = this.LoadDataItem.LoadData();
+        this.speed                       = 0;
+        this.gameManage                  = GameObject.Find("GameController");
+        this.HandleLocalData             = new HandleLocalData();
+        this.LoadDataItem                = new LoadDataItem();
+        this.gamePlayData                = new GamePlayData { ShipName = "ship5", Score = 0 };
+        this.listItemData                = this.LoadDataItem.LoadData();
         ListCurrentPlayers.Instance.listPlayer.Add(gameObject);
         if (this.listItemData == null)
         {
@@ -88,6 +88,7 @@ public class PlayerControl : MonoBehaviour
         {
             Debug.Log("Send message to change");
             this.ChangeModel();
+            CurrentPlayerData.Instance.Score = 0;
         }
         
         this.camera                                             =  GameObject.Find("CM vcam1");
@@ -139,8 +140,7 @@ public class PlayerControl : MonoBehaviour
         }
         this.speed                        += battleShipData.BaseSpeed;
         this.speedRotate                  += this.battleShipData.BaseRota;
-        CurrentPlayerData.Instance.Speed  = battleShipData.BaseSpeed;
-        CurrentPlayerData.Instance.Rotate = this.battleShipData.BaseRota;
+
         //change by item
         PlayerData playerData = this.HandleLocalData.LoadData<PlayerData>("PlayerData");
         foreach (var item in this.listItemData.item)
@@ -150,15 +150,18 @@ public class PlayerControl : MonoBehaviour
                 
                 this.speed                        += item.BonusSpeed;
                 this.speedRotate                  += item.BonusRota;
-                CurrentPlayerData.Instance.Speed  += item.BonusSpeed;
-                CurrentPlayerData.Instance.Rotate += item.BonusRota;
             }
         }
         //change buy special item
         foreach (var item in CurrentSpecialItem.Instance.SpecialData)
         {
             this.speed                       += item.Value.BonusSpeed*item.Value.CurrentUse;
-            CurrentPlayerData.Instance.Speed += item.Value.BonusSpeed * item.Value.CurrentUse;
+        }
+
+        if (this.view.IsMine)
+        {
+            CurrentPlayerData.Instance.Speed = this.speed;
+            CurrentPlayerData.Instance.Rotate  =this.speedRotate;
         }
         
         
@@ -193,12 +196,15 @@ public class PlayerControl : MonoBehaviour
     private void OnDestroy()
     {
         ListCurrentPlayers.Instance.listPlayer.Remove(this.gameObject);
-        CurrentPlayerData.Instance.ATK          = 0;
-        CurrentPlayerData.Instance.Speed        = 0;
-        CurrentPlayerData.Instance.Score        = 0;
-        CurrentPlayerData.Instance.Rotate       = 0;
-        CurrentPlayerData.Instance.BaseHP       = 0;
-        CurrentPlayerData.Instance.SpecialItems = new List<string>();
+        if (this.view.IsMine)
+        {
+            CurrentPlayerData.Instance.ATK          = 0;
+            CurrentPlayerData.Instance.Speed        = 0;
+            CurrentPlayerData.Instance.Rotate       = 0;
+            CurrentPlayerData.Instance.BaseHP       = 0;
+            CurrentPlayerData.Instance.SpecialItems = new List<string>();
+        }
+        
         foreach (var item in CurrentSpecialItem.Instance.SpecialData)
         {
             item.Value.CurrentUse = 0;
@@ -276,7 +282,7 @@ public class PlayerControl : MonoBehaviour
                 float rotation = -1 * this.speedRotate * 0.5f;
                 transform.Rotate(Vector3.forward * rotation);
             }
-
+            
             int tempScore = GameObject.Find("GameController").GetComponent<GameManage>().score;
             this.view.RPC("UpdateScoreServer",RpcTarget.AllBuffered,tempScore);
             this.healthBar.transform.position = gameObject.transform.position;

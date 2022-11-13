@@ -94,7 +94,6 @@ public class GameManage : MonoBehaviour
             item.transform.GetChild(0).GetComponent<PlayerControl>().score = this.score;
         }
         this.view.RPC("UpdateScoreServer", RpcTarget.AllBuffered, this.score);
-
     }
 
     [PunRPC]
@@ -110,6 +109,7 @@ public class GameManage : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        CurrentPlayerData.Instance.Score = this.score;
         if (this.ChatField.isFocused)
         {
             //player cannot move or do anything

@@ -20,8 +20,10 @@
         public  TextMeshProUGUI score;
         public  TextMeshProUGUI rankReward;
         public  TextMeshProUGUI goldReward;
+        private GameObject      gameManage;
         private void Start()
         {
+            this.gameManage = GameObject.Find("GameController");
             //TODO: parse from score to resource
             int              score           = CurrentPlayerData.Instance.Score;
             int              gold            = score / 10 * 5;                
@@ -31,16 +33,28 @@
             PlayerData data = this.handleLocalData.LoadData<PlayerData>("PlayerData");
             //TODO: use api to update score in server;
             int rank = data.Rank;
-            score = Cal(score, rank);
+            int scoreRank = Cal(score, rank);
             PlayerRequest playerRequest = new PlayerRequest();
             playerRequest.UpdateScore(LoginUtility.GLOBAL_TOKEN, score);
             this.score.text      = "Total Score: "+CurrentPlayerData.Instance.Score;
-            this.rankReward.text = "Rank Score Reward: "+score;
+            this.rankReward.text = "Rank Score Reward: "+scoreRank;
             this.goldReward.text = "Gold: " + gold;
             this.ControlRank();
 
         }
-        
+        private void Update()
+        {
+            PlayerData data = this.handleLocalData.LoadData<PlayerData>("PlayerData");
+            //TODO: use api to update score in server;
+            int rank      = data.Rank;
+            int score     = CurrentPlayerData.Instance.Score;
+            int scoreRank = Cal(score, rank);
+            int gold      = score / 10 * 5;       
+            this.score.text      = "Total Score: "+CurrentPlayerData.Instance.Score;
+            this.rankReward.text = "Rank Score Reward: "+scoreRank;
+            this.goldReward.text = "Gold: " + gold;
+        }
+
         private int Cal(int currentScore,int currentRank)
         {
             double ans = 0, k;

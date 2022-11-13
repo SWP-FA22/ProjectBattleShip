@@ -2,6 +2,7 @@
 {
     using System;
     using Cysharp.Threading.Tasks;
+    using Owner.Script.GameData;
     using Photon.Pun;
     using Unity.Mathematics;
     using UnityEngine;
@@ -46,12 +47,14 @@
                             {
                                 Debug.Log("aaaaaaaaaaaa");
                                 score                                                                       += 20;
+                                CurrentPlayerData.Instance.Score                                            += 20;
                                 GameObject.Find("GameController").GetComponent<GameManage>().score          =  score;
                                 GameObject.Find("GameController").GetComponent<GameManage>().scoreText.text =  "SCORE: "+score.ToString();
                             }
                         }
                     }
                     this.photonView.RPC("DestroyBullet", RpcTarget.AllBuffered);
+                    this.sound.Play();
                     
                 }
             }
@@ -61,7 +64,7 @@
         [PunRPC]
         public void DestroyBullet()
         {
-            this.sound.Play();
+            
             Instantiate(this.vfx, gameObject.transform.position, quaternion.identity);
             Destroy(this.gameObject);
             

@@ -7,15 +7,19 @@ using UnityEngine;
 
 public class RankingControl : MonoBehaviour
 {
-    public GameObject CurrentRankingText;
-    public GameObject Parent;
-    public List<GameObject> players;
-    List<GameObject> a=new();
-    int temp;
+    public GameObject                         CurrentRankingText;
+    public GameObject                         Parent;
+    public List<GameObject>                   players;
+    public Dictionary<GameObject, GameObject> listPlayerRank;
+    List<GameObject>                          a =new();
+    int                                       temp;
+
+    private int count = 1;
     // Start is called before the first frame update
     void Start()
     {
-        a.Add(Instantiate(CurrentRankingText, Parent.transform)) ;
+        GameObject newRank = Instantiate(CurrentRankingText, Parent.transform);
+        a.Add(newRank) ;
         this.temp = 1;
     }
 
@@ -29,8 +33,14 @@ public class RankingControl : MonoBehaviour
             this.temp++;
         }
 
-        
-        for (int i = 0; i < players.Count; i++)
+        while (this.temp > this.players.Count)
+        {
+            Destroy(a[0].gameObject);
+            this.a.Remove(a[0]);
+            this.temp--;
+        }
+
+        for (int i = 0; i < this.count; i++)
         {
             if (players[i] != null)
             {
@@ -42,7 +52,16 @@ public class RankingControl : MonoBehaviour
                 a[i].GetComponent<TextMeshProUGUI>().text = "";
                 a[i].GetComponent<TextMeshProUGUI>().text = text;
             }
-           
+            else
+            {
+                Destroy(a[i].gameObject);
+                this.a.Remove(a[i]);
+            }
+        }
+
+        if (this.players.Count != this.count)
+        {
+            this.count = this.players.Count;
         }
 
     }
