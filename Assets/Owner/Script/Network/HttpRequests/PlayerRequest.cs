@@ -142,6 +142,7 @@ namespace Assets.Owner.Script.Network.HttpRequests
                 { "score", score.ToString() }
             });
 
+            
             try
             {
                 var response = await new HttpRequest(www).Send<EquipShipResponse>();
