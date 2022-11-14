@@ -97,10 +97,10 @@
                 //TODO: call api to check data when buy item
                 PlayerData playerData = this.HandleLocalData.LoadData<PlayerData>("PlayerData");
                 //ShopUtility.BuyItem(ItemData.ID).Result
-                if (playerData.Extra?.Gold >= this.SpecialItemData.Price)
+                if (playerData.Extra?.Gold >= this.SpecialItemData.Price&& ShopUtility.BuySpecialItem(this.SpecialItemData.ID).Result)
                 {
                     this.SpecialItemData.Amount += 1;
-                    playerData.Extra.Gold   -= (int)this.SpecialItemData.Price;
+                    //playerData.Extra.Gold   -= (int)this.SpecialItemData.Price;
                     this.UpdateData();
                     this.HandleLocalData.SaveData("PlayerData", playerData);
                     this.signalBus.Fire<ReloadResourceSignal>();
@@ -111,8 +111,6 @@
                 }
             }
             GameObject.Find("Pick").GetComponent<AudioSource>().Play();
-            
-            
         }
 
         public void UseItem()

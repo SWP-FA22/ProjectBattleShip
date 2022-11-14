@@ -82,8 +82,7 @@
                 };
             }
 
-            this.healthAmount                 = this.battleShipData.BaseHP;
-            CurrentPlayerData.Instance.BaseHP = this.battleShipData.BaseHP;
+            this.healthAmount                 = this.battleShipData.BaseHP/1000;
             //change by item
             this.listItemData = this.LoadDataItem.LoadData();
             PlayerData playerData = this.HandleLocalData.LoadData<PlayerData>("PlayerData");
@@ -91,7 +90,7 @@
             {
                 if (item.ID == playerData.CannonID || item.ID == playerData.EngineID || item.ID == playerData.SailID)
                 {
-                    this.healthAmount += item.BonusHP;
+                    this.healthAmount += item.BonusHP/1000;
                 }
             }
 

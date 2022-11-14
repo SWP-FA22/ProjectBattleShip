@@ -80,7 +80,7 @@
             this.priceText.text = "Price: " + data.Price;
             try
             {
-                Addressables.LoadAssetAsync<Sprite>(data.Addressable.Trim()).Completed += (player) => { gameObject.transform.GetChild(0).GetComponent<Image>().sprite = player.Result; };
+                Addressables.LoadAssetAsync<Sprite>(data.Addressable.Trim()).Completed += (player) => { this.gameObject.transform.GetChild(0).GetComponent<Image>().sprite = player.Result; };
             }
             catch (Exception e)
             {

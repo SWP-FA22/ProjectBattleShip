@@ -14,6 +14,7 @@ using Photon.Pun;
 using TMPro;
 using UnityEngine.AddressableAssets;
 using Assets.Owner.Script.GameData;
+using Assets.Owner.Script.Util;
 using Unity.VisualScripting;
 
 public class PlayerControl : MonoBehaviour
@@ -137,8 +138,8 @@ public class PlayerControl : MonoBehaviour
             this.HandleLocalData.SaveData("ShipStaff",this.battleShipData);
             // Debug.LogError("Lost Ship!");
         }
-        this.speed                        += battleShipData.BaseSpeed;
-        this.speedRotate                  += this.battleShipData.BaseRota;
+        this.speed                        += battleShipData.BaseSpeed/100;
+        this.speedRotate                  += this.battleShipData.BaseRota/100;
 
         //change by item
         
@@ -147,8 +148,8 @@ public class PlayerControl : MonoBehaviour
             if (item.ID == playerData.CannonID || item.ID == playerData.EngineID || item.ID == playerData.SailID)
             {
                 
-                this.speed                        += item.BonusSpeed;
-                this.speedRotate                  += item.BonusRota;
+                this.speed                        += item.BonusSpeed/100;
+                this.speedRotate                  += item.BonusRota/100;
             }
         }
         //change buy special item
@@ -202,6 +203,10 @@ public class PlayerControl : MonoBehaviour
             CurrentPlayerData.Instance.Rotate       = 0;
             CurrentPlayerData.Instance.BaseHP       = 0;
             CurrentPlayerData.Instance.SpecialItems = new List<string>();
+        }
+        foreach (var item in CurrentSpecialItem.Instance.SpecialData)
+        {
+            ShopUtility.UseSpecialItem(item.Key, item.Value.CurrentUse);
         }
         
         foreach (var item in CurrentSpecialItem.Instance.SpecialData)
@@ -267,7 +272,7 @@ public class PlayerControl : MonoBehaviour
             this.camera.GetComponent<CinemachineVirtualCamera>().LookAt = gameObject.transform;
             if (Input.GetKey(KeyCode.W))
             {
-                gameObject.transform.position += transform.right * Mathf.Clamp01(1) * this.battleShipData.BaseSpeed * Time.deltaTime;
+                gameObject.transform.position += transform.right * Mathf.Clamp01(1) * this.speed * Time.deltaTime;
             }
 
             if (Input.GetKey(KeyCode.A))

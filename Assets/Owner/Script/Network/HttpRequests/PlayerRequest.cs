@@ -58,7 +58,6 @@ namespace Assets.Owner.Script.Network.HttpRequests
                 {
                     return null;
                 }
-
                 return response.Player;
             }
             catch (System.Exception ex)

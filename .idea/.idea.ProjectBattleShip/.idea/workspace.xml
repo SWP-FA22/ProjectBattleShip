@@ -4,20 +4,49 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="879c300a-fdf8-4bea-888f-0c671285a07a" name="Changes" comment="fix ranking data in game">
+    <list default="true" id="879c300a-fdf8-4bea-888f-0c671285a07a" name="Changes" comment="merge code from huu">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ProjectBattleShip/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ProjectBattleShip/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.login-data" beforeDir="false" afterPath="$PROJECT_DIR$/.login-data" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AddressableAssetsData/AddressableAssetSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/AddressableAssetsData/AddressableAssetSettings.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/AddressableAssetsData/AssetGroups/Default Local Group.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/AddressableAssetsData/AssetGroups/Default Local Group.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Owner/Prefabs/BattleShip/BattleShipImage/ship.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Prefabs/BattleShip/BattleShipImage/ship.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Owner/Prefabs/BattleShip/BattleShipImage/ship.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Prefabs/BattleShip/BattleShipImage/ship.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Owner/Scenes/FinishGame.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Scenes/FinishGame.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/GameData/HandleData/HandleLocalData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/GameData/HandleData/HandleLocalData.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Owner/Prefabs/BattleShip/ItemImage/Special2.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Prefabs/BattleShip/ItemImage/Special2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Owner/Prefabs/BattleShip/ItemImage/Special2.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Prefabs/BattleShip/ItemImage/Special2.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Owner/Prefabs/BattleShip/ItemImage/Special3.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Prefabs/BattleShip/ItemImage/Special3.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Owner/Prefabs/BattleShip/ItemImage/Special3.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Prefabs/BattleShip/ItemImage/Special3.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Owner/Prefabs/BattleShip/ItemImage/Special4.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Prefabs/BattleShip/ItemImage/Special4.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Owner/Prefabs/BattleShip/ItemImage/Special4.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Prefabs/BattleShip/ItemImage/Special4.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Owner/Prefabs/BattleShip/ItemImage/sail1.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Prefabs/BattleShip/ItemImage/sail1.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Owner/Prefabs/BattleShip/Ranking/gold.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Prefabs/BattleShip/Ranking/gold.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Owner/Prefabs/BattleShip/Ranking/gold.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Prefabs/BattleShip/Ranking/gold.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Owner/Scenes/BagScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Scenes/BagScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Owner/Scenes/BattleShipShop.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Scenes/BattleShipShop.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Owner/Scenes/GameScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Scenes/GameScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Owner/Scenes/HomeScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Scenes/HomeScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Owner/Scenes/ItemShopScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Scenes/ItemShopScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Owner/Scenes/ShopScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Scenes/ShopScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Owner/Scenes/SpecialItemShop.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Scenes/SpecialItemShop.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/BagHandle/BagManage.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/BagHandle/BagManage.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/BagHandle/UseItemManage.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/BagHandle/UseItemManage.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/ChatManage/ChatManage.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/ChatManage/ChatManage.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/GameData/HandleData/FakeDataIfLoadFail.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/GameData/HandleData/FakeDataIfLoadFail.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/GameData/SpecialItemData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/GameData/SpecialItemData.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/GamePlay/CannonControl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/GamePlay/CannonControl.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/GamePlay/PlayerBoxCollider.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/GamePlay/PlayerBoxCollider.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/GamePlay/PlayerControl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/GamePlay/PlayerControl.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/Network/HttpRequests/PlayerRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/Network/HttpRequests/PlayerRequest.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/Util/LoginUtility.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/Util/LoginUtility.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/Network/HttpRequests/ShopRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/Network/HttpRequests/ShopRequest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/Network/NetworkControl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/Network/NetworkControl.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/Ranking/CurentRankingManage.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/Ranking/CurentRankingManage.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/SceneFlow/SceneControl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/SceneFlow/SceneControl.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/ShopHandle/ItemShopManage.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/ShopHandle/ItemShopManage.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/ShopHandle/ShopItem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/ShopHandle/ShopItem.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/ShopHandle/SpecialItem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/ShopHandle/SpecialItem.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/ShopHandle/SpecialShopManage.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/ShopHandle/SpecialShopManage.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/Util/PlayerUtility.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/Util/PlayerUtility.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Owner/Script/Util/ShopUtility.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Owner/Script/Util/ShopUtility.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/ship3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/ship3.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,7 +78,10 @@
     <setting file="file://$PROJECT_DIR$/Assets/Owner/Script/GameInstall/GameInstaller.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Owner/Script/GamePlay/CannonControl.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Owner/Script/GamePlay/CheckValidateToken.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://D:/Project/ProjectSWP/BattleShip/ProjectBattleShip/Assets/Owner/Script/GamePlay/GameManage.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Owner/Script/GamePlay/GameManage.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://D:/Project/ProjectSWP/BattleShip/ProjectBattleShip/Assets/Owner/Script/GamePlay/GameManage.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://D:/Project/ProjectSWP/BattleShip/ProjectBattleShip/Assets/Owner/Script/GamePlay/GameManage.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Owner/Script/GamePlay/PlayerControl.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Owner/Script/MiniMap/MiniMapController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Owner/Script/Network/HttpRequests/HttpRequest.cs" root0="FORCE_HIGHLIGHTING" />
@@ -106,10 +138,10 @@
       <option name="USE_EXTERNAL_CONSOLE" value="0" />
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+    <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="21008">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" />
+      <option name="pid" value="21008" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -176,7 +208,7 @@
       <workItem from="1668122398411" duration="7260000" />
       <workItem from="1668133719447" duration="4540000" />
       <workItem from="1668212829715" duration="17180000" />
-      <workItem from="1668294769110" duration="31509000" />
+      <workItem from="1668294769110" duration="55332000" />
     </task>
     <task id="LOCAL-00001" summary="add login scene ui and ui flow setup">
       <created>1663033377719</created>
@@ -458,7 +490,14 @@
       <option name="project" value="LOCAL" />
       <updated>1668348796155</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="merge code from huu">
+      <created>1668362600067</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1668362600067</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -480,7 +519,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="add item shop ui and logic" />
     <MESSAGE value="fix shop handle item" />
     <MESSAGE value="fix item data" />
     <MESSAGE value="change item data" />
@@ -505,6 +543,7 @@
     <MESSAGE value="fix finish game" />
     <MESSAGE value="improve game" />
     <MESSAGE value="fix ranking data in game" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix ranking data in game" />
+    <MESSAGE value="merge code from huu" />
+    <option name="LAST_COMMIT_MESSAGE" value="merge code from huu" />
   </component>
 </project>

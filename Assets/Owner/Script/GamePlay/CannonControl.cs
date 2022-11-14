@@ -60,7 +60,7 @@
                 };
             }
 
-            this.damage += battleShipData.BaseAttack;
+            this.damage += battleShipData.BaseAttack/1000;
 
             //change by item
             this.listItemData = this.LoadDataItem.LoadData();
@@ -69,7 +69,7 @@
             {
                 if (item.ID == playerData.CannonID || item.ID == playerData.EngineID || item.ID == playerData.SailID)
                 {
-                    this.damage += item.BonusATK;
+                    this.damage += item.BonusATK/1000;
                 }
             }
 
@@ -89,25 +89,26 @@
 
             foreach (var item in CurrentSpecialItem.Instance.SpecialData)
             {
-                if (item.Value.IsDouble)
+                if (item.Value.CurrentUse > 0)
                 {
-                    this.checkDouble = true;
-                }
+                    if (item.Value.IsDouble)
+                    {
+                        this.checkDouble = true;
+                    }
 
-                if (item.Value.IsTriple)
-                {
-                    this.checkTriple = true;
-                }
+                    if (item.Value.IsTriple)
+                    {
+                        this.checkTriple = true;
+                    }
 
-                if (item.Value.IsFreeze)
-                {
-                    this.checkSlow = true;
+                    if (item.Value.IsFreeze)
+                    {
+                        this.checkSlow = true;
+                    }
                 }
+                
             }
-
-            this.checkTriple = true;
-            this.checkDouble = false;
-            this.checkSlow   = false;
+            
         }
 
         [PunRPC]
@@ -115,10 +116,11 @@
         {
             if (this.state)
             {
+                this.checkSlow = false;
                 if (this.checkDouble)
                 {
                     this.CreateNewBullet("normal", false);
-                    await UniTask.Delay(TimeSpan.FromMilliseconds(200));
+                    await UniTask.Delay(TimeSpan.FromMilliseconds(150));
                     this.CreateNewBullet("normal", false);
                     this.state = false;
                     await UniTask.Delay(TimeSpan.FromMilliseconds(1000 - this.timeRate));
@@ -170,7 +172,7 @@
 
         public void CreateSingleBullet()
         {
-            var newBullet = Instantiate(this.bullet, gameObject.transform.position, gameObject.transform.rotation);
+            var newBullet = PhotonNetwork.Instantiate(this.bullet.name, gameObject.transform.position, gameObject.transform.rotation);
             newBullet.GetComponent<Rigidbody2D>().velocity = (this.gameObject.transform.up * 15f);
             newBullet.GetComponent<Bullet>().damage        = this.damage;
             newBullet.GetComponent<Bullet>().playerID      = this.playerID;

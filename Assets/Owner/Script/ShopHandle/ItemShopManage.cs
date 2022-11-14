@@ -84,7 +84,7 @@
 
         public void BindData()
         {
-            CurrentItemData.Instance.Items = ShopUtility.GetAllItems().Result;
+            CurrentItemData.Instance.Items = ShopUtility.GetAllItems(true).Result;
             foreach (var item in CurrentItemData.Instance.Items)
             {
                 if (item.Type == 1)
@@ -122,7 +122,10 @@
         {
             foreach (var item in this.listItem)
             {
-                Destroy(item.gameObject);
+                if (item.gameObject != null)
+                {
+                    Destroy(item.gameObject);
+                }
             }
             this.listItem.Clear();
             for (int i = 0; i < listItems.Count; i++)

@@ -69,7 +69,7 @@ public class SceneControl : MonoBehaviour
     public void SignOut()
     {
         File.WriteAllText(TOKEN_FILE, "");
-        SceneManager.LoadScene("LoginScene");
+        Application.Quit();
     }
 
     public void LoadToBattleShipShop(){
@@ -83,6 +83,11 @@ public class SceneControl : MonoBehaviour
         PlayerPrefs.SetString("Shop","ItemShop");
         SceneManager.LoadScene("ItemShopScene");
         GameObject.Find("Pick").GetComponent<AudioSource>().Play();
+    }
+
+    public void LoadToFinishGame()
+    {
+        SceneManager.LoadScene("FinishGame");
     }
 
     public void LoadToSpecialItem()

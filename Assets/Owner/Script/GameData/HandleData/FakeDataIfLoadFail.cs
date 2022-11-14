@@ -36,11 +36,12 @@
         {
             if (CurrentSpecialItem.Instance.SpecialData.Count <= 0)
             {
-                CurrentSpecialItem.Instance.SpecialData.Add(0,new SpecialItemData{ID = 0,Addressable = "Special1",Amount = 0,BonusATK = 0.1f,BonusHP = 0f,BonusRate = 0,BonusSpeed = 0,Description = "Bonus attack",ImageURL = "",IsDouble = false,Name = "special1",IsTriple = false,Price = 10,MaxUse = 5});
-                CurrentSpecialItem.Instance.SpecialData.Add(1,new SpecialItemData{ID = 1,Addressable = "Special2",Amount = 0,BonusATK = 0,BonusHP = 0.5f,BonusRate = 0,BonusSpeed = 0,Description = "Bonus HP",ImageURL = "",IsDouble = false,Name = "special2",IsTriple = false,Price = 10,MaxUse = 5});
-                CurrentSpecialItem.Instance.SpecialData.Add(2,new SpecialItemData{ID = 2,Addressable = "Special3",Amount = 0,BonusATK = 0,BonusHP = 0f,BonusRate = 0,BonusSpeed = 0,Description = "triple bullet",ImageURL = "",IsDouble = false,Name = "special1",IsTriple =false,Price = 10,MaxUse = 1});
-                CurrentSpecialItem.Instance.SpecialData.Add(3,new SpecialItemData{ID = 3,Addressable = "Special4",Amount = 0,BonusATK = 0,BonusHP = 0f,BonusRate = 0,BonusSpeed = 0,Description = "triple bullet",ImageURL = "",IsDouble = false,Name = "special1",IsTriple = false,IsFreeze = true,Price = 20,MaxUse = 1});
-                CurrentSpecialItem.Instance.SpecialData.Add(4,new SpecialItemData{ID = 4,Addressable = "Special5",Amount = 0,BonusATK = 0,BonusHP = 0f,BonusRate = 0,BonusSpeed = 0,Description = "triple bullet",ImageURL = "",IsDouble = false,Name = "special1",IsTriple = true,Price = 10,MaxUse = 1});
+                CurrentSpecialItem.Instance.SpecialData.Add(5,new SpecialItemData{ID = 5,Addressable = "Special1",Amount = 0,BonusATK = 0.1f,BonusHP = 0f,BonusRate = 0,BonusSpeed = 0,Description = "Bonus attack",ImageURL = "",IsDouble = false,Name = "special1",IsTriple = false,Price = 100,MaxUse = 5});
+                CurrentSpecialItem.Instance.SpecialData.Add(4,new SpecialItemData{ID = 4,Addressable = "Special2",Amount = 0,BonusATK = 0,BonusHP = 0.5f,BonusRate = 0,BonusSpeed = 2f,Description = "Bonus Speed",ImageURL = "",IsDouble = false,Name = "special2",IsTriple = false,Price = 100,MaxUse = 5});
+                CurrentSpecialItem.Instance.SpecialData.Add(7,new SpecialItemData{ID = 7,Addressable = "Special3",Amount = 0,BonusATK = 0,BonusHP = 0f,BonusRate = 100,BonusSpeed = 0,Description = "Bonus Rate",ImageURL = "",IsDouble = false,Name = "special1",IsTriple =false,Price = 100,MaxUse = 3});
+                CurrentSpecialItem.Instance.SpecialData.Add(8,new SpecialItemData{ID = 8,Addressable = "Special4",Amount = 0,BonusATK = 0,BonusHP = 0f,BonusRate = 0,BonusSpeed = 0,Description = "Double bullet",ImageURL = "",IsDouble = true,Name = "special1",IsTriple = false,Price = 100,MaxUse = 1});
+                CurrentSpecialItem.Instance.SpecialData.Add(11,new SpecialItemData{ID = 11,Addressable = "Special5",Amount = 0,BonusATK = 0,BonusHP = 0f,BonusRate = 0,BonusSpeed = 0,Description = "Triple bullet",ImageURL = "",IsDouble = false,Name = "special1",IsTriple = true,Price = 100,MaxUse = 1});
+                //double 12
             }
             
         }
