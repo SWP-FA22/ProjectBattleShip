@@ -18,16 +18,9 @@ public class CurentRankingManage : MonoBehaviour
 
     string addressableOfRank;
     // Start is called before the first frame update
-    void Start()
+    async void  Start()
     {
-        this.playerData      = PlayerUtility.GetMyPlayerData().Result;
-        if (this.playerData == null)
-        {
-            FakeDataIfLoadFail fakeDataIfLoadFail = new();
-            fakeDataIfLoadFail.LoadPlayerData();
-            this.playerData = new HandleLocalData().LoadData<PlayerData>("PlayerData");
-        }
-        this.playerData.Rank = 1800;
+        this.playerData = await PlayerUtility.GetMyPlayerData();
         if(this.playerData.Rank<1600){
             this.addressableOfRank = "bonze";
         } else if(this.playerData.Rank<2000){

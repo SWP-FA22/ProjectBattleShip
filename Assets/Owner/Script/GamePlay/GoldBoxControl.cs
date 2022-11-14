@@ -2,6 +2,7 @@
 {
     using System;
     using ExitGames.Client.Photon;
+    using Owner.Script.GameData;
     using Owner.Script.Signals;
     using Photon.Pun;
     using Photon.Realtime;
@@ -77,27 +78,28 @@
                     this.localScale.x                                      =  this.baseHP;
                     this.healthBar.transform.localScale                    =  this.localScale;
                 }
-                
             }
             
         }
         [PunRPC]
         public void DestroyGoldBox(string playerID)
         {
-            
             if (this.player!=null&&player.GetComponent<PlayerControl>().playerID == playerID)
             {
                 this.PropriedadesPlayer = PhotonNetwork.LocalPlayer.CustomProperties;
                 int score = this.player.GetComponent<PlayerControl>().score;
                 Debug.Log("get shoot");
                 score                                                                       += 10;
+                CurrentPlayerData.Instance.Score                                            += 10;
                 GameObject.Find("GameController").GetComponent<GameManage>().score          =  score;
                 GameObject.Find("GameController").GetComponent<GameManage>().scoreText.text =  "SCORE: "+score.ToString();
-                
-                this.healthAmount = 1.6f;
-                this.baseHP       = 1.6f;
+                this.healthAmount                                                           =  1.6f;
+                this.baseHP                                                                 =  1.6f;
+                this.localScale.x                                                           =  this.baseHP;
+                this.healthBar.transform.localScale                                         =  this.localScale;
                 Vector3 randomPosition = new Vector3(Random.Range(-175f, -75f), Random.Range(-35, 35), 0);
                 gameObject.transform.position = randomPosition;
+                GameObject.Find("GoldBoxExplosive").GetComponent<AudioSource>().Play();
             }
             
         }

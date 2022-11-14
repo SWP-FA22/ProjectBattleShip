@@ -14,6 +14,8 @@ using Photon.Pun;
 using TMPro;
 using UnityEngine.AddressableAssets;
 using Assets.Owner.Script.GameData;
+using Assets.Owner.Script.Util;
+using Unity.VisualScripting;
 
 public class PlayerControl : MonoBehaviour
 {
@@ -37,7 +39,7 @@ public class PlayerControl : MonoBehaviour
     public TextMeshProUGUI       message;
     public List<TextMeshProUGUI> listMessage = new();
     public GameObject            parent;
-
+    public PlayerData            playerData;
 
     public GameObject                 gameManage;
     ExitGames.Client.Photon.Hashtable PropriedadesPlayer = new ExitGames.Client.Photon.Hashtable();
@@ -74,8 +76,9 @@ public class PlayerControl : MonoBehaviour
         this.gameManage      = GameObject.Find("GameController");
         this.HandleLocalData = new HandleLocalData();
         this.LoadDataItem    = new LoadDataItem();
-        this.gamePlayData    = new GamePlayData { ShipName = "ship3", Score = 0 };
+        this.gamePlayData    = new GamePlayData { ShipName = "ship5", Score = 0 };
         this.listItemData    = this.LoadDataItem.LoadData();
+        this.playerData      = this.HandleLocalData.LoadData<PlayerData>("PlayerData");
         ListCurrentPlayers.Instance.listPlayer.Add(gameObject);
         if (this.listItemData == null)
         {
@@ -87,23 +90,23 @@ public class PlayerControl : MonoBehaviour
         {
             Debug.Log("Send message to change");
             this.ChangeModel();
+            CurrentPlayerData.Instance.Score = 0;
         }
         
         this.camera                                             =  GameObject.Find("CM vcam1");
-        foreach (var customPropertiesKey in PhotonNetwork.LocalPlayer.CustomProperties.Values)
-        {
-            Debug.Log("custom key"+customPropertiesKey);
-        }
+        
         //gamePlayData = (GamePlayData)PhotonNetwork.LocalPlayer.CustomProperties[this.playerID];
         string       shipName     = PhotonNetwork.LocalPlayer.CustomProperties[this.playerID].ToString().Split("|")[0];
         if(shipName==""){
-            shipName="ship1";
-        }
+            shipName="ship5";
+        } 
+        Debug.Log("curent ship:"+shipName);
         
         Addressables.LoadAssetAsync<Sprite>(shipName).Completed += (player) => { this.gameObject.transform.GetComponent<SpriteRenderer>().sprite = player.Result; };
         this.ChangeStaff();
         
         this.cannon.GetComponent<CannonControl>().playerID =  this.playerID;
+        this.view.RPC("ChangeName",RpcTarget.AllBuffered,this.playerData.Username);
 
         PhotonNetwork.NetworkingClient.EventReceived += this.GetScoreEvent;
 
@@ -135,23 +138,30 @@ public class PlayerControl : MonoBehaviour
             this.HandleLocalData.SaveData("ShipStaff",this.battleShipData);
             // Debug.LogError("Lost Ship!");
         }
-        this.speed       += battleShipData.BaseSpeed;
-        this.speedRotate += this.battleShipData.BaseRota;
+        this.speed                        += battleShipData.BaseSpeed/100;
+        this.speedRotate                  += this.battleShipData.BaseRota/100;
+
         //change by item
-        PlayerData playerData = this.HandleLocalData.LoadData<PlayerData>("PlayerData");
+        
         foreach (var item in this.listItemData.item)
         {
             if (item.ID == playerData.CannonID || item.ID == playerData.EngineID || item.ID == playerData.SailID)
             {
                 
-                this.speed       += item.BonusSpeed;
-                this.speedRotate += item.BonusRota;
+                this.speed                        += item.BonusSpeed/100;
+                this.speedRotate                  += item.BonusRota/100;
             }
         }
         //change buy special item
         foreach (var item in CurrentSpecialItem.Instance.SpecialData)
         {
-            this.speed += item.Value.BonusSpeed*item.Value.Amount;
+            this.speed                       += item.Value.BonusSpeed*item.Value.CurrentUse;
+        }
+
+        if (this.view.IsMine)
+        {
+            CurrentPlayerData.Instance.Speed = this.speed;
+            CurrentPlayerData.Instance.Rotate  =this.speedRotate;
         }
         
         
@@ -183,9 +193,29 @@ public class PlayerControl : MonoBehaviour
         }
         //ListCurrentPlayers.Instance.listPlayer[index].GetComponent<PlayerControl>().score = this.score;
     }
+    private void OnDestroy()
+    {
+        ListCurrentPlayers.Instance.listPlayer.Remove(this.gameObject);
+        if (this.view.IsMine)
+        {
+            CurrentPlayerData.Instance.ATK          = 0;
+            CurrentPlayerData.Instance.Speed        = 0;
+            CurrentPlayerData.Instance.Rotate       = 0;
+            CurrentPlayerData.Instance.BaseHP       = 0;
+            CurrentPlayerData.Instance.SpecialItems = new List<string>();
+        }
+        foreach (var item in CurrentSpecialItem.Instance.SpecialData)
+        {
+            ShopUtility.UseSpecialItem(item.Key, item.Value.CurrentUse);
+        }
+        
+        foreach (var item in CurrentSpecialItem.Instance.SpecialData)
+        {
+            item.Value.CurrentUse = 0;
+        }
+    }
 
-    
-    
+
     public void ChangeModel()
     {
         this.view.RPC("SetID", RpcTarget.AllBuffered);
@@ -198,17 +228,11 @@ public class PlayerControl : MonoBehaviour
                 data = new PlayerData();
             }
             this.battleShipData = data.Extra.Ship;
-            string     shipName = this.battleShipData.Name;
+            string     shipName = this.battleShipData.Addressable;
             Debug.Log("manage" + shipName);
             this.shipname              = shipName;
             this.gamePlayData.ShipName = this.shipname;
             this.view.RPC("SetData", RpcTarget.AllBuffered,this.shipname);
-
-            CurrentSpecialItem currentSpecialItem = CurrentSpecialItem.Instance;
-            foreach (var item in currentSpecialItem.SpecialData)
-            {
-                this.speed += item.Value.BonusSpeed;
-            }
         }
         else
         {
@@ -241,14 +265,14 @@ public class PlayerControl : MonoBehaviour
         if (view.IsMine)
         {
             
-            this.view.RPC("ChangeName",RpcTarget.AllBuffered,"khai1412");
+           
             gameObject.tag                                              = "CurrentPlayer";
             gameObject.transform.GetChild(1).tag                        = "CurrentPlayer";
             this.camera.GetComponent<CinemachineVirtualCamera>().Follow = gameObject.transform;
             this.camera.GetComponent<CinemachineVirtualCamera>().LookAt = gameObject.transform;
             if (Input.GetKey(KeyCode.W))
             {
-                gameObject.transform.position += transform.right * Mathf.Clamp01(1) * this.battleShipData.BaseSpeed * Time.deltaTime;
+                gameObject.transform.position += transform.right * Mathf.Clamp01(1) * this.speed * Time.deltaTime;
             }
 
             if (Input.GetKey(KeyCode.A))
@@ -262,7 +286,7 @@ public class PlayerControl : MonoBehaviour
                 float rotation = -1 * this.speedRotate * 0.5f;
                 transform.Rotate(Vector3.forward * rotation);
             }
-
+            
             int tempScore = GameObject.Find("GameController").GetComponent<GameManage>().score;
             this.view.RPC("UpdateScoreServer",RpcTarget.AllBuffered,tempScore);
             this.healthBar.transform.position = gameObject.transform.position;

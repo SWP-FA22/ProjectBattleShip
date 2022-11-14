@@ -27,6 +27,8 @@
         public  BattleShipData  battleShipData;
         public  TextMeshProUGUI isBuy;
         private bool            isClicked = false;
+
+        public GameObject popupError;
         private void Start()
         {
             Debug.Log("signal:" + this.signalBus);
@@ -35,7 +37,10 @@
             this.HandleLocalData = new();
             this.priceText = gameObject.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
             this.outline = gameObject.GetComponent<Outline>();
+            
         }
+        
+        
 
         private void Update()
         {
@@ -97,6 +102,7 @@
                     if (PlayerUtility.EquipShip(shipData.ID).Result)
                     {
                         this.HandleLocalData.SaveData("ShipStaff", battleShipData);
+                       
                         GameObject
                             .Find("ItemScroll")
                             .GetComponent<ShopBattleShipManage>()
@@ -125,11 +131,16 @@
                     this.HandleLocalData.SaveData("PlayerData", playerData);
                     this.signalBus.Fire<ReloadResourceSignal>();
                 }
+                else
+                {
+                    this.signalBus.Fire(new ErrorSignal(){Message = "Not Enough!!"});
+                }
             }
             else
             {
                 this.ChangeModel();
             }
+            GameObject.Find("Pick").GetComponent<AudioSource>().Play();
         }
     }
 }

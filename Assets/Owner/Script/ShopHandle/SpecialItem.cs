@@ -34,7 +34,24 @@
             this.HandleLocalData = new();
             this.priceText = gameObject.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
             this.outline = gameObject.GetComponent<Outline>();
-            
+            this.lockIcon.SetActive(false);
+
+        }
+
+        
+        
+        public void ShowPopup()
+        {
+            if (this.isClicked)
+            {
+                this.signalBus.Fire<ClosePopup>();
+                this.isClicked = false;
+            }
+            else
+            {
+                this.signalBus.Fire(new ShowPopupSignal{Position = gameObject.transform.position,SpecialItemData = this.SpecialItemData});
+                this.isClicked = true;
+            }
         }
         
         public void ShowPopup()
@@ -94,28 +111,35 @@
                 //TODO: call api to check data when buy item
                 PlayerData playerData = this.HandleLocalData.LoadData<PlayerData>("PlayerData");
                 //ShopUtility.BuyItem(ItemData.ID).Result
-                if (playerData.Extra?.Diamond >= this.SpecialItemData.Price)
+                if (playerData.Extra?.Gold >= this.SpecialItemData.Price&& ShopUtility.BuySpecialItem(this.SpecialItemData.ID).Result)
                 {
                     this.SpecialItemData.Amount += 1;
-                    playerData.Extra.Diamond    -= (int)this.SpecialItemData.Price;
+                    //playerData.Extra.Gold   -= (int)this.SpecialItemData.Price;
                     this.UpdateData();
                     this.HandleLocalData.SaveData("PlayerData", playerData);
                     this.signalBus.Fire<ReloadResourceSignal>();
                 }
+                else
+                {
+                    this.signalBus.Fire(new ErrorSignal(){Message = "Not Enough!!"});
+                }
             }
-            
-            
+            GameObject.Find("Pick").GetComponent<AudioSource>().Play();
         }
 
         public void UseItem()
         {
-            if (this.SpecialItemData.Amount > 0)
+            if (this.SpecialItemData.Amount > 0&&this.SpecialItemData.CurrentUse<this.SpecialItemData.MaxUse)
             {
                 this.SpecialItemData.Amount     -= 1;
                 this.SpecialItemData.CurrentUse += 1;
                 this.isBuy.text                 =  "USE x" + this.SpecialItemData.Amount;
                 this.UpdateData();
                 this.signalBus.Fire(new UseItemSignal{ID = this.SpecialItemData.ID});
+            }
+            else if(this.SpecialItemData.CurrentUse>this.SpecialItemData.MaxUse)
+            {
+                this.signalBus.Fire(new ErrorSignal(){Message = "can not use!!"});
             }
             
         }

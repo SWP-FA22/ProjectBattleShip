@@ -20,12 +20,14 @@ public class RoomController : MonoBehaviourPunCallbacks
             RoomOptions roomOptions = new RoomOptions();
             roomOptions.MaxPlayers = 5;
             PhotonNetwork.CreateRoom(RoomName.text, roomOptions);
+            
         }
         else
         {
             ErrorMessage.SetActive(true);
            
         }
+        GameObject.Find("Pick").GetComponent<AudioSource>().Play();
     }
 
     public void JoinCurrentRoom()
@@ -39,6 +41,7 @@ public class RoomController : MonoBehaviourPunCallbacks
         {
             ErrorMessage.SetActive(true);
         }
+        GameObject.Find("Pick").GetComponent<AudioSource>().Play();
     }
 
     public override void OnJoinRoomFailed(short returnCode, string message)
@@ -64,6 +67,7 @@ public class RoomController : MonoBehaviourPunCallbacks
         {
             PhotonNetwork.JoinRandomRoom();
         }
+        GameObject.Find("Pick").GetComponent<AudioSource>().Play();
 
     }
 }

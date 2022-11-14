@@ -39,7 +39,6 @@
         
         public async void ValidateLogin()
         {
-            LoadToLoadingScene();
             if (this.userName.text == "" || this.password.text == "")
             {
                 this.error.SetActive(true);

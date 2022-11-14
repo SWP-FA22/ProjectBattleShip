@@ -16,20 +16,20 @@ using Zenject;
 
 public class ShopBattleShipManage : MonoBehaviour
 {
-    public  ShopBattleShipItem       battleShip;
-    public  List<BattleShipData>     listShopItems = new List<BattleShipData>();
-    public  Transform                _parentContainBtn;
-    public  List<ShopBattleShipItem> listItem;
-    public  ShopItem                 item;
-    public  List<ItemData>           ListItemData = new();
-    private string                   checkCurrentShop;
-    private FakeDataIfLoadFail       FakeDataIfLoadFail = new();
-    public  GameObject               popupInfo;
-    
-    [FormerlySerializedAs("GoldValue")]    public TextMeshProUGUI  goldValue;
-    [FormerlySerializedAs("RubyValue")]    public TextMeshProUGUI  rubyValue;
-    [FormerlySerializedAs("DiamondValue")] public TextMeshProUGUI  diamondValue;
-    public                                        HandleLocalData  handleLocalData;
+    public                                        ShopBattleShipItem       battleShip;
+    public                                        List<BattleShipData>     listShopItems = new List<BattleShipData>();
+    public                                        Transform                _parentContainBtn;
+    public                                        List<ShopBattleShipItem> listItem;
+    public                                        ShopItem                 item;
+    public                                        List<ItemData>           ListItemData = new();
+    private                                       string                   checkCurrentShop;
+    private                                       FakeDataIfLoadFail       FakeDataIfLoadFail = new();
+    public                                        GameObject               popupInfo;
+    public                                        GameObject               popupError;
+    [FormerlySerializedAs("GoldValue")]    public TextMeshProUGUI          goldValue;
+    [FormerlySerializedAs("RubyValue")]    public TextMeshProUGUI          rubyValue;
+    [FormerlySerializedAs("DiamondValue")] public TextMeshProUGUI          diamondValue;
+    public                                        HandleLocalData          handleLocalData;
     [Inject]
     private SignalBus signalBus;
     [Inject]
@@ -43,16 +43,24 @@ public class ShopBattleShipManage : MonoBehaviour
         checkCurrentShop   = PlayerPrefs.GetString("Shop");
         //this.listShopItems = this.FakeDataIfLoadFail.LoadBattleShipDatas();
         listShopItems.AddRange(await ShopUtility.GetAllShips(true));
-        
         this.CreateButton();
         this.signalBus.Subscribe<ReloadResourceSignal>(this.ReloadData);
         this.signalBus.Subscribe<ShowPopupSignal>(x=>ShowPopupInfo(x.Position,x.BattleShipData));
         this.signalBus.Subscribe<ClosePopup>(this.ClosePopUp);
+        this.signalBus.Subscribe<ErrorSignal>(x=>ShowPopupError(x.Message));
+    }
+
+    public void ShowPopupError(string message)
+    {
+        this.popupError.SetActive(true);
+        this.popupError.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = message;
+
     }
 
     public void ClosePopUp()
     {
         this.popupInfo.SetActive(false);
+        
     }
 
     public void ShowPopupInfo(Vector3 position,BattleShipData battleShipData)
@@ -76,9 +84,9 @@ public class ShopBattleShipManage : MonoBehaviour
             this.FakeDataIfLoadFail = new FakeDataIfLoadFail();
             playerData              = this.FakeDataIfLoadFail.LoadPlayerData();
         }
-        this.goldValue.text = playerData.Extra?.Gold.ToString() ?? "";
-        this.rubyValue.text = playerData.Extra?.Ruby.ToString() ?? "";
-        this.diamondValue.text = playerData.Extra?.Diamond.ToString() ?? "";
+        this.goldValue.text    = ResolveData(playerData.Extra.Gold);
+        this.rubyValue.text    = ResolveData(playerData.Extra.Ruby);
+        this.diamondValue.text = ResolveData(playerData.Extra.Diamond);
     }
 
     public void CreateButton()
@@ -98,6 +106,21 @@ public class ShopBattleShipManage : MonoBehaviour
         if (checkCurrentShop == "BattleShipShop")
         {
             Debug.Log("create button");
+        }
+    }
+
+    public string ResolveData(int data)
+    {
+        string result = "";
+        if (data >= 1000)
+        {
+            int temp = data / 100 - (data / 1000)*10;
+            result += temp!=0?(data / 1000) + "k" + (temp):(data / 1000) + "k";
+            return result;
+        }
+        else
+        {
+            return data.ToString();
         }
     }
 }

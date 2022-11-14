@@ -42,24 +42,22 @@
         
         public void CreateButton()
         {
-            for (int i = 0; i < CurrentSpecialItem.Instance.SpecialData.Count; i++)
+            foreach (var key  in CurrentSpecialItem.Instance.SpecialData.Keys)
             {
                 try
                 {
-                    if (CurrentSpecialItem.Instance.SpecialData[i].Amount > 0)
+                    if (CurrentSpecialItem.Instance.SpecialData[key].Amount > 0||CurrentSpecialItem.Instance.SpecialData[key].CurrentUse>0)
                     {
                         UseItem SpecialItemObject = Instantiate(this.specialItem, _parentContainBtn);
-                        SpecialItemObject.SetUpData(CurrentSpecialItem.Instance.SpecialData[i]);
-                        SpecialItemObject.GetComponent<SpecialItem>().SpecialItemData = CurrentSpecialItem.Instance.SpecialData[i];
+                        SpecialItemObject.SetUpData(CurrentSpecialItem.Instance.SpecialData[key]);
+                        SpecialItemObject.GetComponent<SpecialItem>().SpecialItemData = CurrentSpecialItem.Instance.SpecialData[key];
                         this.diContainer.InjectGameObject(SpecialItemObject.gameObject);
                         SpecialItemObject.GetComponent<SpecialItem>().lockIcon.SetActive(false);
-                        SpecialItemObject.GetComponent<SpecialItem>().isBuy.text = "USE "+"x"+CurrentSpecialItem.Instance.SpecialData[i].Amount;
+                        SpecialItemObject.GetComponent<SpecialItem>().isBuy.text = "USE "+"x"+CurrentSpecialItem.Instance.SpecialData[key].Amount;
                     }
-                    
                 }
                 catch { }
             }
-            
         }
 
         

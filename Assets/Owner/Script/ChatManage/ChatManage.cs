@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using ExitGames.Client.Photon;
+    using Owner.Script.GameData;
     using Photon.Chat;
     using Photon.Chat.Demo;
     using Photon.Pun;
@@ -44,7 +45,10 @@
         {
             Debug.Log("run here");
         }
-        public  void OnDisconnected()                                                         { throw new NotImplementedException(); }
+        public void OnDisconnected()
+        {
+            Debug.Log("close");
+        }
         public void OnConnected()
         {
             this.isConnected = true;
@@ -65,10 +69,11 @@
         }
         public void OnGetMessages(string channelName, string[] senders, object[] messages)
         {
-            string message = "";
+            PlayerData playerData = new HandleLocalData().LoadData<PlayerData>("PlayerData");
+            string     message    = "";
             for (int i = 0; i < senders.Length; i++)
             {
-                message               =  string.Format("{0}: {1}", senders[i], messages[i]);
+                message               =  string.Format("{0}: {1}", playerData.Username, messages[i]);
                 this.chatDisplay.text += "\n" + message;
             }
         }

@@ -53,6 +53,10 @@ public static class LoginUtility
             {
                 GLOBAL_TOKEN = token;
             }
+            else
+            {
+                GLOBAL_TOKEN = "";
+            }
         }
         catch (System.Exception)
         {

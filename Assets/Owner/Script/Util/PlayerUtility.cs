@@ -8,19 +8,21 @@ using System.Threading.Tasks;
 
 namespace Assets.Owner.Script.Util
 {
+    using UnityEngine;
+
     public class PlayerUtility
     {
-        public static async Task<PlayerData>  GetMyPlayerData()
+        public static async Task<PlayerData> GetMyPlayerData()
         {
             HandleLocalData handleLocalData = new HandleLocalData();
 
             PlayerData data = handleLocalData.LoadData<PlayerData>("PlayerData");
 
-            if (data == null)
-            {
-                data = await new PlayerRequest().GetPlayerExtraInfo(LoginUtility.GLOBAL_TOKEN);
-                handleLocalData.SaveData("PlayerData", data);
-            }
+
+            data = await new PlayerRequest().GetPlayerExtraInfo(LoginUtility.GLOBAL_TOKEN);
+
+            handleLocalData.SaveData("PlayerData", data);
+
 
             return data;
         }

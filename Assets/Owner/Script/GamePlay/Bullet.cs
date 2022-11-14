@@ -2,7 +2,9 @@
 {
     using System;
     using Cysharp.Threading.Tasks;
+    using Owner.Script.GameData;
     using Photon.Pun;
+    using Unity.Mathematics;
     using UnityEngine;
 
     public class Bullet : MonoBehaviour
@@ -12,36 +14,60 @@
 
         public  string playerID;
 
-        public  string bulletType = "freeze";
-        private void   Start() { this.AutoDestroy(); }
+        public string      bulletType = "freeze";
+        public PhotonView  photonView;
+        public AudioSource sound;
+        public GameObject  vfx;
+        private void Start()
+        {
+            this.AutoDestroy();
+            this.photonView = this.GetComponent<PhotonView>();
+            this.sound      = GameObject.Find("ExplosiveSound").GetComponent<AudioSource>();
+        }
+        private void Update()
+        {
+            gameObject.transform.position += transform.up * Mathf.Clamp01(1) * 15f * Time.deltaTime;
+        }
 
         private void OnTriggerEnter2D(Collider2D col)
         {
-            Debug.Log("des");
-            if (col.transform.CompareTag("island") || col.CompareTag("Player")||col.CompareTag("GoldBox"))
+            if (gameObject.tag == "Bullet")
             {
-                if (col.GetComponent<PlayerBoxCollider>() != null)
+                Debug.Log("des");
+                if (col.transform.CompareTag("island") || col.CompareTag("Player")||col.CompareTag("GoldBox"))
                 {
-                    if (col.CompareTag("Player"))
+                    if (col.GetComponent<PlayerBoxCollider>() != null)
                     {
-                        Debug.Log("lose health");
-                        GameObject otherPlayer = col.gameObject;
-                        int        score       =  GameObject.Find("GameController").GetComponent<GameManage>().score;
-                        if (otherPlayer.GetComponent<PlayerBoxCollider>().baseHP - this.damage <= 0)
+                        if (col.CompareTag("Player"))
                         {
-                            Debug.Log("aaaaaaaaaaaa");
-                            score                                                                       += 20;
-                            GameObject.Find("GameController").GetComponent<GameManage>().score          =  score;
-                            GameObject.Find("GameController").GetComponent<GameManage>().scoreText.text =  "SCORE: "+score.ToString();
+                            Debug.Log("lose health");
+                            GameObject otherPlayer = col.gameObject;
+                            int        score       =  GameObject.Find("GameController").GetComponent<GameManage>().score;
+                            if (otherPlayer.GetComponent<PlayerBoxCollider>().baseHP - this.damage <= 0)
+                            {
+                                Debug.Log("aaaaaaaaaaaa");
+                                score                                                                       += 20;
+                                CurrentPlayerData.Instance.Score                                            += 20;
+                                GameObject.Find("GameController").GetComponent<GameManage>().score          =  score;
+                                GameObject.Find("GameController").GetComponent<GameManage>().scoreText.text =  "SCORE: "+score.ToString();
+                            }
                         }
                     }
+                    this.photonView.RPC("DestroyBullet", RpcTarget.AllBuffered);
+                    this.sound.Play();
                     
-
                 }
-                GameObject sound = GameObject.Find("Explosion");
-                sound.GetComponent<AudioSource>().Play();
-                Destroy(gameObject);
             }
+            
+        }
+
+        [PunRPC]
+        public void DestroyBullet()
+        {
+            
+            Instantiate(this.vfx, gameObject.transform.position, quaternion.identity);
+            Destroy(this.gameObject);
+            
         }
 
         
@@ -49,6 +75,9 @@
         private void OnTriggerExit2D(Collider2D other)
         {
             if (other.CompareTag("CurrentPlayer"))
+            {
+                gameObject.tag = "Bullet";
+            } else if (other.CompareTag("Player"))
             {
                 gameObject.tag = "Bullet";
             }
@@ -62,7 +91,8 @@
             {
                 if (gameObject != null)
                 {
-                    Destroy(this.gameObject);
+                    this.photonView.RPC("DestroyBullet", RpcTarget.AllBuffered);
+                   
                 }
             }
             catch

@@ -80,7 +80,7 @@
             this.priceText.text = "Price: " + data.Price;
             try
             {
-                Addressables.LoadAssetAsync<Sprite>(data.Addressable.Trim()).Completed += (player) => { gameObject.transform.GetChild(0).GetComponent<Image>().sprite = player.Result; };
+                Addressables.LoadAssetAsync<Sprite>(data.Addressable.Trim()).Completed += (player) => { this.gameObject.transform.GetChild(0).GetComponent<Image>().sprite = player.Result; };
             }
             catch (Exception e)
             {
@@ -105,11 +105,16 @@
                     this.HandleLocalData.SaveData("PlayerData", playerData);
                     this.signalBus.Fire<ReloadResourceSignal>();
                 }
+                else
+                {
+                    this.signalBus.Fire(new ErrorSignal(){Message = "Not Enough!!"});
+                }
             }
             else
             {
                 this.ChangeItem();
             }
+            GameObject.Find("Pick").GetComponent<AudioSource>().Play();
         }
 
         public void ChangeItem()

@@ -16,7 +16,7 @@ namespace Assets.Owner.Script.Network.HttpRequests
 {
     public class PlayerRequest
     {
-        public static readonly string PLAYER_INFO = $"{HttpRequest.BASE_URL}/api/player-data";
+        public static readonly string PLAYER_INFO = $"{HttpRequest.BASE_URL}/api/player-info";
         
         public static readonly string EQUIP_SHIP = $"{HttpRequest.BASE_URL}/api/equip-ship";
         
@@ -58,7 +58,6 @@ namespace Assets.Owner.Script.Network.HttpRequests
                 {
                     return null;
                 }
-
                 return response.Player;
             }
             catch (System.Exception ex)
@@ -143,6 +142,7 @@ namespace Assets.Owner.Script.Network.HttpRequests
                 { "score", score.ToString() }
             });
 
+            
             try
             {
                 var response = await new HttpRequest(www).Send<EquipShipResponse>();

@@ -11,30 +11,27 @@
 
     public class CannonControl : MonoBehaviour
     {
-        public PhotonView view;
-        public GameObject bullet;
-        public string playerID;
-        public HandleLocalData handleLocalData;
-        private ListItemData listItemData;
-        public LoadDataItem LoadDataItem;
-        public float damage;
-        public float timeRate = 0;
-        public bool checkDouble;
-        public bool checkTriple;
-        public bool checkSlow;
+        public  PhotonView      view;
+        public  GameObject      bullet;
+        public  string          playerID;
+        public  HandleLocalData handleLocalData;
+        private ListItemData    listItemData;
+        public  LoadDataItem    LoadDataItem;
+        public  float           damage;
+        public  float           timeRate = 0;
+        public  bool            checkDouble;
+        public  bool            checkTriple;
+        public  bool            checkSlow;
         private void Start()
         {
-            view = gameObject.GetComponent<PhotonView>();
             this.handleLocalData = new HandleLocalData();
-            this.LoadDataItem = new LoadDataItem();
+            this.LoadDataItem    = new LoadDataItem();
             this.ChangeStaff();
 
 
             BattleShipData battleShipData =
                 handleLocalData.LoadData<BattleShipData>("ShipStaff") ??
                 PlayerUtility.GetMyPlayerData().Result.Extra?.Ship;
-
-            this.damage = battleShipData.BaseAttack;
         }
         private bool state = true;
         private void Update()
@@ -45,7 +42,7 @@
                 gameObject.transform.rotation = Quaternion.LookRotation(Vector3.forward, mousePos - gameObject.transform.position);
                 if (Input.GetKey(KeyCode.Mouse0))
                 {
-                    this.view.RPC("CreateBullet", RpcTarget.AllBuffered, this.damage);
+                    this.view.RPC("CreateBullet", RpcTarget.All, this.damage);
                 }
             }
         }
@@ -56,9 +53,15 @@
             BattleShipData battleShipData = handleLocalData.LoadData<BattleShipData>("ShipStaff");
             if (battleShipData == null)
             {
-                battleShipData = new BattleShipData { ID = 1, Name = "ship3", Description = "aaaaaa", BaseAttack = 0.5f, BaseHP = 2.0f, BaseSpeed = 5f, BaseRota = 5f, Price = 10, Addressable = "ship1", IsOwner = true, IsEquipped = false };
+                battleShipData = new BattleShipData
+                {
+                    ID         = 1, Name = "ship3", Description = "aaaaaa", BaseAttack = 0.5f, BaseHP = 2.0f, BaseSpeed = 5f, BaseRota = 5f, Price = 10, Addressable = "ship1", IsOwner = true,
+                    IsEquipped = false
+                };
             }
-            this.damage = battleShipData.BaseAttack;
+
+            this.damage += battleShipData.BaseAttack/1000;
+
             //change by item
             this.listItemData = this.LoadDataItem.LoadData();
             PlayerData playerData = this.handleLocalData.LoadData<PlayerData>("PlayerData");
@@ -66,34 +69,46 @@
             {
                 if (item.ID == playerData.CannonID || item.ID == playerData.EngineID || item.ID == playerData.SailID)
                 {
-                    this.damage += item.BonusATK;
+                    this.damage += item.BonusATK/1000;
                 }
             }
 
-            CurrentSpecialItem currentSpecialItem = CurrentSpecialItem.Instance;
-            foreach (var item in currentSpecialItem.SpecialData)
-            {
-                this.damage += item.Value.BonusATK;
-                this.timeRate += item.Value.BonusRate;
-            }
             //change by special item
             foreach (var item in CurrentSpecialItem.Instance.SpecialData)
             {
-                this.damage += item.Value.BonusATK * item.Value.Amount;
-                if (item.Value.IsDouble)
-                {
-                    this.checkDouble = true;
-                }
-
-                if (item.Value.IsTriple)
-                {
-                    this.checkTriple = true;
-                }
-                if (item.Value.IsFreeze)
-                {
-                    this.checkSlow = true;
-                }
+                Debug.Log("number of spec:" + item.Value.CurrentUse + ", atk:" + item.Value.BonusATK);
+                this.damage   += item.Value.BonusATK * item.Value.CurrentUse;
+                this.timeRate += item.Value.BonusRate * item.Value.CurrentUse;
             }
+
+            if (this.view.IsMine)
+            {
+                CurrentPlayerData.Instance.ATK  = this.damage;
+                CurrentPlayerData.Instance.Rate = this.timeRate;
+            }
+
+            foreach (var item in CurrentSpecialItem.Instance.SpecialData)
+            {
+                if (item.Value.CurrentUse > 0)
+                {
+                    if (item.Value.IsDouble)
+                    {
+                        this.checkDouble = true;
+                    }
+
+                    if (item.Value.IsTriple)
+                    {
+                        this.checkTriple = true;
+                    }
+
+                    if (item.Value.IsFreeze)
+                    {
+                        this.checkSlow = true;
+                    }
+                }
+                
+            }
+            
         }
 
         [PunRPC]
@@ -101,15 +116,17 @@
         {
             if (this.state)
             {
+                this.checkSlow = false;
                 if (this.checkDouble)
                 {
                     this.CreateNewBullet("normal", false);
-                    await UniTask.Delay(TimeSpan.FromMilliseconds(200));
+                    await UniTask.Delay(TimeSpan.FromMilliseconds(150));
                     this.CreateNewBullet("normal", false);
                     this.state = false;
                     await UniTask.Delay(TimeSpan.FromMilliseconds(1000 - this.timeRate));
                     this.state = true;
                 }
+
                 if (this.checkTriple)
                 {
                     this.CreateNewBullet("normal", true);
@@ -128,43 +145,38 @@
 
                 if (!this.checkDouble && !this.checkTriple && !this.checkSlow)
                 {
-                    this.CreateNewBullet("normal", false);
-                    this.state = false;
+                    this.CreateSingleBullet();
+                    this.state                                     = false;
                     await UniTask.Delay(TimeSpan.FromMilliseconds(1000 - this.timeRate));
                     this.state = true;
                 }
-
-
-
             }
-
         }
 
-        public async void CreateNewBullet(string type, bool isTriple)
+        public void CreateNewBullet(string type, bool isTriple)
         {
             if (isTriple)
             {
-                int[] rotatepoint = { -5, 0, 5 };
+                int[] rotatepoint = { -20, 0, 20 };
                 for (int i = 0; i < 3; i++)
                 {
-                    var newBullet = Instantiate(this.bullet, gameObject.transform.position, gameObject.transform.rotation);
-                    newBullet.transform.Rotate(new Vector3(rotatepoint[i], 0, 0));
-                    newBullet.GetComponent<Rigidbody2D>().velocity = (this.gameObject.transform.up * 15f);
-                    newBullet.GetComponent<Bullet>().damage = this.damage;
-                    newBullet.GetComponent<Bullet>().playerID = this.playerID;
+                    var newBullet = PhotonNetwork.Instantiate(this.bullet.name, gameObject.transform.position, gameObject.transform.rotation);
+                    newBullet.transform.Rotate(new Vector3(0, 0, rotatepoint[i]));
+                    //Vector3 shootPosition = this.gameObject.transform.up + new Vector3(rotatepoint[i], 0, 0);
+                    newBullet.GetComponent<Bullet>().damage     = this.damage;
+                    newBullet.GetComponent<Bullet>().playerID   = this.playerID;
                     newBullet.GetComponent<Bullet>().bulletType = type;
                 }
-
             }
-            else
-            {
-                var newBullet = Instantiate(this.bullet, gameObject.transform.position, gameObject.transform.rotation);
-                newBullet.GetComponent<Rigidbody2D>().velocity = (this.gameObject.transform.up * 15f);
-                newBullet.GetComponent<Bullet>().damage = this.damage;
-                newBullet.GetComponent<Bullet>().playerID = this.playerID;
-                newBullet.GetComponent<Bullet>().bulletType = type;
-            }
+        }
 
+        public void CreateSingleBullet()
+        {
+            var newBullet = PhotonNetwork.Instantiate(this.bullet.name, gameObject.transform.position, gameObject.transform.rotation);
+            newBullet.GetComponent<Rigidbody2D>().velocity = (this.gameObject.transform.up * 15f);
+            newBullet.GetComponent<Bullet>().damage        = this.damage;
+            newBullet.GetComponent<Bullet>().playerID      = this.playerID;
+            newBullet.GetComponent<Bullet>().bulletType    = "normal";
         }
     }
 }

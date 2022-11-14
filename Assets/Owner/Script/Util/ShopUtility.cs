@@ -68,5 +68,11 @@ namespace Assets.Owner.Script.Util
         /// <param name="shipId">ship id</param>
         /// <returns>true if buy successful, otherwise false</returns>
         public static async Task<bool> BuyShip(int shipId) => await new ShopRequest(LoginUtility.GLOBAL_TOKEN).BuyShip(shipId);
+        
+        public static async Task<bool> BuySpecialItem(int id, int amount = 1) => await new ShopRequest(LoginUtility.GLOBAL_TOKEN).BuySpecialItem(id, amount);
+        
+        public static async Task<bool> UseSpecialItem(int id, int amount = 1) => await new ShopRequest(LoginUtility.GLOBAL_TOKEN).UseSPItem(id, amount);
+        
+        public static async Task<List<ShopRequest.SpecialItemResponse>> GetSPItems() => await new ShopRequest(LoginUtility.GLOBAL_TOKEN).GetSPItems();
     }
 }
